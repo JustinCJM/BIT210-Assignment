@@ -43,6 +43,10 @@
       top: 22px;
       width: 300px;
     }
+
+    .about-container img {
+      width: 75px;
+    }
   </style>
   <head>
     <meta charset="utf-8" />
@@ -57,8 +61,12 @@
       integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
       crossorigin="anonymous"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
   </head>
-  <header>
+  <header class="sticky-top">
     <nav class="navbar navbar-expand-lg" style="background-color: #ff6d0a">
       <div class="container-fluid mx-auto" style="max-width: 1430px">
         <a
@@ -197,6 +205,64 @@
             </button>
           </div>
         </form>
+      </div>
+    </div>
+    <div class="container-fluid p-0 mt-0">
+      <div class="about-container" style="height: 50vh">
+        <div class="text-center" style="padding-top: 20px">
+          <h2 style="font-weight: bold; font-size: 50px">Why Stoopid?</h2>
+        </div>
+        <div
+          class="container text-center animate__animated animate__fadeInLeft"
+          style="padding-top: 50px"
+        >
+          <div class="row justify-content-between">
+            <div class="col-md-3">
+              <img src="assets/insight.png" class="img-fluid" alt="Insight" />
+            </div>
+            <div class="col-md-3">
+              <img src="assets/packages.png" class="img-fluid" alt="Packages" />
+            </div>
+            <div class="col-md-3">
+              <img src="assets/voucher.png" class="img-fluid" alt="Voucher" />
+            </div>
+            <div class="col-md-3">
+              <img src="assets/defence.png" class="img-fluid" alt="Defence" />
+            </div>
+          </div>
+        </div>
+        <div
+          class="container text-center mt-4 animate__animated animate__fadeInRight"
+        >
+          <div class="row justify-content-between">
+            <div class="col-md-3 fs-3 fw-bold">Superb Insights!</div>
+            <div class="col-md-3 fs-3 fw-bold">Adventure-packed Packages!</div>
+            <div class="col-md-3 fs-3 fw-bold">Superb Deals!</div>
+            <div class="col-md-3 fs-3 fw-bold">Highly Trusted!</div>
+          </div>
+        </div>
+        <div
+          class="container text-center mt-3 animate__animated animate__fadeInRight"
+        >
+          <div class="row justify-content-between">
+            <div class="col-md-3 fs-6 fw-normal">
+              I see you I see you I see you I see you I see you I see you I see
+              you I see you I see you I see you I see you.
+            </div>
+            <div class="col-md-3 fs-6 fw-normal">
+              I have you I have you I have you I have you I have you I have you
+              I have you I have you I have you I have you.
+            </div>
+            <div class="col-md-3 fs-6 fw-normal">
+              I want you I want you I want you I want you I want you I want you
+              I want you I want you I want you I want you.
+            </div>
+            <div class="col-md-3 fs-6 fw-normal">
+              I am you I am you I am you I am you I am you I am you I am you I
+              am you I am you I am you I am you I am you.
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
