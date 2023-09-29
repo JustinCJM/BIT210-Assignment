@@ -1,3 +1,9 @@
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
 .navbar {
   background-color: white;
   padding-left: 7rem;
@@ -21,6 +27,20 @@
   border-bottom-right-radius: 20px;
 }
 
+.nav-link {
+  margin-right: 1rem;
+}
+
+.login-btn {
+  background-color: #7c4dff; /* Button background color */
+  color: white; /* Text color */
+  border: none; /* Remove button border */
+  border-radius: 5px; /* Rounded corners */
+  font-weight: bold; /* Bold text */
+  text-decoration: none;
+  width: 5rem;
+}
+
 .nav-search-container {
   width: 30rem;
   min-width: 10rem;
@@ -39,6 +59,23 @@
   left: 0;
   right: 0;
   z-index: 2;
+}
+
+.btn-book-now {
+  background-color: #7c4dff; /* Button background color */
+  color: white; /* Text color */
+  border: none; /* Remove button border */
+  border-radius: 5px; /* Rounded corners */
+  font-weight: bold; /* Bold text */
+  text-decoration: none;
+  position: absolute;
+  z-index: 2;
+  top: 70%;
+  left: 45.5%;
+  right: 0;
+  transition: background-color 0.3s;
+  width: 10rem;
+  display: inline-block;
 }
 
 .carousel-subheader-text {
@@ -82,7 +119,7 @@
   width: 40%;
 }
 
-.smalllogo{
+.smalllogo {
   display: block;
   max-width: 15%;
   height: auto;

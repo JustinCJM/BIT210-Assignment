@@ -67,10 +67,17 @@
               href="#"
               >Home</a
             >
-            <a class="nav-link" href="#scrollspyHeading1">About</a>
-            <a class="nav-link" href="#scrollspyHeading2">Reviews</a>
+            <a class="nav-link" href="">About Us</a>
+            <a class="nav-link" href="">Contact Us</a>
+            <a class="nav-link" href="">FAQ</a>
             <a
               class="nav-link"
+              href="login.php"
+              style="font-weight: bold"
+              >Sign Up</a
+            >
+            <a
+              class="nav-link btn btn-primary login-btn"
               href="login.php"
               style="font-weight: bold"
               >Login</a
@@ -88,18 +95,21 @@
             <div class="mask"></div>
             <div class="carousel-header-text">LET'S PLAN YOUR TRIP TOGETHER</div>
             <div class="carousel-subheader-text" style="font-size: 8rem;">KLCC</div>
+            <a href="#" class="btn btn-primary btn-book-now">Book Now</a>
           </div>
           <div class="c1 carousel-item">
             <img src="assets/car2.jpg" class="d-block w-100" alt="image2" />
             <div class="mask"></div>
             <div class="carousel-header-text">FIND THE BEST PLACES TO TRAVEL</div>
             <div class="carousel-subheader-text" style="font-size: 6rem; top: 40%;">CAMERON HIGHLANDS</div>
+            <a href="#" class="btn btn-primary btn-book-now">Book Now</a>
           </div>
           <div class="c1 carousel-item">
             <img src="assets/car3.jpg" class="d-block w-100" alt="image3" />
             <div class="mask"></div>
             <div class="carousel-header-text">YOUR LONG AWAITED BREAK STARTS WITH US</div>
             <div class="carousel-subheader-text" style="font-size: 6rem; top: 40%">PULAU PANGKOR</div>
+            <a href="#" class="btn btn-primary btn-book-now">Book Now</a>
           </div>
         </div>
         <button
@@ -121,7 +131,7 @@
           <span class="visually-hidden"></span>
         </button>
       </div>
-      <div class="container-fluid p-0 mt-0" id="scrollspyHeading1">
+      <div class="container-fluid p-0 mt-0">
         <div class="about-container">
           <div class="text-center p-5 pt-5 fs-1 fw-bold">Why Tuhr?</div>
           <div class="container text-center p-4" data-aos="fade-right" data-aos-duration="3000">
@@ -155,7 +165,7 @@
         </div>
       </div>
       <div id="carouselExampleControls" class="carousel slide text-center carousel-dark" data-bs-ride="carousel">
-        <div class="text-center p-5 fs-1 fw-bold" id="scrollspyHeading2">See what other people have to say!</div>
+        <div class="text-center p-5 fs-1 fw-bold">See what other people have to say!</div>
         <div class="carousel-inner" data-aos="fade-left" data-aos-duration="2000">
           <div class="carousel-item active">
             <img class="shadow-1-strong mb-4"
@@ -237,6 +247,9 @@
         </button>
       </div>
       <br>
+      <div class="text-center p-5 fs-1 fw-bold">Take a look at our featured products!
+        <p>TBA</p>
+      </div>
   </body>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script
@@ -252,15 +265,9 @@
   <footer class="text-center text-lg-start text-white" style="background-color: #1c2331">
     <!-- Section: Social media -->
     <section
-              class="d-flex justify-content-between p-4"
-              style="background-color: #6351ce"
-              >
-      <!-- Left -->
-      <div class="me-5">
-        <span>Get connected with us on social networks:</span>
-      </div>
-      <!-- Left -->
-
+      class="d-flex justify-content-center p-4"
+      style="background-color: #6351ce"
+      >
       <!-- Right -->
       <div>
         <a href="" class="text-white me-4">
@@ -270,16 +277,10 @@
           <i class="fab fa-twitter"></i>
         </a>
         <a href="" class="text-white me-4">
-          <i class="fab fa-google"></i>
-        </a>
-        <a href="" class="text-white me-4">
           <i class="fab fa-instagram"></i>
         </a>
         <a href="" class="text-white me-4">
           <i class="fab fa-linkedin"></i>
-        </a>
-        <a href="" class="text-white me-4">
-          <i class="fab fa-github"></i>
         </a>
       </div>
       <!-- Right -->
@@ -299,8 +300,8 @@
                 class="mb-4 mt-0 d-inline-block mx-auto"
                 style="width: 60px; background-color: #7c4dff; height: 2px"
                 />
-            <p>
-              Unveiling the Extraordinary, Crafting Lifelong Memories, and Cultivating Global Connections – Your Journey, Our Passion, Your World to Explore.
+            <p class="fw-bold">
+              Unveiling the Extraordinary
             </p>
           </div>
           <!-- Grid column -->
@@ -359,10 +360,9 @@
                 class="mb-4 mt-0 d-inline-block mx-auto"
                 style="width: 60px; background-color: #7c4dff; height: 2px"
                 />
-            <p><i class="fas fa-home mr-3"></i> New York, NY 10012, US</p>
-            <p><i class="fas fa-envelope mr-3"></i> info@example.com</p>
-            <p><i class="fas fa-phone mr-3"></i> + 01 234 567 88</p>
-            <p><i class="fas fa-print mr-3"></i> + 01 234 567 89</p>
+            <p><i class="fas fa-home mr-3"></i> Tower 3, Brunsfield Oasis, Oasis Square, Jalan PJU 1A/7A, Oasis Ara Damansara, 47301 Petaling Jaya, Selangor</p>
+            <p><i class="fas fa-envelope mr-3"></i> tuhrtravels@gmail.com</p>
+            <p><i class="fas fa-phone mr-3"></i> +60 3845 3984</p>
           </div>
           <!-- Grid column -->
           <!-- Grid column -->
