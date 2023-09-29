@@ -71,7 +71,7 @@
             <a class="nav-link" href="#scrollspyHeading2">Reviews</a>
             <a
               class="nav-link"
-              href="login.html"
+              href="login.php"
               style="font-weight: bold"
               >Login</a
             >
