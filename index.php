@@ -81,7 +81,7 @@
               >FAQ</a>
             <a
               class="nav-link"
-              href="login.php"
+              href="registration.php"
               style="font-weight: bold"
               >Sign Up</a
             >
