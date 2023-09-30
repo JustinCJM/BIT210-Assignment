@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Login</title>
+    <title>Registration</title>
     <link rel="icon" type="image/x-icon" href="assets/logo.png" />
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -21,6 +21,7 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
     />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
   </head>
   <header>
     <nav class="navbar navbar-expand-lg" style="background-color: white">
@@ -54,7 +55,7 @@
               </div>
               <div class="col-md-6 col-lg-7 d-flex align-items-center">
                 <div class="card-body p-4 p-lg-5 text-black">
-                  <form id="registerForm" class="pt-3">
+                    <form id="registerForm" class="pt-3 needs-validation was-validated" novalidate="">
                     <h3 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px">
                       Registration
                     </h3>
@@ -65,8 +66,10 @@
                         id="formRegName"
                         class="form-control form-control-lg"
                         placeholder="John Doe"
+                        required
                       />
                       <label for="formRegName">Full Name</label>
+                      <div class="valid-feedback"></div>
                     </div>
 
                     <div class="form-floating mb-4">
@@ -75,8 +78,9 @@
                         id="formRegUserName"
                         class="form-control form-control-lg"
                         placeholder="JohnDoe123"
+                        required
                       />
-                      <label for="formRegUserName">Userame</label>
+                      <label for="formRegUserName">Username</label>
                     </div>
 
                     <div class="form-floating mb-4">
@@ -85,6 +89,7 @@
                         id="formRegEmail"
                         class="form-control form-control-lg"
                         placeholder="info@example.com"
+                        required
                       />
                       <label for="formEmail">Email Address</label>
                     </div>
@@ -95,6 +100,7 @@
                         id="formRegPassword"
                         class="form-control form-control-lg"
                         placeholder="Password"
+                        required
                       />
                       <label for="formPassword">Password</label>
                     </div>
@@ -102,7 +108,7 @@
                     <div class="pt-1 mb-4">
                       <button
                         class="btn btn-primary btn-lg btn-block"
-                        type="button"
+                        type="submit"
                       >
                         Register
                       </button>
@@ -110,7 +116,7 @@
 
                     <p class="mb-5 pb-lg-2" style="color: #393f81">
                       Already have an account?
-                      <a href="#!" style="color: #393f81">Sign In</a>
+                      <a href="login.php" style="color: #393f81">Sign In</a>
                     </p>
                   </form>
                 </div>

@@ -54,7 +54,7 @@
               </div>
               <div class="col-md-6 col-lg-7 d-flex align-items-center">
                 <div class="card-body p-4 p-lg-5 text-black">
-                  <form id="loginForm" class="pt-3">
+                  <form id="loginForm" class="pt-3 needs-validation was-validated" novalidate="">
                     <h3 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px">
                       Log In
                     </h3>
@@ -65,6 +65,7 @@
                         id="formEmail"
                         class="form-control form-control-lg"
                         placeholder="info@example.com"
+                        required
                       />
                       <label for="formEmail">Email Address</label>
                     </div>
@@ -75,6 +76,7 @@
                         id="formPassword"
                         class="form-control form-control-lg"
                         placeholder="Password"
+                        required
                       />
                       <label for="formPassword">Password</label>
                     </div>
