@@ -27,7 +27,7 @@
       <div class="container-fluid mx-auto" style="max-width: 1430px">
         <a
           class="navbar-brand"
-          href="index.html"
+          href="index.php"
           style="color: black; font-size: 35px; font-weight: bold"
         >
           <img
