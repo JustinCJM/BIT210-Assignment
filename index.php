@@ -22,7 +22,8 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
     />
     <link rel="stylesheet" href="style.css" />
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"/>
+    
   </head>
   <header class="sticky-top">
     <nav class="navbar navbar-expand-lg">
@@ -173,6 +174,9 @@
           </div>
         </div>
       </div>
+      <div class="text-center p-5 fs-1 fw-bold">Take a look at our featured products!
+        <p>TBA</p>
+      </div>
       <div id="carouselExampleControls" class="carousel slide text-center carousel-dark" data-bs-ride="carousel">
         <div class="text-center p-5 fs-1 fw-bold">See what other people have to say!</div>
         <div class="carousel-inner" data-aos="fade-left" data-aos-duration="2000">
@@ -256,9 +260,6 @@
         </button>
       </div>
       <br>
-      <div class="text-center p-5 fs-1 fw-bold">Take a look at our featured products!
-        <p>TBA</p>
-      </div>
   </body>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script
@@ -341,22 +342,19 @@
           <!-- Grid column -->
           <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
             <!-- Links -->
-            <h6 class="text-uppercase fw-bold">About Us</h6>
+            <h6 class="text-uppercase fw-bold">Quick Links</h6>
             <hr
                 class="mb-4 mt-0 d-inline-block mx-auto"
                 style="width: 60px; background-color: #7c4dff; height: 2px"
                 />
             <p>
-              <a href="#!" class="text-white">FAQ</a>
+              <a href="faq.php" class="text-white">FAQ</a>
             </p>
             <p>
-              <a href="#!" class="text-white">Contact Us</a>
+              <a href="contact.php" class="text-white">Contact Us</a>
             </p>
             <p>
-              <a href="#!" class="text-white">Help</a>
-            </p>
-            <p>
-              <a href="#!" class="text-white">About Us</a>
+              <a href="about.php" class="text-white">About Us</a>
             </p>
           </div>
           <!-- Grid column -->
@@ -400,7 +398,5 @@
     </div>
     <!-- Copyright -->
   </footer>
-  <!-- Footer -->
   
-  </div>
 </html>

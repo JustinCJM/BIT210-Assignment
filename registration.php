@@ -22,30 +22,68 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
     />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link
+      rel="stylesheet"
+      href="style.css"
+    />
   </head>
-  <header>
-    <nav class="navbar navbar-expand-lg" style="background-color: white">
-      <div class="container-fluid mx-auto" style="max-width: 1430px">
-        <a
-          class="navbar-brand"
-          href="index.php"
-          style="color: black; font-size: 35px; font-weight: bold"
-        >
-          <img
-            src="assets/logo.png"
-            alt="Logo"
-            width="50"
-            height="44"
-            class="d-inline-block align-text-top"
-          />
-          Stoopid
+  <header class="sticky-top">
+    <nav class="navbar navbar-expand-lg">
+      <div class="container-fluid">
+        <a href="index.php" class="navbar-brand fw-bold"> <img src="assets/logo.png" alt="...">Tuhr
         </a>
+        <h2>Sign Up</h2>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNavAltMarkup"
+          aria-controls="navbarNavAltMarkup"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav ms-auto">
+            <a
+              class="nav-link"
+              aria-current="page"
+              href="index.php"
+              >Home</a
+            >
+            <a
+              class="nav-link"
+              href="about.php"
+              >About Us</a>
+              <a
+              class="nav-link"
+              href="contact.php"
+              >Contact Us</a>
+              <a
+              class="nav-link"
+              href="faq.php"
+              >FAQ</a>
+            <a
+              class="nav-link active"
+              href="registration.php"
+              style="font-weight: bold"
+              >Sign Up</a
+            >
+            <a
+              class="nav-link btn btn-primary login-btn"
+              href="login.php"
+              style="font-weight: bold"
+              >Login</a
+            >
+          </div>
+        </div>
       </div>
     </nav>
   </header>
   <body>
-    <div class="vh-100" style="background-color: #ff6d0a">
-    <div class="container py-5 h-100">
+    <div class="vh-100 page-body">
+    <div class="container py-5" style="height: 90%">
       <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col">
           <div class="card" style="border-radius: 1rem">
@@ -108,6 +146,7 @@
                     <div class="pt-1 mb-4">
                       <button
                         class="btn btn-primary btn-lg btn-block"
+                        style="background-color: #7c4dff;"
                         type="submit"
                       >
                         Register

@@ -125,3 +125,12 @@ body {
   height: auto;
 }
 
+.page-body {
+  background: rgb(50, 44, 153);
+  background: linear-gradient(
+    320deg,
+    rgba(50, 44, 153, 1) 8%,
+    rgba(114, 48, 233, 1) 53%,
+    rgba(157, 21, 255, 1) 75%
+  );
+}
