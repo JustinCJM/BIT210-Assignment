@@ -54,15 +54,35 @@
               </div>
               <div class="col-md-6 col-lg-7 d-flex align-items-center">
                 <div class="card-body p-4 p-lg-5 text-black">
-                  <form id="loginForm" class="pt-3">
+                  <form id="registerForm" class="pt-3">
                     <h3 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px">
-                      Log In
+                      Registration
                     </h3>
 
                     <div class="form-floating mb-4">
                       <input
+                        type="text"
+                        id="formRegName"
+                        class="form-control form-control-lg"
+                        placeholder="John Doe"
+                      />
+                      <label for="formRegName">Full Name</label>
+                    </div>
+
+                    <div class="form-floating mb-4">
+                      <input
+                        type="text"
+                        id="formRegUserName"
+                        class="form-control form-control-lg"
+                        placeholder="JohnDoe123"
+                      />
+                      <label for="formRegUserName">Userame</label>
+                    </div>
+
+                    <div class="form-floating mb-4">
+                      <input
                         type="email"
-                        id="formEmail"
+                        id="formRegEmail"
                         class="form-control form-control-lg"
                         placeholder="info@example.com"
                       />
@@ -72,29 +92,11 @@
                     <div class="form-floating mb-4">
                       <input
                         type="password"
-                        id="formPassword"
+                        id="formRegPassword"
                         class="form-control form-control-lg"
                         placeholder="Password"
                       />
                       <label for="formPassword">Password</label>
-                    </div>
-
-                    <div class="input-group mb-3 justify-content-between">
-                      <div class="form-check">
-                        <input
-                          type="checkbox"
-                          class="form-check-input"
-                          id="formCheck"
-                        />
-                        <label
-                          for="formCheck"
-                          class="form-check-label text-secondary"
-                          >Remember Me
-                          </label>
-                      </div>
-                      <div class="forgot">
-                        <a href="#">Forgot Password?</a>
-                      </div>
                     </div>
 
                     <div class="pt-1 mb-4">
@@ -102,13 +104,13 @@
                         class="btn btn-primary btn-lg btn-block"
                         type="button"
                       >
-                        Login
+                        Register
                       </button>
                     </div>
 
                     <p class="mb-5 pb-lg-2" style="color: #393f81">
-                      Don't have an account?
-                      <a href="registration.php" style="color: #393f81">Sign Up</a>
+                      Already have an account?
+                      <a href="#!" style="color: #393f81">Sign In</a>
                     </p>
                   </form>
                 </div>
