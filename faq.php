@@ -101,7 +101,7 @@
     <div class="container py-5 h-100">
       <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col">
-          <div class="card justify-content-center align-items-center" style="border-radius: 1rem; border-color:transparent">
+          <div class="card justify-content-center align-items-center" style="border-radius: 1rem; border-color:transparent;">
             <div class="row-3 fs-3 mt-4 fw-bold text-center p-2">Frequently Asked Questions</div>
             
             <div class="row g-0">
