@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 09, 2023 at 11:34 AM
+-- Generation Time: Nov 03, 2023 at 10:05 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -18,41 +18,82 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `tuhr_database`
+-- Database: `travelmate_db`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `customers`
+-- Table structure for table `customer`
 --
 
-CREATE TABLE `customers` (
+CREATE TABLE `customer` (
   `customerID` int(5) NOT NULL,
-  `fullName` varchar(255) NOT NULL,
+  `fullName` varchar(100) NOT NULL,
   `username` varchar(30) NOT NULL,
   `pwd` varchar(30) NOT NULL,
-  `email` varchar(100) NOT NULL,
-  `billingAddress` varchar(255) NOT NULL
+  `gender` varchar(20) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `contactno` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `customer`
+--
+
+INSERT INTO `customer` (`customerID`, `fullName`, `username`, `pwd`, `gender`, `email`, `contactno`) VALUES
+(2, 'Saul Goodman', 'SaulMan', 'poi123', 'male', 'saulgoodman@gmail.com', 348973092),
+(3, 'Rob bin Man', 'RobMan', 'poi', 'male', 'robman@gmail.com', 489379084),
+(4, 'Mando Ling', 'Mando', 'wewe', 'male', 'justinchuosu@gmail.com', 3423424);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `merchants`
+-- Table structure for table `merchant`
 --
 
-CREATE TABLE `merchants` (
+CREATE TABLE `merchant` (
   `merchantID` int(11) NOT NULL,
   `username` varchar(30) NOT NULL,
-  `pwd` varchar(255) NOT NULL,
-  `email` varchar(100) NOT NULL,
-  `address` varchar(255) NOT NULL,
+  `pwd` varchar(30) NOT NULL DEFAULT substr(md5(rand()),1,8),
+  `email` varchar(50) NOT NULL,
+  `contactNo` varchar(255) DEFAULT NULL,
   `shopName` varchar(100) NOT NULL,
-  `merchDescription` varchar(255) DEFAULT NULL,
-  `regStatus` varchar(50) NOT NULL,
-  `tmoID` int(11) DEFAULT NULL
+  `merchDescription` varchar(255) NOT NULL,
+  `regStatus` varchar(40) NOT NULL DEFAULT 'PENDING',
+  `tmoID` int(5) DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `merchant`
+--
+
+INSERT INTO `merchant` (`merchantID`, `username`, `pwd`, `email`, `contactNo`, `shopName`, `merchDescription`, `regStatus`, `tmoID`) VALUES
+(28, 'Kylow', 'gtWY94!*', 'sdasda@gmail.com', '394872489', 'Travuhr', 'Goats!', 'PENDING', 1),
+(30, 'SamW22', 'loRV41^%', 'chongjustin511@gmail.com', '0123826383', 'Shop Name', 'Description', 'PENDING', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `merch_documents`
+--
+
+CREATE TABLE `merch_documents` (
+  `documentID` int(11) NOT NULL,
+  `merchantID` int(11) DEFAULT NULL,
+  `document_name` varchar(255) NOT NULL,
+  `document_path` varchar(255) NOT NULL,
+  `upload_date` datetime DEFAULT curtime(),
+  `doc_description` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `merch_documents`
+--
+
+INSERT INTO `merch_documents` (`documentID`, `merchantID`, `document_name`, `document_path`, `upload_date`, `doc_description`) VALUES
+(6, 28, 'Kylowsunrom-185000.pdf', '../pdfuploads/Kylowsunrom-185000.pdf', '2023-10-17 22:56:42', 'Document to be reviewed!'),
+(7, 30, 'SamW22Registration.pdf', '../pdfuploads/SamW22Registration.pdf', '2023-10-18 03:49:17', 'Documents to be reviewed');
 
 -- --------------------------------------------------------
 
@@ -61,11 +102,11 @@ CREATE TABLE `merchants` (
 --
 
 CREATE TABLE `orders` (
-  `orderID` int(9) NOT NULL,
-  `orderDate` datetime NOT NULL DEFAULT curtime(),
+  `orderID` int(11) NOT NULL,
+  `orderDate` datetime NOT NULL DEFAULT current_timestamp(),
   `orderStatus` varchar(30) NOT NULL,
   `billingAddress` varchar(255) NOT NULL,
-  `totalAmount` int(6) NOT NULL,
+  `totalAmount` decimal(10,2) NOT NULL,
   `customerID` int(11) NOT NULL,
   `merchantID` int(11) NOT NULL,
   `productID` int(11) NOT NULL
@@ -74,34 +115,21 @@ CREATE TABLE `orders` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `products`
+-- Table structure for table `product`
 --
 
-CREATE TABLE `products` (
+CREATE TABLE `product` (
   `productID` int(9) NOT NULL,
   `productName` varchar(100) NOT NULL,
-  `productPrice` float NOT NULL,
-  `category` varchar(30) NOT NULL,
+  `productPrice` double NOT NULL,
+  `category` varchar(50) NOT NULL,
   `prodLocation` varchar(50) NOT NULL,
   `prodDescription` varchar(255) NOT NULL,
-  `maxQuantity` int(5) DEFAULT NULL,
-  `merchantID` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `refund_request`
---
-
-CREATE TABLE `refund_request` (
-  `refundID` int(9) NOT NULL,
-  `refundDate` datetime NOT NULL DEFAULT curtime(),
-  `refundReason` varchar(100) NOT NULL,
-  `refundComemnt` varchar(255) NOT NULL,
-  `refundStatus` varchar(50) NOT NULL,
-  `customerID` int(11) NOT NULL,
-  `orderID` int(11) NOT NULL
+  `maxQuantity` int(5) NOT NULL,
+  `merchantID` int(5) NOT NULL,
+  `quantitySold` int(11) DEFAULT NULL,
+  `totalRating` int(11) DEFAULT NULL,
+  `avgRating` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -111,11 +139,11 @@ CREATE TABLE `refund_request` (
 --
 
 CREATE TABLE `reviews` (
-  `reviewID` int(10) NOT NULL,
-  `reviewDate` date NOT NULL DEFAULT curdate(),
-  `comment` varchar(255) DEFAULT NULL,
+  `reviewID` int(11) NOT NULL,
+  `reviewDate` datetime NOT NULL DEFAULT curtime(),
+  `comments` varchar(255) DEFAULT NULL,
   `rating` int(1) NOT NULL,
-  `orderID` int(11) NOT NULL,
+  `orderID` int(11) DEFAULT NULL,
   `productID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -129,34 +157,48 @@ CREATE TABLE `tourism_ministry_officer` (
   `tmoID` int(5) NOT NULL,
   `username` varchar(30) NOT NULL,
   `pwd` varchar(30) NOT NULL,
-  `email` varchar(100) NOT NULL
+  `email` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `tourism_ministry_officer`
+--
+
+INSERT INTO `tourism_ministry_officer` (`tmoID`, `username`, `pwd`, `email`) VALUES
+(1, 'BobJohnson123', 'password321', 'bobjohnson@example.com');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `customers`
+-- Indexes for table `customer`
 --
-ALTER TABLE `customers`
+ALTER TABLE `customer`
   ADD PRIMARY KEY (`customerID`),
-  ADD UNIQUE KEY `customerID` (`customerID`),
   ADD UNIQUE KEY `fullName` (`fullName`),
   ADD UNIQUE KEY `username` (`username`),
   ADD UNIQUE KEY `pwd` (`pwd`),
   ADD UNIQUE KEY `email` (`email`);
 
 --
--- Indexes for table `merchants`
+-- Indexes for table `merchant`
 --
-ALTER TABLE `merchants`
+ALTER TABLE `merchant`
   ADD PRIMARY KEY (`merchantID`),
   ADD UNIQUE KEY `username` (`username`),
+  ADD UNIQUE KEY `pwd` (`pwd`),
   ADD UNIQUE KEY `email` (`email`),
-  ADD UNIQUE KEY `address` (`address`),
+  ADD UNIQUE KEY `address` (`contactNo`),
   ADD UNIQUE KEY `shopName` (`shopName`),
   ADD KEY `tmoID` (`tmoID`);
+
+--
+-- Indexes for table `merch_documents`
+--
+ALTER TABLE `merch_documents`
+  ADD PRIMARY KEY (`documentID`),
+  ADD KEY `merchantID` (`merchantID`);
 
 --
 -- Indexes for table `orders`
@@ -168,20 +210,12 @@ ALTER TABLE `orders`
   ADD KEY `productID` (`productID`);
 
 --
--- Indexes for table `products`
+-- Indexes for table `product`
 --
-ALTER TABLE `products`
+ALTER TABLE `product`
   ADD PRIMARY KEY (`productID`),
   ADD UNIQUE KEY `productName` (`productName`),
-  ADD UNIQUE KEY `merchantID` (`merchantID`);
-
---
--- Indexes for table `refund_request`
---
-ALTER TABLE `refund_request`
-  ADD PRIMARY KEY (`refundID`),
-  ADD UNIQUE KEY `orderID` (`orderID`),
-  ADD KEY `customerID` (`customerID`);
+  ADD KEY `merchantID` (`merchantID`);
 
 --
 -- Indexes for table `reviews`
@@ -196,7 +230,6 @@ ALTER TABLE `reviews`
 --
 ALTER TABLE `tourism_ministry_officer`
   ADD PRIMARY KEY (`tmoID`),
-  ADD UNIQUE KEY `tmoID` (`tmoID`),
   ADD UNIQUE KEY `username` (`username`),
   ADD UNIQUE KEY `pwd` (`pwd`),
   ADD UNIQUE KEY `email` (`email`);
@@ -206,84 +239,83 @@ ALTER TABLE `tourism_ministry_officer`
 --
 
 --
--- AUTO_INCREMENT for table `customers`
+-- AUTO_INCREMENT for table `customer`
 --
-ALTER TABLE `customers`
-  MODIFY `customerID` int(5) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `customer`
+  MODIFY `customerID` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `merchants`
+-- AUTO_INCREMENT for table `merchant`
 --
-ALTER TABLE `merchants`
-  MODIFY `merchantID` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `merchant`
+  MODIFY `merchantID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+
+--
+-- AUTO_INCREMENT for table `merch_documents`
+--
+ALTER TABLE `merch_documents`
+  MODIFY `documentID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `orderID` int(9) NOT NULL AUTO_INCREMENT;
+  MODIFY `orderID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `products`
+-- AUTO_INCREMENT for table `product`
 --
-ALTER TABLE `products`
+ALTER TABLE `product`
   MODIFY `productID` int(9) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `refund_request`
---
-ALTER TABLE `refund_request`
-  MODIFY `refundID` int(9) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `reviews`
 --
 ALTER TABLE `reviews`
-  MODIFY `reviewID` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `reviewID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tourism_ministry_officer`
 --
 ALTER TABLE `tourism_ministry_officer`
-  MODIFY `tmoID` int(5) NOT NULL AUTO_INCREMENT;
+  MODIFY `tmoID` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Constraints for dumped tables
 --
 
 --
--- Constraints for table `merchants`
+-- Constraints for table `merchant`
 --
-ALTER TABLE `merchants`
-  ADD CONSTRAINT `merchants_ibfk_1` FOREIGN KEY (`tmoID`) REFERENCES `tourism_ministry_officer` (`tmoID`) ON DELETE SET NULL;
+ALTER TABLE `merchant`
+  ADD CONSTRAINT `merchant_ibfk_1` FOREIGN KEY (`tmoID`) REFERENCES `tourism_ministry_officer` (`tmoID`) ON DELETE SET NULL;
+
+--
+-- Constraints for table `merch_documents`
+--
+ALTER TABLE `merch_documents`
+  ADD CONSTRAINT `merch_documents_ibfk_1` FOREIGN KEY (`merchantID`) REFERENCES `merchant` (`merchantID`);
 
 --
 -- Constraints for table `orders`
 --
 ALTER TABLE `orders`
-  ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`customerID`) REFERENCES `customers` (`customerID`),
-  ADD CONSTRAINT `orders_ibfk_2` FOREIGN KEY (`merchantID`) REFERENCES `merchants` (`merchantID`),
-  ADD CONSTRAINT `orders_ibfk_3` FOREIGN KEY (`productID`) REFERENCES `products` (`productID`);
+  ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`customerID`) REFERENCES `customer` (`customerID`) ON DELETE CASCADE,
+  ADD CONSTRAINT `orders_ibfk_2` FOREIGN KEY (`merchantID`) REFERENCES `merchant` (`merchantID`) ON DELETE CASCADE,
+  ADD CONSTRAINT `orders_ibfk_3` FOREIGN KEY (`productID`) REFERENCES `product` (`productID`) ON DELETE CASCADE;
 
 --
--- Constraints for table `products`
+-- Constraints for table `product`
 --
-ALTER TABLE `products`
-  ADD CONSTRAINT `products_ibfk_1` FOREIGN KEY (`merchantID`) REFERENCES `merchants` (`merchantID`) ON DELETE CASCADE;
-
---
--- Constraints for table `refund_request`
---
-ALTER TABLE `refund_request`
-  ADD CONSTRAINT `refund_request_ibfk_1` FOREIGN KEY (`customerID`) REFERENCES `customers` (`customerID`) ON DELETE CASCADE,
-  ADD CONSTRAINT `refund_request_ibfk_2` FOREIGN KEY (`orderID`) REFERENCES `orders` (`orderID`) ON DELETE CASCADE;
+ALTER TABLE `product`
+  ADD CONSTRAINT `product_ibfk_1` FOREIGN KEY (`merchantID`) REFERENCES `merchant` (`merchantID`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `reviews`
 --
 ALTER TABLE `reviews`
-  ADD CONSTRAINT `reviews_ibfk_1` FOREIGN KEY (`orderID`) REFERENCES `orders` (`orderID`) ON DELETE NO ACTION,
-  ADD CONSTRAINT `reviews_ibfk_2` FOREIGN KEY (`productID`) REFERENCES `products` (`productID`) ON DELETE CASCADE;
+  ADD CONSTRAINT `reviews_ibfk_1` FOREIGN KEY (`orderID`) REFERENCES `orders` (`orderID`) ON DELETE SET NULL,
+  ADD CONSTRAINT `reviews_ibfk_2` FOREIGN KEY (`productID`) REFERENCES `product` (`productID`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

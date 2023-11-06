@@ -1,13 +1,15 @@
 <?php
+$hostname = "localhost";
+$usernames = "root";
+$password = ""; 
+$database = "tuhr_database";
 
-$dsn ="mysql:host=localhost;dbname=tuhr_database";
-$dbusername = "root";
-$dbpassword = "";
 
-try {
-    $pdo = new PDO($dsn, $dbusername, $dbpassword);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch(PDOException $e) {
-    echo "Connection failed: " . $e->getMessage();
+$mysqli = new mysqli($hostname, $usernames, $password, $database);
+
+
+if ($mysqli->connect_error) {
+    die("Connection failed: " . $mysqli->connect_error);
 }
+
 

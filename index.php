@@ -1,3 +1,7 @@
+
+<?php
+require_once 'includes/config_session.inc.php';
+?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -25,78 +29,20 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"/>
     
   </head>
-  <header class="sticky-top">
-    <nav class="navbar navbar-expand-lg">
-      <div class="container-fluid">
-        <a href="#" class="navbar-brand fw-bold"> <img src="assets/logo.png" alt="...">Tuhr
-        </a>
-        <div class="nav-search-container">
-          <form class="nav-search" role="search">
-            <div class="input-group">
-              <input
-                class="form-control"
-                type="search"
-                placeholder="🔍︎Find Your Escape!"
-                aria-label="Search"
-                style="border-top-left-radius: 20px; border-bottom-left-radius: 20px;"
-              />
-              <button
-                class=" nav-search-btn btn btn-outline-light fw-bold"
-                type="submit"
-              >
-                Search
-              </button>
-            </div>
-          </form>
-        </div>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNavAltMarkup"
-          aria-controls="navbarNavAltMarkup"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-          <div class="navbar-nav ms-auto">
-            <a
-              class="nav-link active"
-              aria-current="page"
-              href="#"
-              >Home</a
-            >
-            <a
-              class="nav-link"
-              href="about.php"
-              >About Us</a>
-              <a
-              class="nav-link"
-              href="contact.php"
-              >Contact Us</a>
-              <a
-              class="nav-link"
-              href="faq.php"
-              >FAQ</a>
-            <a
-              class="nav-link"
-              href="registration.php"
-              style="font-weight: bold"
-              >Sign Up</a
-            >
-            <a
-              class="nav-link btn btn-primary login-btn"
-              href="login.php"
-              style="font-weight: bold"
-              >Login</a
-            >
-          </div>
-        </div>
-      </div>
-    </nav>
-  </header>
+
+  <?php
+  $userType = $_SESSION["user_type"] ?? null;  
+  if ($userType === 'merchant') {
+    include 'includes/headers/header_merchant.inc.php';
+  } elseif ($userType === 'customer') {
+    include 'includes/headers/header_customer.inc.php';
+  } elseif ($userType === 'tourism_ministry_officer') {
+    include 'includes/headers/header_officer.inc.php';
+  } else {
+    include 'includes/headers/defaultheader.inc.php';
+  }
+  
+  ?>
   <body style="min-height: 250vh;">
       <div id="carouselExampleAutoplaying" class=" home-carousel carousel slide pb-3" data-bs-ride="carousel">
         <div class="carousel-inner">
@@ -368,7 +314,7 @@
                 style="width: 60px; background-color: #7c4dff; height: 2px"
                 />
             <p><i class="fas fa-home mr-3"></i> Tower 3, Brunsfield Oasis, Oasis Square, Jalan PJU 1A/7A, Oasis Ara Damansara, 47301 Petaling Jaya, Selangor</p>
-            <p><i class="fas fa-envelope mr-3"></i> tuhrtravels@gmail.com</p>
+            <p><i class="fas fa-envelope mr-3"></i> travelmate@gmail.com</p>
             <p><i class="fas fa-phone mr-3"></i> +60 3845 3984</p>
           </div>
           <!-- Grid column -->
@@ -386,17 +332,6 @@
     
     <!-- Section: Links  -->
 
-    <!-- Copyright -->
-    <div
-          class="text-center p-3"
-          style="background-color: rgba(0, 0, 0, 0.2)"
-          >
-      © 2020 Copyright:
-      <a class="text-white" href="https://mdbootstrap.com/"
-          >MDBootstrap.com</a
-        >
-    </div>
-    <!-- Copyright -->
   </footer>
   
 </html>
