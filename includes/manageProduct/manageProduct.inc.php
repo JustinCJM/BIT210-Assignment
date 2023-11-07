@@ -59,15 +59,17 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
     echo "<script>console.log('" . $productID . "');</script>";
 
     $uploadDirectory = '../../productUploads/';
+    $targetDirectory = 'productUploads/';
 
     if (!file_exists($uploadDirectory)) {
         mkdir($uploadDirectory, 0777, true);
     }
 
     $uniqueFilename = $productName . "_" . basename($_FILES["image"]["name"]);
-    $targetPath = $uploadDirectory . $uniqueFilename;
+    $uploadPath = $uploadDirectory . $uniqueFilename;
+    $targetPath = $targetDirectory . $uniqueFilename;
 
-    if (move_uploaded_file($_FILES["image"]["tmp_name"], $targetPath)) {
+    if (move_uploaded_file($_FILES["image"]["tmp_name"], $uploadPath)) {
         insertImage($mysqli, $productID, $uniqueFilename, $targetPath);
     } else {
         $errors["upload_error"] = "Failed to move the uploaded file.";
