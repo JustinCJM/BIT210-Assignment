@@ -134,3 +134,7 @@ body {
     rgba(157, 21, 255, 1) 75%
   );
 }
+
+.card-link:focus {
+  outline: none;
+}
