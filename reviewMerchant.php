@@ -100,7 +100,7 @@ require_once 'includes/config_session.inc.php';
                     $description = $row['merchDescription'];
                     $status = $row['regStatus'];
                     $docPath = $row['document_path'];
-                    $filePath = '/TravelMate'. $docPath;
+                    $filePath = '/BIT210-Assignment'. $docPath;
 
                     $data = [
                       "email" =>$email,
@@ -119,7 +119,7 @@ require_once 'includes/config_session.inc.php';
                     <td>'.$description.'</td>
                     <td>'.$status.'</td>
                     
-                    <td><a name="doc" class="btn btn-info" href="'.$filePath.'" download>PDF Document</a></td>
+                    <td><a name="doc" class="btn btn-info" href="'.$docPath.'" download>PDF Document</a></td>
                     <td><button type="button" class="btn btn-primary" onclick="openModal(this)" data='.$json.'>View Details</button>
                   </td>
                 </tr>';

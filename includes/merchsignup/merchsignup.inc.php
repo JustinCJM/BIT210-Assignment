@@ -44,11 +44,13 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
 
     if (isset($_POST['submit'])) {
         $uploadDirectory = '../../pdfuploads/';
+        $downloadDirectory = 'pdfuploads/';
 
         $uniqueFilename = $username . "_" . basename($_FILES["pdfdoc"]["name"]);
-        $targetPath = $uploadDirectory . $uniqueFilename;
+        $uploadPath = $uploadDirectory . $uniqueFilename;
+        $targetPath = $downloadDirectory . $uniqueFilename;
 
-        if (move_uploaded_file($_FILES["pdfdoc"]["tmp_name"], $targetPath)) {
+        if (move_uploaded_file($_FILES["pdfdoc"]["tmp_name"], $uploadPath)) {
             insertDocument($mysqli, $merchantID, $uniqueFilename, $targetPath, $docdescription);
         } else {
             $errors["upload_error"] = "Failed to move the uploaded file.";

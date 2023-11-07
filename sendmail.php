@@ -42,12 +42,12 @@ if(isset($_POST["send"])){
     $mail->isSMTP();
     $mail->Host = 'smtp.gmail.com'; // Fixed the typo: "smp.gmail.com" to "smtp.gmail.com"
     $mail->SMTPAuth = true;
-    $mail->Username = 'chongjustin511@gmail.com'; // Replace with your Gmail email
+    $mail->Username = 'ryuiyap@gmail.com'; // Replace with your Gmail email
     $mail->Password = 'leve msvm mvjh clqr'; // Replace with your Gmail password
     $mail->SMTPSecure = 'ssl';
     $mail->Port = 465;
 
-    $mail->setFrom('chongjustin511@gmail.com'); // Replace with your Gmail email
+    $mail->setFrom('ryuiyap@gmail.com'); // Replace with your Gmail email
 
     $mail->addAddress($_POST["email"]);
 
