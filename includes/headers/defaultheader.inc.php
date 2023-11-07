@@ -5,10 +5,11 @@
     <a href="index.php" class="navbar-brand fw-bold"> <img src="assets/logo.png" alt="...">Tuhr
     </a>
     <div class="nav-search-container">
-      <form class="nav-search" role="search">
+      <form class="nav-search" role="search" method="post" action="search_page.php">
         <div class="input-group">
           <input
             class="form-control"
+            name="search"
             type="search"
             placeholder="🔍︎Find Your Escape!"
             aria-label="Search"
@@ -17,6 +18,7 @@
           <button
             class=" nav-search-btn btn btn-outline-light fw-bold"
             type="submit"
+            name="submit"
           >
             Search
           </button>
