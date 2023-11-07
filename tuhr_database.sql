@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 03, 2023 at 10:05 AM
+-- Generation Time: Nov 07, 2023 at 10:36 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `travelmate_db`
+-- Database: `tuhr_database`
 --
 
 -- --------------------------------------------------------
@@ -44,7 +44,8 @@ CREATE TABLE `customer` (
 INSERT INTO `customer` (`customerID`, `fullName`, `username`, `pwd`, `gender`, `email`, `contactno`) VALUES
 (2, 'Saul Goodman', 'SaulMan', 'poi123', 'male', 'saulgoodman@gmail.com', 348973092),
 (3, 'Rob bin Man', 'RobMan', 'poi', 'male', 'robman@gmail.com', 489379084),
-(4, 'Mando Ling', 'Mando', 'wewe', 'male', 'justinchuosu@gmail.com', 3423424);
+(4, 'Mando Ling', 'Mando', 'wewe', 'male', 'justinchuosu@gmail.com', 3423424),
+(5, 'Aaron Nabil', 'AaronN24', 'aaron', 'male', 'test@gmail.com', 1294793434);
 
 -- --------------------------------------------------------
 
@@ -70,7 +71,8 @@ CREATE TABLE `merchant` (
 
 INSERT INTO `merchant` (`merchantID`, `username`, `pwd`, `email`, `contactNo`, `shopName`, `merchDescription`, `regStatus`, `tmoID`) VALUES
 (28, 'Kylow', 'gtWY94!*', 'sdasda@gmail.com', '394872489', 'Travuhr', 'Goats!', 'PENDING', 1),
-(30, 'SamW22', 'loRV41^%', 'chongjustin511@gmail.com', '0123826383', 'Shop Name', 'Description', 'PENDING', 1);
+(30, 'SamW22', 'loRV41^%', 'chongjustin511@gmail.com', '0123826383', 'Shop Name', 'Description', 'PENDING', 1),
+(33, 'MarkE', 'eef94b88', 'burningmars@gmail.com', '0198279231', 'sdada', 'dsadsad', 'PENDING', 1);
 
 -- --------------------------------------------------------
 
@@ -93,7 +95,8 @@ CREATE TABLE `merch_documents` (
 
 INSERT INTO `merch_documents` (`documentID`, `merchantID`, `document_name`, `document_path`, `upload_date`, `doc_description`) VALUES
 (6, 28, 'Kylowsunrom-185000.pdf', '../pdfuploads/Kylowsunrom-185000.pdf', '2023-10-17 22:56:42', 'Document to be reviewed!'),
-(7, 30, 'SamW22Registration.pdf', '../pdfuploads/SamW22Registration.pdf', '2023-10-18 03:49:17', 'Documents to be reviewed');
+(7, 30, 'SamW22Registration.pdf', '../pdfuploads/SamW22Registration.pdf', '2023-10-18 03:49:17', 'Documents to be reviewed'),
+(10, 33, 'MarkE_MPU 3432 Assignment 4 Aug 2023.pdf', '../../pdfuploads/MarkE_MPU 3432 Assignment 4 Aug 2023.pdf', '2023-11-07 17:24:08', 'sdadad');
 
 -- --------------------------------------------------------
 
@@ -131,6 +134,16 @@ CREATE TABLE `product` (
   `totalRating` int(11) DEFAULT NULL,
   `avgRating` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `product`
+--
+
+INSERT INTO `product` (`productID`, `productName`, `productPrice`, `category`, `prodLocation`, `prodDescription`, `maxQuantity`, `merchantID`, `quantitySold`, `totalRating`, `avgRating`) VALUES
+(1, 'Name', 129.2, 'Tour', 'Langkawi', 'Test', 10, 30, NULL, NULL, NULL),
+(2, 'Jetty Ride', 90, 'Sports', 'Melaka', 'Go on a Jetty Ride in Melaka!', 10, 28, NULL, NULL, NULL),
+(4, 'Haunted House', 25, 'Experience', 'Kuala Lumpur', 'Get Spooked!', 10, 30, NULL, NULL, NULL),
+(5, 'Upside-Down Museum', 30, 'Experience', 'Penang', 'Experience the wonders of an upside-down museum!', 10, 30, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -189,8 +202,8 @@ ALTER TABLE `merchant`
   ADD UNIQUE KEY `username` (`username`),
   ADD UNIQUE KEY `pwd` (`pwd`),
   ADD UNIQUE KEY `email` (`email`),
-  ADD UNIQUE KEY `address` (`contactNo`),
   ADD UNIQUE KEY `shopName` (`shopName`),
+  ADD UNIQUE KEY `address` (`contactNo`),
   ADD KEY `tmoID` (`tmoID`);
 
 --
@@ -242,19 +255,19 @@ ALTER TABLE `tourism_ministry_officer`
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `customerID` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `customerID` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `merchant`
 --
 ALTER TABLE `merchant`
-  MODIFY `merchantID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `merchantID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT for table `merch_documents`
 --
 ALTER TABLE `merch_documents`
-  MODIFY `documentID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `documentID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `orders`
@@ -266,7 +279,7 @@ ALTER TABLE `orders`
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `productID` int(9) NOT NULL AUTO_INCREMENT;
+  MODIFY `productID` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `reviews`
