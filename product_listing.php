@@ -1,5 +1,6 @@
 <?php
 require_once 'includes/config_session.inc.php';
+require_once 'includes/dbh.inc.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -43,6 +44,71 @@ require_once 'includes/config_session.inc.php';
     ?>
 
     <body>
-        
+        <?php
+            $id = $_GET['productid'];
+            $query = "SELECT * FROM product WHERE productID = $id ";
+
+            $stmt = $mysqli->prepare($query);
+            $stmt->execute();
+            $result = mysqli_fetch_assoc($stmt->get_result());
+            // var_dump($result);
+            
+            $name = $result['productName'];
+            $quantity = $result['maxQuantity'];
+            $price = number_format($result['productPrice'], 2);
+            $description = $result['prodDescription'];
+        ?>
+
+
+        <div class="vh-100 page-body">
+            <div class="container py-5" style="height: 90%">
+                <div class="row d-flex justify-content-center align-items-center">
+                    <div class="card" style="border-radius: 1rem">
+                        <div class="row g-0">
+                            <div class="col-md-6 col-lg-4 d-md-flex d-md-block">
+                                <img src="product_image.jpg" class="card-img-top" alt="Product Image">
+                            </div>
+                        
+                            <div class="col-md-6 col-lg-7 d-flex align-items-center">
+                                <div class="card-body p-4 p-lg-5 text-black">
+                                    <div class="row g-0">
+                                        <h1 class="mb-2 pb-2" style="letter-spacing: 1px">
+                                            <?php echo $name; ?>
+                                        </h1>
+
+                                        <h2 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px">
+                                            RM <?php echo $price; ?>
+                                        </h2>
+                                        
+                                        <div class="fw-normal mb-3 pb-3 w-25" style="letter-spacing: 1px">
+                                            <label for="quantity">Quantity: </label>
+                                            <h3>
+                                                <input type="number" id="quantity" class="form-control form-icon-trailing" value="1" min="1" max="<?php echo $quantity; ?>"/>
+                                            </h3>
+                                        </div>
+                                        
+                                        <hr/>
+                                        
+                                        <h3 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px">
+                                            <?php echo $description; ?>
+                                        </h3>
+
+                                        <div class="pt-1 mb-4">
+                                            <button
+                                                class="btn btn-primary btn-lg btn-block"
+                                                style="background-color: #7c4dff;"
+                                                type="submit"
+                                            >
+                                                Add to Cart
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </body>
 
