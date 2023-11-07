@@ -2,7 +2,7 @@
 $hostname = "localhost";
 $usernames = "root";
 $password = ""; 
-$database = "tuhr_database";
+$database = "travurr_database";
 
 
 $mysqli = new mysqli($hostname, $usernames, $password, $database);
