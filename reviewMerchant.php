@@ -76,20 +76,10 @@ require_once 'includes/config_session.inc.php';
               
               <?php
 
+              require_once 'includes/dbh.inc.php';
               
-              $servername = "localhost";
-              $username = "root";
-              $password = "";
-              $database = "tuhr_database";
-
-              $connection = new mysqli($servername, $username, $password, $database);
-
-              if($connection->connect_error){
-                die("connection failed:".$connection->connect_error);
-              }
-
-              $sql="SELECT * FROM merch_documents md right join merchant m on m.merchantID = md.merchantID WHERE regStatus = 'PENDING'"  ;
-              $result=mysqli_query($connection,$sql);
+              $query="SELECT * FROM merch_documents md right join merchant m on m.merchantID = md.merchantID WHERE regStatus = 'PENDING'"  ;
+              $result=mysqli_query($mysqli,$query);
               if($result){
                   while($row=mysqli_fetch_assoc($result)){
                     $id = $row['merchantID'];
