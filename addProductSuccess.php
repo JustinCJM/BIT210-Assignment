@@ -37,7 +37,7 @@
         // JavaScript to redirect after 4 seconds
         setTimeout(function() {
             window.location.href = 'manageProducts.php';
-        }, 10000);  
+        }, 2000);  
     </script>
 </body>
 </html>

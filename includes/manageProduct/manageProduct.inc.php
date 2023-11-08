@@ -39,9 +39,9 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
     if(is_productName_taken($mysqli, $productName)) {
         $errors["taken_productName"] = "Product name is already taken!";
     }
-    if(!price_is_double($mysqli, $productPrice)) {
-        $errors["price_notDouble"] = "Please eneter a valid price!";
-    }
+    // if(!price_is_double($mysqli, $productPrice)) {
+    //     $errors["price_notDouble"] = "Please eneter a valid price!";
+    // }
 
     if (!empty($errors)) {
         $_SESSION["error_addProduct"] = $errors;

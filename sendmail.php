@@ -7,35 +7,26 @@ require 'phpmailer/src/PHPMailer.php';
 require 'phpmailer/src/SMTP.php';
 
 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$database = "tuhr_database";
-
-$connection = new mysqli($servername, $username, $password, $database);
-
-if($connection->connect_error){
-  die("connection failed:".$connection->connect_error);
-}
+require_once 'includes/dbh.inc.php';
 
 
 if(isset($_POST["send"])){
     //generate password
     $random_characters = 2; 
-   $lower_case = "abcdefghijklmnopqrstuvwxyz";
-   $upper_case = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-   $numbers = "1234567890";
-   $symbols = "!@#$%^&*";
- 
-   $lower_case = str_shuffle($lower_case);
-   $upper_case = str_shuffle($upper_case);
-   $numbers = str_shuffle($numbers);
-   $symbols = str_shuffle($symbols);
- 
-   $random_password = substr($lower_case, 0, $random_characters);
-   $random_password .= substr($upper_case, 0, $random_characters);
-   $random_password .= substr($numbers, 0, $random_characters);
-   $random_password .= substr($symbols, 0, $random_characters);
+    $lower_case = "abcdefghijklmnopqrstuvwxyz";
+    $upper_case = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    $numbers = "1234567890";
+    $symbols = "!@#$%^&*";
+    
+    $lower_case = str_shuffle($lower_case);
+    $upper_case = str_shuffle($upper_case);
+    $numbers = str_shuffle($numbers);
+    $symbols = str_shuffle($symbols);
+    
+    $random_password = substr($lower_case, 0, $random_characters);
+    $random_password .= substr($upper_case, 0, $random_characters);
+    $random_password .= substr($numbers, 0, $random_characters);
+    $random_password .= substr($symbols, 0, $random_characters);
 
     $mail = new PHPMailer(true); // Fixed the typo: "newPHPMailer" to "new PHPMailer"
 
@@ -59,10 +50,10 @@ if(isset($_POST["send"])){
     $mail-> send();
     
     // $sql = "UPDATE merchant SET pwd='$hashedPassword' WHERE email='kelvinchin1917@gmail.com'";
-    $sql = "UPDATE merchant SET pwd='$random_password' , regStatus = 'SUCCESS' WHERE email='$email'";
+    $query = "UPDATE merchant SET pwd='$random_password' , regStatus = 'SUCCESS' WHERE email='$email'";
 
 
-            if ($connection->query($sql) === TRUE) {
+            if ($mysqli->query($query) === TRUE) {
                 echo "Password updated successfully";
             } else {
                 echo "Error updating password: " . $conn->error;
@@ -101,21 +92,21 @@ if(isset($_POST["send"])){
 
         $merchId = $_POST["merch_id"]; 
 
-        $connection->begin_transaction();
+        $mysqli->begin_transaction();
         try {
-            $sql = "DELETE FROM merch_documents where merchantID = $merchId";
-            if($connection->query($sql) !== TRUE){
+            $query = "DELETE FROM merch_documents where merchantID = $merchId";
+            if($mysqli->query($query) !== TRUE){
                 throw new Exception("Error in deleting document");
             }
 
-            $sql2 = "DELETE FROM merchant WHERE merchantID = '$merchId'";
-            if($connection->query($sql2) !== TRUE){
+            $query2 = "DELETE FROM merchant WHERE merchantID = '$merchId'";
+            if($mysqli->query($query2) !== TRUE){
                 throw new Exception("Error in deleting merchant details");
             }
-            $connection->commit();
+            $mysqli->commit();
             echo "<script>alert('Merchant and their documents removed successfully! Email has been sent.');</script>";
         } catch (Exception $e){
-            $connection->rollback();
+            $mysqli->rollback();
             echo "Error deleting : " . $e->getMessage();
         }
 

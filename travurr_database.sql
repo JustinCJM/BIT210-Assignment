@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 07, 2023 at 02:18 PM
+-- Generation Time: Nov 08, 2023 at 03:15 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -92,8 +92,8 @@ CREATE TABLE `merch_documents` (
 --
 
 INSERT INTO `merch_documents` (`documentID`, `merchantID`, `document_name`, `document_path`, `upload_date`, `doc_description`) VALUES
-(6, 28, 'Kylowsunrom-185000.pdf', '../pdfuploads/Kylowsunrom-185000.pdf', '2023-10-17 22:56:42', 'Document to be reviewed!'),
-(7, 30, 'SamW22Registration.pdf', '../pdfuploads/SamW22Registration.pdf', '2023-10-18 03:49:17', 'Documents to be reviewed');
+(6, 28, 'Kylowsunrom-185000.pdf', 'pdfuploads/Kylowsunrom-185000.pdf', '2023-10-17 22:56:42', 'Document to be reviewed!'),
+(7, 30, 'SamW22Registration.pdf', 'pdfuploads/SamW22Registration.pdf', '2023-10-18 03:49:17', 'Documents to be reviewed');
 
 -- --------------------------------------------------------
 
@@ -137,22 +137,10 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`productID`, `productName`, `productPrice`, `category`, `prodLocation`, `prodDescription`, `maxQuantity`, `merchantID`, `quantitySold`, `totalRating`, `avgRating`) VALUES
-(8, 'Something', 10, 'GOOD', 'Somewhere in the worlds', 'asdasdasd', 0, 28, NULL, NULL, NULL),
-(9, 'Somethings', 10, 'GOOD', 'Somewhere in the worlds', 'asdasd', 0, 28, NULL, NULL, NULL),
-(10, 'Somethingss', 10, 'GOOD', 'Somewhere in the worlds', 'asdasd', 0, 28, NULL, NULL, NULL),
-(11, 'asdasd', 10, 'asd', 'Somewhere in the worlds', 'asdasd', 0, 28, NULL, NULL, NULL),
-(12, 'Somethingsasd', 10, 'asdasd', 'Somewhere in the worlds', 'asdasdasd', 0, 28, NULL, NULL, NULL),
-(13, 'Somethingasdsasd', 10, 'asd', 'Somewhere in the worlds', 'asdasdasdasd', 0, 28, NULL, NULL, NULL),
-(14, 'Somethingasdwqaxzd', 10, 'GOOD', 'Somewhere in the worlds', 'asdasdasd', 0, 28, NULL, NULL, NULL),
-(15, 'Somethingasdwqwrer', 10, 'asdasdasd', 'asdasdasd', 'asdasdasda', 0, 28, NULL, NULL, NULL),
-(16, 'Somethingasdasdasd', 10, 'GOOD', 'asdasdasd', 'asdasdasd', 0, 28, NULL, NULL, NULL),
-(17, 'Somethingasdasdasdsa', 10, 'GOOD', 'asdasdasd', 'asdasdasd', 0, 28, NULL, NULL, NULL),
-(18, 'Somethingasdasdasdsaa', 10, 'GOOD', 'asdasdasd', 'asdasdasd', 0, 28, NULL, NULL, NULL),
-(19, 'Somethingasdasdasdsaaa', 10, 'GOOD', 'asdasdasd', 'asdasdasd', 0, 28, NULL, NULL, NULL),
-(20, 'Somethingasdwqtyhc', 10, 'GOOD', 'asdasdasd', 'asdasdasd', 0, 28, NULL, NULL, NULL),
-(21, 'Something3qhb6', 0, 'dasdasdasd', 'asdasdasd', 'asdasdasda', 0, 28, NULL, NULL, NULL),
-(22, 'Somethingasdasdas', 0, 'asdasdasd', 'asdasdasd', 'asdasdasdasd', 0, 28, NULL, NULL, NULL),
-(23, 'asadasdasdasd', 10.00001, 'asdasdasdasd', 'asdasdasdas', 'dasdasdasda', 0, 28, NULL, NULL, NULL);
+(26, 'Haunted House', 89.9, 'Experience', 'Kuala Lumpur', 'Get Spooked', 0, 28, NULL, NULL, NULL),
+(27, 'Skii Trip', 39.9, 'Sports', 'Kota Kinabalu', 'Skii Down', 0, 28, NULL, NULL, NULL),
+(28, 'Upside-Down Museum', 20, 'Experience', 'Penang', 'Upside-Down!', 0, 28, NULL, NULL, NULL),
+(29, 'Hiking Trip', 70.5, 'Sports', 'Broga Hill', 'Hiking', 0, 28, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -173,13 +161,10 @@ CREATE TABLE `product_images` (
 --
 
 INSERT INTO `product_images` (`imageID`, `productID`, `image_name`, `image_path`, `image_upload_date`) VALUES
-(10, 17, 'Somethingasdasdasdsa_pepega.png', '../../productUploads/Somethingasdasdasdsa_pepega.png', '2023-11-07 20:42:32'),
-(11, 18, 'Somethingasdasdasdsaa_pepega.png', '../../productUploads/Somethingasdasdasdsaa_pepega.png', '2023-11-07 20:44:41'),
-(12, 19, 'Somethingasdasdasdsaaa_pepega.png', '../../productUploads/Somethingasdasdasdsaaa_pepega.png', '2023-11-07 20:45:17'),
-(13, 20, 'Somethingasdwqtyhc_pepega.png', '../../productUploads/Somethingasdwqtyhc_pepega.png', '2023-11-07 20:47:41'),
-(14, 21, 'Something3qhb6_pepega.png', '../../productUploads/Something3qhb6_pepega.png', '2023-11-07 20:48:38'),
-(15, 22, 'Somethingasdasdas_pepega.png', '../../productUploads/Somethingasdasdas_pepega.png', '2023-11-07 21:00:59'),
-(16, 23, 'asadasdasdasd_pepega.png', '../../productUploads/asadasdasdasd_pepega.png', '2023-11-07 21:03:13');
+(19, 26, 'Haunted House_bagus.png', 'productUploads/Haunted House_bagus.png', '2023-11-08 10:05:40'),
+(20, 27, 'Skii Trip_edfrssdf.png', 'productUploads/Skii Trip_edfrssdf.png', '2023-11-08 10:06:12'),
+(21, 28, 'Upside-Down Museum_adf.png', 'productUploads/Upside-Down Museum_adf.png', '2023-11-08 10:07:37'),
+(22, 29, 'Hiking Trip_Screenshot 2023-01-08 174907.png', 'productUploads/Hiking Trip_Screenshot 2023-01-08 174907.png', '2023-11-08 10:08:57');
 
 -- --------------------------------------------------------
 
@@ -322,13 +307,13 @@ ALTER TABLE `orders`
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `productID` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `productID` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `product_images`
 --
 ALTER TABLE `product_images`
-  MODIFY `imageID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `imageID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `reviews`
@@ -376,6 +361,7 @@ ALTER TABLE `product`
 -- Constraints for table `product_images`
 --
 ALTER TABLE `product_images`
+  ADD CONSTRAINT `casDelete` FOREIGN KEY (`productID`) REFERENCES `product` (`productID`) ON DELETE CASCADE,
   ADD CONSTRAINT `product_images_ibfk_1` FOREIGN KEY (`productID`) REFERENCES `product` (`productID`);
 
 --

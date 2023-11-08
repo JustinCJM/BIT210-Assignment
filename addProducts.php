@@ -33,22 +33,22 @@ require_once 'includes/config_session.inc.php';
     }
     
     ?>
-    <div class="page-body">
+    <div class="vh-100 page-body">
     <div class="container py-5" style="height: 90%">
-      <div class="row d-flex justify-content-center align-items-center h-100">
-        <div class="col-md-8">
-          <div class="card" style="border-radius: 1rem">
-              <div class="d-flex align-items-center justify-content-center">
-                <div class="card-body p-4 p-lg-5 text-black">
-                  <form action="includes/manageProduct/manageProduct.inc.php" method="post" id="addProduct" class="pt-3 needs-validation was-validated"
-                  novalidate="" enctype="multipart/form-data">
-                    <h3 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px">
-                      Add New Product
-                    </h3>
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-md-8">
+            <div class="card" style="border-radius: 1rem">
+                <div class="d-flex align-items-center justify-content-center">
+                    <div class="card-body p-4 p-lg-5 text-black">
+                    <form action="includes/manageProduct/manageProduct.inc.php" method="post" id="addProduct" class="pt-3 needs-validation was-validated"
+                    novalidate="" enctype="multipart/form-data">
+                        <h3 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px">
+                        Add New Product
+                        </h3>
 
-                    <div class="row">
-                      
-                      
+                        <div class="row">
+                        
+                        
                     </div>
 
                     <div class="form-floating mb-4">
@@ -113,17 +113,17 @@ require_once 'includes/config_session.inc.php';
                     </div>
 
                     <button type="submit" class="btn btn-primary">Submit</button>
-                  </form>
+                    </form>
+                    </div>
                 </div>
-              </div>
-          </div>
+            </div>
+            </div>
         </div>
-      </div>
+        </div>
     </div>
-  </div>
-  <?php 
-  check_addProduct_errors();
-  ?>
+    <?php 
+    check_addProduct_errors();
+    ?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
 </html>

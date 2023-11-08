@@ -19,9 +19,9 @@ function get_productName(object $mysqli, string $productName): bool {
     return $productName_exists;
 }
 
-function get_productPrice(object $mysqli, string $productPrice): bool {
-     return $productPrice;
-}
+// function get_productPrice(object $mysqli, string $productPrice): bool {
+//      return $productPrice;
+// }
 
 function set_product(object $mysqli, int $merchantID, string $productName, string $productPrice, 
 string $productCategory, string $productLocation, string $productDescription) {

@@ -32,7 +32,7 @@ function displayTable($result) {
                                     transform: scale(1.03);
                                 }
                             </style>
-                            <img src="'. $imagePath .'" class="card-img-top" alt="Product Image">
+                            <img src="'. $imagePath .'" class="card-img-top" style="max-width: 50rem; height: 20rem;" alt="Product Image">
                             <div class="card-body">
                                 <h5 class="card-title">' . $datarows['productName'] . '</h5>
                                 <p class="card-text">Price: RM' . number_format($datarows['productPrice'], 2) . '</p>
@@ -46,8 +46,6 @@ function displayTable($result) {
             }
 
             echo '</div>';
-            echo "Image Path: " . $imagePath;
-            echo "Image Query: " . $imageQuery;
         } else {
             echo 'No results found.';
         }
