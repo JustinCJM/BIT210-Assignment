@@ -1,14 +1,67 @@
 <?php
-require_once 'includes/addProduct/addProduct_view.inc.php';
 require_once 'includes/config_session.inc.php';
+require_once 'includes/editProduct.php/editProduct_view.inc.php';
+
+include 'includes/dbh.inc.php';
+
+if (isset($_GET['productid'])) {
+    $productID = $_GET['productid']; 
+    $query = "SELECT * FROM product WHERE productID = ?";
+    $stmt = $mysqli->prepare($query);
+    
+    if ($stmt) {
+        $stmt->bind_param("i", $productID);
+        if ($stmt->execute()) {
+            $result = $stmt->get_result();
+            
+            if ($result->num_rows > 0) {
+                $productDetails = $result->fetch_assoc();
+            } else {
+                echo "Product not found.";
+                exit();
+            }
+        } else {
+            echo "Query execution failed: " . $stmt->error;
+            exit();
+        }
+    }    
+    $_SESSION['edit_product_id'] = $productID;
+
+} elseif(isset($_SESSION['edit_product_id']) ) {
+    $productID = $_SESSION['edit_product_id']; 
+    $query = "SELECT * FROM product WHERE productID = ?";
+    $stmt = $mysqli->prepare($query);
+    
+    if ($stmt) {
+        $stmt->bind_param("i", $productID);
+        if ($stmt->execute()) {
+            $result = $stmt->get_result();
+            
+            if ($result->num_rows > 0) {
+                $productDetails = $result->fetch_assoc();
+            } else {
+                echo "Product not found.";
+                exit();
+            }
+        } else {
+            echo "Query execution failed: " . $stmt->error;
+            exit();
+        }
+    }    
+}else{
+    echo "Product ID not provided.";
+    exit();
+}
+
+
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Travel Website</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Product</title>
     <link rel="icon" type="image/png" href="assets/logo.png" />
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -18,7 +71,6 @@ require_once 'includes/config_session.inc.php';
     <link rel="stylesheet" href="style.css" />
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"/>
 </head>
-
 <body>
     <?php
     $userType = $_SESSION["user_type"] ?? null;  
@@ -40,22 +92,22 @@ require_once 'includes/config_session.inc.php';
             <div class="card" style="border-radius: 1rem">
                 <div class="d-flex align-items-center justify-content-center">
                     <div class="card-body p-4 p-lg-5 text-black">
-                    <form action="includes/addProduct/addProduct.inc.php" method="post" id="addProduct" class="pt-3 needs-validation was-validated"
+                    <form action="includes\editProduct.php\editProduct.inc.php" method="post" id="addProduct" class="pt-3 needs-validation was-validated"
                     novalidate="" enctype="multipart/form-data">
                         <h3 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px">
-                        Add New Product
+                        Edit Product Details
                         </h3>
 
                         <div class="row">
                         
                         
                     </div>
-
+                    <input type="hidden" name="productid" value="<?php echo $productID; ?>">
                     <div class="form-floating mb-4">
                         <input
                             name="productName"
                             class="form-control form-control-lg"
-                            placeholder="Product Name"
+                            value = "<?php echo $productDetails['productName']; ?>"
                             required
                         />
                         <label for="formProductName">Product Name</label>
@@ -65,7 +117,7 @@ require_once 'includes/config_session.inc.php';
                         <input
                             name="productPrice"
                             class="form-control form-control-lg"
-                            placeholder="Price"
+                            value = "<?php echo $productDetails['productPrice']; ?>"
                             required
                         />
                         <label for="formProductPrice">Price</label>
@@ -75,7 +127,7 @@ require_once 'includes/config_session.inc.php';
                         <input
                             name="productCategory"
                             class="form-control form-control-lg"
-                            placeholder="Category"
+                            value = "<?php echo $productDetails['category']; ?>"
                             required
                         />
                         <label for="formProductCategory">Category</label>
@@ -85,7 +137,7 @@ require_once 'includes/config_session.inc.php';
                         <input
                             name="productLocation"
                             class="form-control form-control-lg"
-                            placeholder="Location"
+                            value = "<?php echo $productDetails['prodLocation']; ?>"
                             required
                         />
                         <label for="formProductLocation">Location</label>
@@ -95,9 +147,8 @@ require_once 'includes/config_session.inc.php';
                         <textarea
                             name="productDescription"
                             class="form-control form-control-lg"
-                            placeholder="Description"
                             required
-                        ></textarea>
+                        > <?php echo $productDetails['prodDescription']; ?></textarea>
                         <label for="formProductDescription">Description</label>
                     </div>
 
@@ -107,12 +158,11 @@ require_once 'includes/config_session.inc.php';
                             name="image"
                             class="form-control form-control-lg"
                             accept=".pdf,.png,.jpeg"
-                            required
                         />
                         <label for="formPdfDoc">Upload Image</label>
                     </div>
 
-                    <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+                    <button type="submit" value="UpdateProduct" class="btn btn-primary btn-lg">Update Product</button>
                     <a href="merchantDashboard.php" class="btn btn-danger btn-lg">Cancel</a>
                     </form>
                     </div>
@@ -122,9 +172,10 @@ require_once 'includes/config_session.inc.php';
         </div>
         </div>
     </div>
-    <?php 
-    check_addProduct_errors();
-    ?>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
 </html>
+
+<?php
+check_editProduct_errors();
+$mysqli->close();
+?>

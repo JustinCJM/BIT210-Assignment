@@ -3,8 +3,8 @@
 if($_SERVER["REQUEST_METHOD"] === "POST") {
 
     require_once '../dbh.inc.php';
-    require_once 'manageProduct_model.inc.php';
-    require_once 'manageProduct_contr.inc.php';
+    require_once 'addProduct_model.inc.php';
+    require_once 'addProduct_contr.inc.php';
     require_once '../config_session.inc.php';
     
     $productName = $_POST["productName"];

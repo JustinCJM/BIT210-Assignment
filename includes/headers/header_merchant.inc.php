@@ -46,11 +46,7 @@
         >
         <a
           class="nav-link"
-          href="addProducts.php"
-          >Manage Products</a>
-        <a
-          class="nav-link"
-          href="merchant_dashboard.php"
+          href="merchantDashboard.php"
           >Dashboard</a>
         <a
           class="nav-link"
