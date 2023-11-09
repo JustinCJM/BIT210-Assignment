@@ -46,6 +46,13 @@
         >
         <a
           class="nav-link"
+          aria-current="page"
+          href="Kproduct.php"
+          >Products</a
+        >
+        <!--change to product catalog when done;-->
+        <a
+          class="nav-link"
           href="about.php"
           >About Us</a>
           <a
