@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 08, 2023 at 03:15 AM
+-- Generation Time: Nov 10, 2023 at 07:51 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -108,7 +108,6 @@ CREATE TABLE `orders` (
   `billingAddress` varchar(255) NOT NULL,
   `totalAmount` decimal(10,2) NOT NULL,
   `customerID` int(11) NOT NULL,
-  `merchantID` int(11) NOT NULL,
   `productID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -125,7 +124,6 @@ CREATE TABLE `product` (
   `category` varchar(50) NOT NULL,
   `prodLocation` varchar(50) NOT NULL,
   `prodDescription` varchar(255) NOT NULL,
-  `maxQuantity` int(5) NOT NULL,
   `merchantID` int(5) NOT NULL,
   `quantitySold` int(11) DEFAULT NULL,
   `totalRating` int(11) DEFAULT NULL,
@@ -136,11 +134,11 @@ CREATE TABLE `product` (
 -- Dumping data for table `product`
 --
 
-INSERT INTO `product` (`productID`, `productName`, `productPrice`, `category`, `prodLocation`, `prodDescription`, `maxQuantity`, `merchantID`, `quantitySold`, `totalRating`, `avgRating`) VALUES
-(26, 'Haunted House', 89.9, 'Experience', 'Kuala Lumpur', 'Get Spooked', 0, 28, NULL, NULL, NULL),
-(27, 'Skii Trip', 39.9, 'Sports', 'Kota Kinabalu', 'Skii Down', 0, 28, NULL, NULL, NULL),
-(28, 'Upside-Down Museum', 20, 'Experience', 'Penang', 'Upside-Down!', 0, 28, NULL, NULL, NULL),
-(29, 'Hiking Trip', 70.5, 'Sports', 'Broga Hill', 'Hiking', 0, 28, NULL, NULL, NULL);
+INSERT INTO `product` (`productID`, `productName`, `productPrice`, `category`, `prodLocation`, `prodDescription`, `merchantID`, `quantitySold`, `totalRating`, `avgRating`) VALUES
+(26, 'Haunted House', 89.9, 'Experience', 'Kuala Lumpur', 'Get Spooked', 28, NULL, NULL, NULL),
+(27, 'Skii Trip', 39.9, 'Sports', 'Kota Kinabalu', 'Skii Down', 28, NULL, NULL, NULL),
+(28, 'Upside-Down Museum', 20, 'Experience', 'Penang', 'Upside-Down!', 28, NULL, NULL, NULL),
+(29, 'Hiking Trip', 70.5, 'Sports', 'Broga Hill', 'Hiking', 28, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -240,7 +238,6 @@ ALTER TABLE `merch_documents`
 ALTER TABLE `orders`
   ADD PRIMARY KEY (`orderID`),
   ADD KEY `customerID` (`customerID`),
-  ADD KEY `merchantID` (`merchantID`),
   ADD KEY `productID` (`productID`);
 
 --
@@ -348,7 +345,6 @@ ALTER TABLE `merch_documents`
 --
 ALTER TABLE `orders`
   ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`customerID`) REFERENCES `customer` (`customerID`) ON DELETE CASCADE,
-  ADD CONSTRAINT `orders_ibfk_2` FOREIGN KEY (`merchantID`) REFERENCES `merchant` (`merchantID`) ON DELETE CASCADE,
   ADD CONSTRAINT `orders_ibfk_3` FOREIGN KEY (`productID`) REFERENCES `product` (`productID`) ON DELETE CASCADE;
 
 --
@@ -356,13 +352,6 @@ ALTER TABLE `orders`
 --
 ALTER TABLE `product`
   ADD CONSTRAINT `product_ibfk_1` FOREIGN KEY (`merchantID`) REFERENCES `merchant` (`merchantID`) ON DELETE CASCADE;
-
---
--- Constraints for table `product_images`
---
-ALTER TABLE `product_images`
-  ADD CONSTRAINT `casDelete` FOREIGN KEY (`productID`) REFERENCES `product` (`productID`) ON DELETE CASCADE,
-  ADD CONSTRAINT `product_images_ibfk_1` FOREIGN KEY (`productID`) REFERENCES `product` (`productID`);
 
 --
 -- Constraints for table `reviews`
