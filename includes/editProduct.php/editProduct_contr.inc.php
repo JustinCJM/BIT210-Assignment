@@ -19,6 +19,13 @@ function is_productName_taken(object $mysqli, string $productName) {
     }
 }
 
+function is_productName_same(object $mysqli, string $productName, int $productID){
+    if (same_productName($mysqli, $productName, $productID)){
+        return true;
+    }else{
+        return false;
+    }
+}
 // function price_is_double(object $mysqli, string $productPrice){
 //     return is_numeric($productPrice) && strpos($productPrice, '.') !== false;
 // }

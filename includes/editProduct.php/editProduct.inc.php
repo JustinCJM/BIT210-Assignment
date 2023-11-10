@@ -20,7 +20,9 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
         $errors["empty_input"] = "Fill in all fields!";
     }
     if(is_productName_taken($mysqli, $productName)) {
-        $errors["taken_productName"] = "Product name is already taken!";
+        if(!is_productName_same($mysqli, $productName, $productID)){
+            $errors["taken_productName"] = "Product name is already taken!";
+        }
     }
     // if(!price_is_double($mysqli, $productPrice)) {
     //     $errors["price_notDouble"] = "Please eneter a valid price!";
