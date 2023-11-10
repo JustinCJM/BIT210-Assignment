@@ -28,7 +28,7 @@
   </head>
   <body>
     <?php 
-    unset($_SESSION['edit_product_id']);
+    //unset($_SESSION['edit_product_id']);
     ?>
   <div class="container mt-5">
         <div class="alert alert-success" role="alert">

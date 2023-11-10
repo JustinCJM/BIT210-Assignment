@@ -19,9 +19,23 @@ function get_productName(object $mysqli, string $productName): bool {
     return $productName_exists;
 }
 
-// function get_productPrice(object $mysqli, string $productPrice): bool {
-//      return $productPrice;
-// }
+function same_productName(object $mysqli, string $productName, int $productID): bool{
+    $query = "SELECT productName FROM product WHERE productName = ? AND productID = ?";
+
+    $stmt = $mysqli->prepare($query);
+
+    $stmt->bind_param("si", $productName, $productID);
+
+    $stmt->execute();
+
+    $result = $stmt->get_result();
+
+    $productName_same = $result->num_rows > 0;
+
+    $stmt->close();
+
+    return $productName_same;
+}
 
 function update_product_details(object $mysqli, int $productID, string $productName, string $productPrice, 
 string $productCategory, string $productLocation, string $productDescription) {
