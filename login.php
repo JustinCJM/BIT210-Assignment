@@ -124,18 +124,6 @@ require_once 'includes/config_session.inc.php';
                     </div>
 
                     <div class="input-group mb-3 justify-content-between">
-                      <div class="form-check">
-                        <input
-                          type="checkbox"
-                          class="form-check-input"
-                          id="formCheck"
-                        />
-                        <label
-                          for="formCheck"
-                          class="form-check-label text-secondary"
-                          >Remember Me
-                          </label>
-                      </div>
                       <div class="forgot">
                         <a href="#">Forgot Password?</a>
                       </div>

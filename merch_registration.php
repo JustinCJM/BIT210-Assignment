@@ -100,58 +100,11 @@ require_once 'includes/config_session.inc.php';
                       Merchant Registration
                     </h3>
 
-                    <div class="form-floating mb-4">
-                      <input
-                          type="text"
-                          name="username"
-                          class="form-control form-control-lg"
-                          placeholder="JohnDoe123"
-                          required
-                      />
-                      <label for="formRegUserName">Username</label>
-                  </div>
+                    <?php
 
-                    <div class="form-floating mb-4">
-                      <input
-                        type="email"
-                        name="email"
-                        class="form-control form-control-lg"
-                        placeholder="info@example.com"
-                        required
-                      />
-                      <label for="formEmail">Email Address</label>
-                    </div>
+                    signup_inputs();
 
-                    <div class="form-floating mb-4">
-                      <input
-                        name="contactno"
-                        class="form-control form-control-lg"
-                        placeholder="1111111"
-                        required
-                      />
-                      <label for="formContactNo">Mobile Number</label>
-                    </div>
-
-                    <div class="form-floating mb-4">
-                      <input
-                        name="shopname"
-                        class="form-control form-control-lg"
-                        placeholder="McDonalds"
-                        required
-                      />
-                      <label for="formEmail">Shop Name</label>
-                    </div>
-
-                    <div class="form-floating mb-4">
-                      <textarea
-                        name="shopdescription"
-                        class="form-control form-control-lg"
-                        placeholder="My Description"
-                        rows="3"
-                        required
-                      ></textarea>
-                      <label for="formAddress">Shop Description</label>
-                    </div>
+                    ?>
 
                     <div class="form-floating mb-4">
                         <input
