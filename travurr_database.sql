@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 10, 2023 at 07:51 AM
+-- Generation Time: Nov 10, 2023 at 10:04 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -56,6 +56,7 @@ CREATE TABLE `merchant` (
   `merchantID` int(11) NOT NULL,
   `username` varchar(30) NOT NULL,
   `pwd` varchar(30) NOT NULL DEFAULT substr(md5(rand()),1,8),
+  `default_pwd` varchar(30) NOT NULL,
   `email` varchar(50) NOT NULL,
   `contactNo` varchar(255) DEFAULT NULL,
   `shopName` varchar(100) NOT NULL,
@@ -68,9 +69,9 @@ CREATE TABLE `merchant` (
 -- Dumping data for table `merchant`
 --
 
-INSERT INTO `merchant` (`merchantID`, `username`, `pwd`, `email`, `contactNo`, `shopName`, `merchDescription`, `regStatus`, `tmoID`) VALUES
-(28, 'Kylow', 'gtWY94!*', 'sdasda@gmail.com', '394872489', 'Travuhr', 'Goats!', 'ACTIVE', 1),
-(30, 'SamW22', 'loRV41^%', 'chongjustin511@gmail.com', '0123826383', 'Shop Name', 'Description', 'PENDING', 1);
+INSERT INTO `merchant` (`merchantID`, `username`, `pwd`, `default_pwd`, `email`, `contactNo`, `shopName`, `merchDescription`, `regStatus`, `tmoID`) VALUES
+(28, 'Kylow', 'gtWY94!*', '', 'sdasda@gmail.com', '394872489', 'Travuhr', 'Goats!', 'ACTIVE', 1),
+(30, 'SamW22', 'loRV41^%', '', 'chongjustin511@gmail.com', '0123826383', 'Shop Name', 'Description', 'PENDING', 1);
 
 -- --------------------------------------------------------
 
