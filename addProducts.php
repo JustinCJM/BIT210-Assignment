@@ -104,10 +104,11 @@ require_once 'includes/config_session.inc.php';
                     <div class="form-floating mb-4">
                         <input
                             type="file"
-                            name="image"
+                            name="image[]"
                             class="form-control form-control-lg"
                             accept=".pdf,.png,.jpeg"
                             required
+                            multiple
                         />
                         <label for="formPdfDoc">Upload Image</label>
                     </div>

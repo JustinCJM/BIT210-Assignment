@@ -65,18 +65,22 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
         mkdir($uploadDirectory, 0777, true);
     }
 
-    $uniqueFilename = $productName . "_" . basename($_FILES["image"]["name"]);
-    $uploadPath = $uploadDirectory . $uniqueFilename;
-    $targetPath = $targetDirectory . $uniqueFilename;
-
-    if (move_uploaded_file($_FILES["image"]["tmp_name"], $uploadPath)) {
-        insertImage($mysqli, $productID, $uniqueFilename, $targetPath);
-    } else {
-        $errors["upload_error"] = "Failed to move the uploaded file.";
-        $_SESSION["file_upload_error"] = $errors["upload_error"];
-        echo "Error: " . $_FILES["image"]["error"];
-        echo "Temp Name: " . $_FILES["image"]["tmp_name"];
-        echo "Target Path: " . $targetPath;
+    $index = 0;
+    foreach ($_FILES["image"]["name"] as $x) {
+        $uniqueFilename = $productName . "_" . basename($_FILES["image"]["name"][$index]);
+        $uploadPath = $uploadDirectory . $uniqueFilename;
+        $targetPath = $targetDirectory . $uniqueFilename;
+    
+        if (move_uploaded_file($_FILES["image"]["tmp_name"][$index], $uploadPath)) {
+            insertImage($mysqli, $productID, $uniqueFilename, $targetPath);
+        } else {
+            $errors["upload_error"] = "Failed to move the uploaded file.";
+            $_SESSION["file_upload_error"] = $errors["upload_error"];
+            echo "Error: " . $_FILES["image"]["error"][$index];
+            echo "Temp Name: " . $_FILES["image"]["tmp_name"][$index];
+            echo "Target Path: " . $targetPath;
+        }
+        $index++;
     }
 
     header("Location: ../../addProductSuccess.php");
