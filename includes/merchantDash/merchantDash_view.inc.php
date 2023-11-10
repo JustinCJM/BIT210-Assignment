@@ -17,7 +17,7 @@ function displayProducts($mysqli) {
                 // Display product
                 echo '
                 <div class="col-md-4 mb-4">
-                    <div class="card" style="transition: transform 0.3s ease;">
+                    <div class="shadow-lg card" style="transition: transform 0.3s ease;">
                         <style>
                             .card:hover {
                                 transform: scale(1.03);
@@ -28,7 +28,7 @@ function displayProducts($mysqli) {
                             <h5 class="card-title">' . $productRows['productName'] . '</h5>
                             <p class="card-text">Price: RM' . number_format($productRows['productPrice'], 2) . '</p>
                             <p class="card-text">Location: ' . $productRows['prodLocation'] . '</p>
-                            <p class="card-text">' . $productRows['prodDescription'] . '</p>
+                            <p class="card-text">Category: ' . $productRows['category'] . '</p>
                             <a href="editProduct.php?productid='.$productID.'" class="btn btn-primary btn-lg">Edit</a>
                             <a href="deleteProduct.php?productid='.$productID.'" class="btn btn-danger btn-lg">Delete</a>
                         </div>

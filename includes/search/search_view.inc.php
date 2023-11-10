@@ -37,8 +37,8 @@ function displayTable($result) {
                                 <h5 class="card-title">' . $datarows['productName'] . '</h5>
                                 <p class="card-text">Price: RM' . number_format($datarows['productPrice'], 2) . '</p>
                                 <p class="card-text">Location: ' . $datarows['prodLocation'] . '</p>
-                                <p class="card-text">' . $datarows['prodDescription'] . '</p>
-                            </div>
+                                <p class="card-text">Category: ' . $datarows['category'] . '</p>
+                                </div>
                         </div>
                     </a>
                 </div>
