@@ -3,7 +3,7 @@
 
 require_once 'includes/config_session.inc.php';
 include 'includes/dbh.inc.php';
-$currency = "myr";
+
 if (isset($_GET['productid'])) {
     $productID = $_GET['productid'];
     echo "PLEASE DELETE BEFORE PUBLISH ID NUMBER CHECK ".$productID;
