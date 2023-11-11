@@ -47,7 +47,7 @@
         <a
           class="nav-link"
           aria-current="page"
-          href="Kpayment.php?productid=26 "
+          href="Kproductcatalog.php"
           >Products</a
         >
         <!--change to product catalog when done;-->
