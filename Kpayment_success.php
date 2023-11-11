@@ -27,9 +27,6 @@
     />
   </head>
   <body>
-    <?php 
-    //unset($_SESSION['edit_product_id']);
-    ?>
   <div class="container mt-5">
         <div class="alert alert-success" role="alert">
             You have Successfully Purchased!
@@ -39,7 +36,7 @@
     <script>
         // JavaScript to redirect after 4 seconds
         setTimeout(function() {
-            window.location.href = 'merchantDashboard.php';
+            window.location.href = 'index.php';
         }, 2000);  
     </script>
 </body>

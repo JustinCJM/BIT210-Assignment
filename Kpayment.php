@@ -59,10 +59,12 @@ require_once 'includes/dbh.inc.php';
           </ul>
 
           <form class="card p-2">
-            <div class="input-group">
-              <input type="text" class="form-control" placeholder="Promo code">
+            <div class="col-md-3 mb-3">
+              <label for="quantity">Quantity:</label>
+              <input type="number" id="quantityInput" name="quantity" min="1" value="1"> 
+              <label for="total" id="totalLabel">Total: RM<?php echo $productPrice?>0</label>
               <div class="input-group-append">
-                <button type="submit" class="btn btn-secondary">Redeem</button>
+  
               </div>
             </div>
           </form>
@@ -102,7 +104,7 @@ require_once 'includes/dbh.inc.php';
 
             <div class="mb-3">
               <label for="email">Email </label>
-              <input type="email" class="form-control" id="email" placeholder="you@example.com">
+              <input type="email" class="form-control" name="email" id="email" placeholder="you@example.com">
               <div class="invalid-feedback">
                 Please enter a valid email address for shipping updates.
               </div>
@@ -110,7 +112,7 @@ require_once 'includes/dbh.inc.php';
 
             <div class="mb-3">
               <label for="address">Address</label>
-              <input type="text" class="form-control" id="address" placeholder="1234 Main St" required="">
+              <input type="text" class="form-control" name="address" id="address" placeholder="1234 Main St" required="">
               <div class="invalid-feedback">
                 Please enter your shipping address.
               </div>
@@ -118,13 +120,13 @@ require_once 'includes/dbh.inc.php';
 
             <div class="mb-3">
               <label for="address2">Address 2 <span class="text-light">(Optional)</span></label>
-              <input type="text" class="form-control" id="address2" placeholder="Apartment or suite">
+              <input type="text" class="form-control" name="address2" id="address2" placeholder="Apartment or suite">
             </div>
 
             <div class="row">
               <div class="col-md-5 mb-3">
                 <label for="country">Country</label>
-                <select class="custom-select d-block w-100" id="country" required="">
+                <select class="custom-select d-block w-100" name="country" id="country" required="">
                   <option value="">Choose...</option>
                   <?php
                     $countries = array(
@@ -166,7 +168,7 @@ require_once 'includes/dbh.inc.php';
               </div>
               <div class="col-md-4 mb-3">
                 <label for="state">State</label>
-                  <select class="custom-select d-block w-100" id="state" required="">
+                  <select class="custom-select d-block w-100" name="state" id="state" required="">
                         <option value="">Choose...</option>
                         <?php
                         $malaysiaStates = array(
@@ -185,7 +187,7 @@ require_once 'includes/dbh.inc.php';
               </div>
               <div class="col-md-3 mb-3">
                 <label for="zip">Zip</label>
-                <input type="text" class="form-control" id="zip" placeholder="" required="">
+                <input type="text" class="form-control" name="zip" id="zip" placeholder="" required="">
                 <div class="invalid-feedback">
                   Zip code required.
                 </div>
@@ -250,8 +252,12 @@ require_once 'includes/dbh.inc.php';
                   Security code required
                 </div>
               </div>
+               <input type="hidden" id="orderQuantity" name="quantity" value="1">
+               <input type="hidden" id="price" name="price" value="<?php echo $productPrice ?>">
+              <input type="hidden" id="productID" name="productID" value="<?php echo $_GET['productid']?>">
             </div>
             <hr class="mb-4">
+           
             <button class="btn btn-primary btn-lg btn-block" type="submit">Pay</button>
           </form>
         </div>
@@ -267,24 +273,21 @@ require_once 'includes/dbh.inc.php';
       </footer>
     </div>
 
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
+ 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
     <script src="../../assets/js/vendor/popper.min.js"></script>
     <script src="../../dist/js/bootstrap.min.js"></script>
     <script src="../../assets/js/vendor/holder.min.js"></script>
     <script>
-      // Example starter JavaScript for disabling form submissions if there are invalid fields
+      
       (function() {
         'use strict';
 
         window.addEventListener('load', function() {
-          // Fetch all the forms we want to apply custom Bootstrap validation styles to
+          
           var forms = document.getElementsByClassName('needs-validation');
 
-          // Loop over them and prevent submission
           var validation = Array.prototype.filter.call(forms, function(form) {
             form.addEventListener('submit', function(event) {
               if (form.checkValidity() === false) {
@@ -297,6 +300,26 @@ require_once 'includes/dbh.inc.php';
         }, false);
       })();
     </script>
+
+    <script>
+        var productPrice = <?php echo $productPrice; ?>;
+        
+        document.getElementById('quantityInput').addEventListener('input', function() {
+            var quantity = this.value;
+            var total = productPrice * quantity;
+
+            // Display total with a dollar sign
+            document.getElementById('totalLabel').innerText = 'Total: RM' + total.toFixed(2);
+        });
+    </script>
+
+    <script>
+        
+        document.getElementById('quantityInput').addEventListener('input', function() {
+            document.getElementById('orderQuantity').value = this.value;
+        });
+    </script>
+        
   
 
 </body></html>
