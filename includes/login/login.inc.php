@@ -38,7 +38,6 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
 
     $userType = $_SESSION["user_type"] ?? null;
     if (($userType === 'tourism_ministry_officer')) {
-
         
         $newSessionID = session_create_id();
         $sessionID = $newSessionID . "_" . $user_info[0]["username"];
@@ -54,22 +53,44 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
         $mysqli = null;
         $stmt = null;
 
-    } else {
+    } elseif($userType === 'merchant') {
+        $_SESSION["user_username"] = $user_info[0]["username"];
+
+        if(comparePasswords($mysqli, $_SESSION["user_username"])) {
+            header("Location: ../../update_password.php");
+            die();
+            $mysqli = null;
+            $stmt = null;
+        } else {
+            $newSessionID = session_create_id();
+            $sessionID = $newSessionID . "_" . $user_info[0]["username"];
+            session_id($sessionID);
         
-    $newSessionID = session_create_id();
-    $sessionID = $newSessionID . "_" . $user_info[0]["username"];
-    session_id($sessionID);
+            $_SESSION["user_username"] = $user_info[0]["username"];
+        
+            $_SESSION["last_regeneration"] = time();
 
-    $_SESSION["user_username"] = $user_info[0]["username"];
+            header("Location: ../../index.php");
+            die();
+    
+            $mysqli = null;
+            $stmt = null;
+        }
 
-    $_SESSION["last_regeneration"] = time();
-
-    header("Location: ../../index.php");
-    die();
-
-    $mysqli = null;
-    $stmt = null;
-
+    } else {
+        $newSessionID = session_create_id();
+        $sessionID = $newSessionID . "_" . $user_info[0]["username"];
+        session_id($sessionID);
+    
+        $_SESSION["user_username"] = $user_info[0]["username"];
+    
+        $_SESSION["last_regeneration"] = time();
+    
+        header("Location: ../../index.php");
+        die();
+    
+        $mysqli = null;
+        $stmt = null;
     }
 
 

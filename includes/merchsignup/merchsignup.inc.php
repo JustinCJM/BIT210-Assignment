@@ -34,6 +34,14 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
 
     if (!empty($errors)) {
         $_SESSION["error_signup"] = $errors;
+        $signupData = [
+            "username" => $username,
+            "shopname" => $shopname,
+            "email" => $email,
+            "contactno" => $contactno,
+            "shopdescription" => $shopdescription
+        ];
+        $_SESSION["signup_data"] = $signupData;
         header("Location: ../../merch_registration.php");
         die();
     }

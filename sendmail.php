@@ -50,7 +50,7 @@ if(isset($_POST["send"])){
     $mail-> send();
     
     // $sql = "UPDATE merchant SET pwd='$hashedPassword' WHERE email='kelvinchin1917@gmail.com'";
-    $query = "UPDATE merchant SET pwd='$random_password' , regStatus = 'SUCCESS' WHERE email='$email'";
+    $query = "UPDATE merchant SET pwd='$random_password' , default_pwd='$random_password', regStatus = 'SUCCESS' WHERE email='$email'";
 
 
             if ($mysqli->query($query) === TRUE) {

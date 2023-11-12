@@ -25,3 +25,9 @@ function check_password(object $mysqli, string $username, string $pwd) {
         }
     }
 }
+
+function comparePasswords(object $mysqli, $username) {
+    $passwords = getPasswordsByUsername($mysqli, $username);
+    
+    return $passwords['pwd'] === $passwords['default_pwd'];
+}
