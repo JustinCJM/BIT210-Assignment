@@ -65,6 +65,7 @@
           >FAQ</a>
         <a
           class="nav-link"
+          href="customer_dashboard.php"
           style="font-weight: bold"
           >Welcome <?php echo $_SESSION["user_username"]; ?>! </a
         >

@@ -44,32 +44,34 @@ require_once 'includes/config_session.inc.php';
     ?>
 
     <body>
-        <div class="container my-5" style="min-height: 46.8vh;">
-            <div class="row">
-                <div class="col-sm">
-                <h1>Products</h1>
-                </div>
-                <div class="col-sm">
-                </div>
-                <div class="col-sm">
-                    <div class="d-flex justify-content-end">
-                        <a href="addProducts.php" class="btn btn-success btn-lg" style="">Add New Products</a>
-                    </div>
-                </div>
-            </div>        
-        
+    <div class="container pb-5">
+        <h1>Manage Tourism Products</h1>
+
+        <div class="pt-2">
             <table class="table">
-
-                <?php
+                <thead>
+                <tr>
+                    <th>Product Image</th>
+                    <th style='text-align: center;'>Product Name</th>
+                    <th style='text-align: center;'>Category</th>
+                    <th style='text-align: center;'>Location</th>
+                    <th style='text-align: center;'>Price</th>
+                    <th style='text-align: center;'>Description</th>
+                    <th style='text-align: center;'>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <?php
                     include 'includes/merchantDash/merchantDash.inc.php';
-                ?>
-
+                    ?>
+                </tbody>
             </table>
         </div>
+    </div>
 
     </body>
 
-        <footer class="text-center text-lg-start text-white" style="background-color: #1c2331">
+    <footer class="text-center text-lg-start text-white" style="background-color: #1c2331">
         <!-- Section: Social media -->
         <section
         class="d-flex justify-content-center p-4"
@@ -176,7 +178,7 @@ require_once 'includes/config_session.inc.php';
             <!-- Grid column -->
             <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
             </div>
-            <!-- Grid column -->
+            Grid column
             </div>
             <!-- Grid row -->
         </div>
@@ -184,4 +186,5 @@ require_once 'includes/config_session.inc.php';
         <!-- Section: Links  -->
 
     </footer>
-    
+
+</html>
