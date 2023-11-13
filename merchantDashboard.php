@@ -30,42 +30,41 @@ require_once 'includes/config_session.inc.php';
     </head>
 
     <?php
-    $userType = $_SESSION["user_type"] ?? null;  
-    if ($userType === 'merchant') {
-        include 'includes/headers/header_merchant.inc.php';
-    } elseif ($userType === 'customer') {
-        include 'includes/headers/header_customer.inc.php';
-    } elseif ($userType === 'tourism_ministry_officer') {
-        include 'includes/headers/header_officer.inc.php';
-    } else {
-        include 'includes/headers/defaultheader.inc.php';
-    }
-
+    include 'includes/headers/header_merchant.inc.php';
     ?>
 
     <body>
-    <div class="container pb-5">
-        <h1>Manage Tourism Products</h1>
+    <div class="container-fluid pb-5">
+        <div class="row">
+            <nav class="col-md-2 d-md-block side-menu p-5" style="text-align:center">
+                <h5 class="text-center"><?php echo $_SESSION["user_username"] ?>'s Dashboard</h5>
+                <hr class="my-3">
+                <a href="#" style="font-weight: 600;">My Products</a>
+                <a href="viewOrders.php">My Orders</a>
+                    <!-- Add more links as needed -->
+            </nav>
 
-        <div class="pt-2">
-            <table class="table">
-                <thead>
-                <tr>
-                    <th>Product Image</th>
-                    <th style='text-align: center;'>Product Name</th>
-                    <th style='text-align: center;'>Category</th>
-                    <th style='text-align: center;'>Location</th>
-                    <th style='text-align: center;'>Price</th>
-                    <th style='text-align: center;'>Description</th>
-                    <th style='text-align: center;'>Actions</th>
-                </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    include 'includes/merchantDash/merchantDash.inc.php';
-                    ?>
-                </tbody>
-            </table>
+            <div class="col-md-8 pt-5">
+                <!-- <div class="h3 pb-4 pt-3"> My Products</div> -->
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th style='text-align: center; font-weight: 600;'>Product Image</th>
+                            <th style='text-align: center; font-weight: 600;'>Product Name</th>
+                            <th style='text-align: center; font-weight: 600;'>Category</th>
+                            <th style='text-align: center; font-weight: 600;'>Location</th>
+                            <th style='text-align: center; font-weight: 600;'>Price</th>
+                            <th style='text-align: center; font-weight: 600;'>Description</th>
+                            <th style='text-align: center; font-weight: 600;'>Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            include 'includes/merchantDash/merchantDash.inc.php';
+                            ?>
+                        </tbody>
+                    </table>
+            </div>
         </div>
     </div>
 
