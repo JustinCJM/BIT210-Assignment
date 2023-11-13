@@ -84,7 +84,7 @@ if (isset($_GET['orderid'])) {
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"/>
     <style>
         .star {
-            font-size: 40px; /* Adjust the font size to make the stars bigger */
+            font-size: 50px; /* Adjust the font size to make the stars bigger */
             cursor: pointer;
         }
     </style>
@@ -104,38 +104,45 @@ if (isset($_GET['orderid'])) {
   ?>
 <body>
 
-<div class="vh-100 page-body">
-    <div class="container py-5" style="height: 100%">
-        <div class="card "> 
+<div class="vh-100" style="background-color: #364156;">
+    <div class="container py-5">
+        <div class="card" style="opacity: 0.8; background-color: #8D99AE; border-radius: 1rem">
 
             <?php displayOrderDetails($mysqli, $orderID);?>
+
+            <hr class="">
+
             <div class="row">
-            <h1 class="px-5">Submit a Review</h1>
-    
-            <form id="reviewForm" action="includes/reviewForm/reviewForm.inc.php" method="post"id="reviewOrder">
-                <div class="mb-3 px-5">
-                <label for="rating">Rating:</label>
-            <div>
-                <span class="star" onclick="setRating(1)">&#9733;</span>
-                <span class="star" onclick="setRating(2)">&#9733;</span>
-                <span class="star" onclick="setRating(3)">&#9733;</span>
-                <span class="star" onclick="setRating(4)">&#9733;</span>
-                <span class="star" onclick="setRating(5)">&#9733;</span>
-                <input type="hidden" name="rating" id="rating" value="0">
+                <div class="card-header px-5">
+                  <h3>Submit a Review</h3>
+                </div>
             </div>
-                </div>
-                
-                <div class="mb-3 px-5">
-                    <label for="reviewComment">Comments:</label>
-                    <textarea class="form-control" id="reviewComment" name="reviewComment" rows="4"></textarea>
-                </div>
-                <div class="mb-3 px-5">
-                    <button type="submit" value="submitReview" class="btn btn-primary btn-lg">Submit Review</button>
-                    <a href="orders.php" class="btn btn-danger btn-lg">Cancel</a>
-                </div>
-                </div>
-                
-            </form>
+
+            <div class="row">
+                <form id="reviewForm" action="includes/reviewForm/reviewForm.inc.php" method="post" id="reviewOrder">
+                    <div class="mb-3 px-5 py-3">
+                        <label for="rating">Rating:</label>
+                        <div>
+                            <span class="star" onclick="setRating(1)">&#9733;</span>
+                            <span class="star" onclick="setRating(2)">&#9733;</span>
+                            <span class="star" onclick="setRating(3)">&#9733;</span>
+                            <span class="star" onclick="setRating(4)">&#9733;</span>
+                            <span class="star" onclick="setRating(5)">&#9733;</span>
+                            <input type="hidden" name="rating" id="rating" value="0">
+                        </div>
+                    </div>
+
+                    <div class="mb-3 px-5">
+                        <label for="reviewComment">Comments:</label>
+                        <textarea class="form-control" id="reviewComment" name="reviewComment" rows="4"></textarea>
+                    </div>
+
+                    <div class="mb-3 px-5">
+                        <button type="submit" value="submitReview" class="btn btn-primary btn-lg">Submit Review</button>
+                        <a href="orders.php" class="btn btn-danger btn-lg">Cancel</a>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </div>

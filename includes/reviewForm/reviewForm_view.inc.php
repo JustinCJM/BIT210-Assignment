@@ -16,20 +16,23 @@ function displayOrderDetails($mysqli, $orderID) {
             $imagePath = getImagePath($mysqli, $productID);
             $orderDate = new DateTime($orderDetails['orderDate']);
             $formattedOrderDate = $orderDate->format('jS F Y');
-            echo 
-            '<div class = "row px-5 py-5">
-            <div class = "col">
-                    <img src="'. $imagePath .'" class="card-img-top" style="max-width: 25rem; height: 25rem;" alt="Product Image">
-                    </div>
-                    <div class = "col">
-                        <h5 class="card-title">' . $formattedOrderDate . '</h5>
-                        <p class="card-text">Price: RM' . number_format(floatval($orderDetails['totalAmount']), 2) . '</p>
-                        <p class="card-text">Shipped to: ' . $orderDetails['billingAddress'] . '</p>
-                        <p class="card-text">Product Name: ' . $productDetails['productName'] . '</p>
-                        <p class="card-text">Location: ' . $productDetails['prodLocation'] . '</p>
-                        <p class="card-text">Category: ' . $productDetails['category'] . '</p>
-                        <p class="card-text">Description: ' . $productDetails['prodDescription'] . '</p>
-            </div>
+
+            echo '
+            <div class="row px-5 py-5">
+                <div class="col-md-4">
+                    <img src="' . $imagePath . '" class="card-img-top" style="max-width: 100%; height: auto;" alt="Product Image">
+                </div>
+                <div class="col-md-8 px-4">
+                    <h5 class="card-title">Product Name: '  . $productDetails['productName'] . '</h5>
+                    <p class="card-text mt-3">Location: ' . $productDetails['prodLocation'] . '</p>
+                    <p class="card-text">Category: ' . $productDetails['category'] . '</p>
+                    <p class="card-text">Description: ' . $productDetails['prodDescription'] . '</p>
+                    <p class="card-text">Quantity: ' . $orderDetails['quantity'] . '</p>
+                    <p class="card-text">Total: RM' . number_format(floatval($orderDetails['totalAmount']), 2) . '</p>
+                    <p class="card-text">Ordered on: ' . $formattedOrderDate . '</p>
+                    <p class="card-text">Shipped to: ' . $orderDetails['billingAddress'] . '</p>
+                    
+                </div>
             </div>';
         } else {
             echo 'Product details not found.';
