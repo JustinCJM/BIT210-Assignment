@@ -19,12 +19,12 @@ function displayOrderDetails($mysqli, $orderID) {
             echo 
             '<div class = "row px-5 py-5">
             <div class = "col">
-                    <img src="'. $imagePath .'" class="card-img-top" style="max-width: 50rem; height: 20rem;" alt="Product Image">
+                    <img src="'. $imagePath .'" class="card-img-top" style="max-width: 25rem; height: 25rem;" alt="Product Image">
                     </div>
                     <div class = "col">
                         <h5 class="card-title">' . $formattedOrderDate . '</h5>
                         <p class="card-text">Price: RM' . number_format(floatval($orderDetails['totalAmount']), 2) . '</p>
-                        <p class="card-text">Location: ' . $orderDetails['billingAddress'] . '</p>
+                        <p class="card-text">Shipped to: ' . $orderDetails['billingAddress'] . '</p>
                         <p class="card-text">Product Name: ' . $productDetails['productName'] . '</p>
                         <p class="card-text">Location: ' . $productDetails['prodLocation'] . '</p>
                         <p class="card-text">Category: ' . $productDetails['category'] . '</p>
