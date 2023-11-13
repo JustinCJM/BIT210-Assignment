@@ -9,7 +9,7 @@ require_once 'includes/dbh.inc.php';
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $orderDate = date("d.m.Y");
-    $orderStatus = "unfulfilled";
+    $orderStatus = "UNFULFILLED";
     $address = $_POST["address"] . ", " . $_POST["address2"] . ", " . $_POST["zip"] . ", " . $_POST["state"] . ", " . $_POST["country"];
     $price = $_POST["price"];
     $quantity = $_POST["quantity"];
@@ -51,8 +51,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     if ($paymentStatus === "success") {
     
-        $sql = "INSERT INTO `orders` (`orderID`, `orderDate`, `orderStatus`, `billingAddress`, `totalAmount`, `customerID`, `merchantID`, `productID`) 
-        VALUES  (NULL, current_timestamp(), '$orderStatus', '$address', '$total', '$customerID', '$merchantID', '$productID');";
+        $sql = "INSERT INTO `orders` (`orderID`, `orderDate`, `orderStatus`, `billingAddress`, `totalAmount`, `quantity`, `customerID`, `merchantID`, `productID`) 
+        VALUES  (NULL, current_timestamp(), '$orderStatus', '$address', '$total', '$quantity', '$customerID', '$merchantID', '$productID');";
 
         if ($mysqli->query($sql) === TRUE) {
             echo $customerID;
