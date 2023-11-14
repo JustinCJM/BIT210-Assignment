@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 10, 2023 at 10:04 AM
+-- Generation Time: Nov 14, 2023 at 08:36 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -152,6 +152,7 @@ CREATE TABLE `product_images` (
   `productID` int(11) DEFAULT NULL,
   `image_name` varchar(255) NOT NULL,
   `image_path` varchar(255) NOT NULL,
+  `display` int(50) NOT NULL DEFAULT 1,
   `image_upload_date` datetime DEFAULT curtime()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -159,11 +160,11 @@ CREATE TABLE `product_images` (
 -- Dumping data for table `product_images`
 --
 
-INSERT INTO `product_images` (`imageID`, `productID`, `image_name`, `image_path`, `image_upload_date`) VALUES
-(19, 26, 'Haunted House_bagus.png', 'productUploads/Haunted House_bagus.png', '2023-11-08 10:05:40'),
-(20, 27, 'Skii Trip_edfrssdf.png', 'productUploads/Skii Trip_edfrssdf.png', '2023-11-08 10:06:12'),
-(21, 28, 'Upside-Down Museum_adf.png', 'productUploads/Upside-Down Museum_adf.png', '2023-11-08 10:07:37'),
-(22, 29, 'Hiking Trip_Screenshot 2023-01-08 174907.png', 'productUploads/Hiking Trip_Screenshot 2023-01-08 174907.png', '2023-11-08 10:08:57');
+INSERT INTO `product_images` (`imageID`, `productID`, `image_name`, `image_path`, `display`, `image_upload_date`) VALUES
+(19, 26, 'Haunted House_bagus.png', 'productUploads/Haunted House_bagus.png', 1, '2023-11-08 10:05:40'),
+(20, 27, 'Skii Trip_edfrssdf.png', 'productUploads/Skii Trip_edfrssdf.png', 1, '2023-11-08 10:06:12'),
+(21, 28, 'Upside-Down Museum_adf.png', 'productUploads/Upside-Down Museum_adf.png', 1, '2023-11-08 10:07:37'),
+(22, 29, 'Hiking Trip_Screenshot 2023-01-08 174907.png', 'productUploads/Hiking Trip_Screenshot 2023-01-08 174907.png', 1, '2023-11-08 10:08:57');
 
 -- --------------------------------------------------------
 

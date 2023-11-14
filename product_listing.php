@@ -5,11 +5,18 @@ require_once 'includes/dbh.inc.php';
 <!DOCTYPE html>
 <html>
     <style>
-        #prodImg {
+        #disImg {
             display: block;
-            max-height:350px;
+            max-height:500px;
             width: auto;
             height: auto;
+        }    
+        #prodImg {
+            display: block;
+            max-height:200px;
+            width: auto;
+            height: auto;
+            aspect-ratio: 16/9;
         }    
     </style>
     <head>
@@ -55,7 +62,8 @@ require_once 'includes/dbh.inc.php';
         <?php
             $id = $_GET['productid'];
             $query = "SELECT * FROM product WHERE productID = $id ";
-            $imageQuery = "SELECT image_path FROM product_images WHERE productID = $id";
+            $displayImageQuery = "SELECT image_path FROM product_images WHERE productID = $id AND display = 1";
+            $imageQuery = "SELECT image_path FROM product_images WHERE productID = $id AND display = 0;";
 
             $stmt = $mysqli->prepare($query);
             $stmt->execute();
@@ -63,16 +71,23 @@ require_once 'includes/dbh.inc.php';
             // var_dump($result);
             
             $name = $result['productName'];
-            $quantity = $result['maxQuantity'];
             $price = number_format($result['productPrice'], 2);
             $description = $result['prodDescription'];
 
+            $displayResult = mysqli_query($mysqli, $displayImageQuery);
+            $displayPath = '';
+                    if ($displayResult && mysqli_num_rows($displayResult) > 0) {
+                        $displayData = mysqli_fetch_assoc($displayResult);
+                        $displayPath = $displayData['image_path'];
+                    }
+
             $imageResult = mysqli_query($mysqli, $imageQuery);
-        
-            $imagePath = '';
-            if ($imageResult && mysqli_num_rows($imageResult) > 0) {
-                $imageData = mysqli_fetch_assoc($imageResult);
-                $imagePath = $imageData['image_path'];
+            $imagePath = [];
+            
+            while ($row = mysqli_fetch_assoc($imageResult)) {
+                foreach ($row as $r) {
+                    $imagePath[] = '' . $r;
+                }
             }
         ?>
 
@@ -82,13 +97,25 @@ require_once 'includes/dbh.inc.php';
                 <div class="row d-flex justify-content-center align-items-center">
                     <div class="card" style="border-radius: 1rem">
                         <div class="row g-0">
-                            <div class="card-body p-4 px-5 pb-5">
-                                <h1 class="mb-2 p-3" style="letter-spacing: 1px;">
-                                    <b><?php echo $name; ?></b>
-                                </h1>
-                            
-                                <div class="d-md-flex d-md-block p-2 align-items-center">
-                                    <img id="prodImg" src="<?php echo $imagePath; ?>" class="card-img-top center" alt="Product Image">
+                            <h1 class="mb-2 p-5" style="letter-spacing: 1px;">
+                                <b><?php echo $name; ?></b>
+                            </h1>
+                            <div class="card-body p-2 px-5 pb-5" style="margin-top:-25px;">
+                                <div class="row g-0">
+                                    <div class="col-md-9 col-lg-8 p-1 d-md-flex d-md-block" style="margin-right: 5px;">
+                                        <div class="d-md-flex d-md-block align-items-center">
+                                            <img id="disImg" src="<?php echo $displayPath; ?>" class="card-img-top center" alt="Product Image">
+                                        </div>
+                                    </div>
+                                    <div class="row col-md-3 col-lg-4 d-md-block" style="overflow-y: auto; max-height: 500px;">
+                                        <?php
+                                            foreach ($imagePath as $image) {
+                                                echo    "<div class='d-md-block p-2 align-items-center'>
+                                                            <img id='prodImg' src='$image' class='card-img-top' alt='Product Image'>
+                                                        </div>";
+                                            }
+                                        ?>
+                                    </div>
                                 </div>
                             </div>
                             
@@ -110,7 +137,7 @@ require_once 'includes/dbh.inc.php';
 
                                             <label for="quantity" style="padding: 5px; font-size: 120%;">Quantity: </label>
                                             <p class="w-25 p-1">
-                                                <input type="number" id="quantity" class="form-control form-icon-trailing" value="1" min="1" max="<?php echo $quantity; ?>"/>
+                                                <input type="number" id="quantity" class="form-control form-icon-trailing" value="1" min="1">
                                             </p>
 
                                             <div class="p-1 mb-4">
