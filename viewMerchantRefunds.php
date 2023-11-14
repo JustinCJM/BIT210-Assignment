@@ -13,7 +13,8 @@ $query = "SELECT r.*, o.*, p.*, pi.image_path, c.username
             WHERE p.merchantID = (
             SELECT merchantID FROM merchant WHERE username = ?
             )
-            AND r.refundStatus = 'AWAITING REFUND'";
+            AND r.refundStatus = 'AWAITING REFUND'
+            ORDER BY r.refundDate DESC";
 
 $stmt = $mysqli->prepare($query);
 
@@ -116,10 +117,11 @@ if (!$result) {
                                                 <div class='d-flex justify-content-between align-items-center p-2'>
                                                     <div></div>
                                                     <div class='ml-auto'>
-                                                        <button type='button' class='btn me-2' style='background-color:#7c4dff; color:white;'
-                                                                onclick='return confirm(\"Accept this refund request?\")'>Accept Refund</button>
-                                                                <button type='button' class='btn btn-light' onclick='return confirm(\"Reject this refund request?\")'
-                                                                >Reject Refund</button>
+                                                        <a type='button' class='btn me-2' style='background-color:#7c4dff; color:white;' onclick='return confirm(\"Accept this refund request?\")' 
+                                                            href='refund_process.php?refundID={$row['refundID']}&status=accepted'>Accept Refund</a>
+                                                            <a type='button' class='btn btn-light' onclick='return confirm(\"Reject this refund request?\")'
+                                                            href='refund_process.php?refundID={$row['refundID']}&status=rejected'
+                                                            >Reject Refund</a>
                                                     </div>
                                                 </div>
                                             </div>
