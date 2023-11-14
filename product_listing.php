@@ -65,7 +65,8 @@ require_once 'includes/dbh.inc.php';
             $query = "SELECT * FROM product WHERE productID = $id ";
             $displayImageQuery = "SELECT image_path FROM product_images WHERE productID = $id AND display = 1";
             $imageQuery = "SELECT image_path FROM product_images WHERE productID = $id AND display = 0;";
-            $reviewQuery = "SELECT * FROM reviews WHERE productID = $id";
+            $reviewQuery = "SELECT * FROM reviews
+                            LEFT JOIN orders ON reviews.orderID = orders.orderID LEFT JOIN customer ON orders.customerID = customer.customerID WHERE reviews.productID = $id";
 
             // get product details
             $stmt = $mysqli->prepare($query);
@@ -91,8 +92,6 @@ require_once 'includes/dbh.inc.php';
             // get reviews
             $reviewResult = mysqli_query($mysqli, $reviewQuery);
             $reviews = mysqli_fetch_all($reviewResult, MYSQLI_ASSOC);
-
-            var_dump($reviews);
         ?>
 
 
@@ -129,9 +128,9 @@ require_once 'includes/dbh.inc.php';
                             <div class="d-flex align-items-center">
                                 <div class="card-body p-2 p-lg-5 text-black">
                                     <div class="row g-0">
-                                        <h2 class="fw-normal mb-3" style="letter-spacing: 1px">
+                                        <h3 style="letter-spacing: 1px">
                                             Description: 
-                                        </h2>
+                                        </h3>
                                         <div class="col-md-6 col-lg-9 p-1 d-md-flex d-md-block" style="margin-right: 5px;">
                                             <h3 class="fw-normal pb-3" style="letter-spacing: 1px; margin-right: 100px;">
                                                 <?php echo $description; ?>
@@ -139,9 +138,9 @@ require_once 'includes/dbh.inc.php';
                                         </div>
 
                                         <div class="row col-md-6 col-lg-3 d-flex align-items-center">
-                                            <h2 class="fw-normal mb-3 p-1" style="letter-spacing: 1px">
+                                            <h3 class="fw-normal mb-3 p-1" style="letter-spacing: 1px">
                                                 RM <?php echo $price; ?>
-                                            </h2>
+                                            </h3>
 
                                             <label for="quantity" style="padding: 5px; font-size: 120%;">Quantity: </label>
                                             <p class="w-25 p-1">
@@ -162,16 +161,35 @@ require_once 'includes/dbh.inc.php';
                                     </div>
 
                                     <div class="row g-0">
-                                        <div class="col-md-3 col-lg-4" style="overflow-y: auto; max-height: 250px; width: 750px;">
+                                        <h3>Reviews</h3>
+                                        <hr class="my-4" style="width:750px;">
+                                        <div class="col-md-3 col-lg-4" style="overflow-y: auto; max-height: 200px; width: 750px;">
                                             <?php
-                                                
-                                                foreach ($reviews as $review) {
-                                                    $comments = $review["comments"];
-                                                    $rating = $review["rating"];
-                                                    echo    "<div class='d-md-block p-2 align-items-center'>
-                                                                <p>$comments</p>
-                                                                
-                                                            </div>";
+                                                if ($reviews == null){
+                                                    echo "No Reviews for this product yet.";
+                                                }
+                                                else {
+                                                    foreach ($reviews as $review) {
+                                                        $comments = $review["comments"];
+                                                        $customer = $review["username"];
+                                                        $orderDate = $review["orderDate"];
+                                                        $rating = $review["rating"];
+                                                        
+                                                        echo    "<div class='d-md-block p-2 align-items-center'>
+                                                                    <h5>$customer</h5>
+                                                                    <p class='p-1'>$comments</p>
+                                                                    <p style='float:right;color:grey;'>$orderDate</p>
+                                                                    <ul class='list-unstyled d-flex justify-content-center text-warning me-2 mb-2' style='float:right;'>";
+                                                                        for ($i = 1; $i <= 5; $i++) {
+                                                                            if ($i <= $rating) {
+                                                                                echo '<li><i class="fas fa-star fa-sm"></i></li>';
+                                                                            } else {
+                                                                                echo '<li><i class="far fa-star fa-sm"></i></li>';
+                                                                            }
+                                                                        }
+                                                        echo        "</ul>
+                                                                </div>";
+                                                    } 
                                                 }
                                             ?>
                                         </div>
