@@ -18,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $productID = $_POST["productID"];
     $paymentStatus = "success";
     $username = $_SESSION['user_username'];
-    $customerName = $_POST['fname'].$_POST['lname'];
+    $customerName = $_POST['fname']." ".$_POST['lname'];
     $invoiceNum = rand(4235,9999999);
 
     $merchantIDQuery = "SELECT merchantID FROM product WHERE productID = ?";

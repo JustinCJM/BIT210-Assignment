@@ -7,11 +7,11 @@ function generateReceipt($info, $products_info) {
       
             //Display Company Info
             $this->SetFont('Arial','B',14);
-            $this->Cell(50,10,"ABC COMPUTERS",0,1);
+            $this->Cell(50,10,"Travurr",0,1);
             $this->SetFont('Arial','',14);
-            $this->Cell(50,7,"West Street,",0,1);
-            $this->Cell(50,7,"Salem 636002.",0,1);
-            $this->Cell(50,7,"PH : 8778731770",0,1);
+            $this->Cell(50,7,"Jalan Tasik Raja Lumu U4/17,",0,1);
+            $this->Cell(50,7,"40150 Shah Alam, Selangor",0,1);
+            $this->Cell(50,7,"Phone: +601 67591246",0,1);
             
             //Display INVOICE text
             $this->SetY(15);
@@ -77,9 +77,6 @@ function generateReceipt($info, $products_info) {
             //Display amount in words
             $this->SetY(225);
             $this->SetX(10);
-            $this->SetFont('Arial','B',12);
-            $this->Cell(0,9,"Amount in Words ",0,1);
-            $this->SetFont('Arial','',12);
             
           }
           function Footer(){
@@ -87,10 +84,10 @@ function generateReceipt($info, $products_info) {
             //set footer position
             $this->SetY(-50);
             $this->SetFont('Arial','B',12);
-            $this->Cell(0,10,"for ABC COMPUTERS",0,1,"R");
+            $this->Cell(0,10,"for Travurr Sdn Bhd",0,1,"R");
             $this->Ln(15);
             $this->SetFont('Arial','',12);
-            $this->Cell(0,10,"Authorized Signature",0,1,"R");
+            $this->Cell(0,10,"No Signature require for E-receipt",0,1,"R");
             $this->SetFont('Arial','',10);
             
             //Display Footer Text
