@@ -1,5 +1,25 @@
 <?php
 require_once 'includes/config_session.inc.php';
+include 'includes/dbh.inc.php';
+
+$custName = $_SESSION['user_username'];
+
+$query = "SELECT o.*, p.*,pi.image_path, m.shopName
+            FROM orders o
+            JOIN product p ON o.productID = p.productID
+            JOIN product_images pi ON o.productID = pi.productID
+            JOIN merchant m ON p.merchantID = m.merchantID
+            WHERE o.customerID = (
+                SELECT customerID FROM customer WHERE username = ?
+            )";
+
+$stmt = $mysqli->prepare($query);
+
+if ($stmt) {
+    $stmt->bind_param("s", $custName);
+    $stmt->execute();
+    $result = $stmt->get_result();
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -27,46 +47,84 @@ require_once 'includes/config_session.inc.php';
         <link rel="stylesheet" href="style.css" />
         <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"/>
         
-    </head>
+</head>
 
     <?php
-    include 'includes/headers/header_merchant.inc.php';
+    include 'includes/headers/header_customer.inc.php';
     ?>
 
     <body>
-    <div class="container-fluid pb-5">
-        <div class="row">
-            <nav class="col-md-2 d-md-block side-menu p-5" style="text-align:center">
-                <h5 class="text-center"><?php echo $_SESSION["user_username"] ?>'s Dashboard</h5>
-                <hr class="my-3">
-                <a href="#" style="font-weight: 600;">My Products</a>
-                <a href="viewOrders.php">My Orders</a>
+        <div class="container-fluid">
+            <div class="row">
+                <!-- Side Menu -->
+                <nav class="col-md-3 d-none d-md-block side-menu" style="text-align:center">
+                    <h5 class="text-center"><?php echo $_SESSION["user_username"] ?>'s Dashboard</h5>
+                    <hr class="my-4">
+                    <a href="#" style="font-weight: 600;">Customer Purchases</a>
+                    <a href="#">Account Details</a>
                     <!-- Add more links as needed -->
-            </nav>
+                </nav>
 
-            <div class="col-md-8 pt-5">
-                <!-- <div class="h3 pb-4 pt-3"> My Products</div> -->
-                    <table class="table">
-                        <thead>
-                        <tr>
-                            <th style='text-align: center; font-weight: 600;'>Product Image</th>
-                            <th style='text-align: center; font-weight: 600;'>Product Name</th>
-                            <th style='text-align: center; font-weight: 600;'>Category</th>
-                            <th style='text-align: center; font-weight: 600;'>Location</th>
-                            <th style='text-align: center; font-weight: 600;'>Price</th>
-                            <th style='text-align: center; font-weight: 600;'>Description</th>
-                            <th style='text-align: center; font-weight: 600;'>Actions</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                            include 'includes/merchantDash/merchantDash.inc.php';
-                            ?>
-                        </tbody>
-                    </table>
+                <div class="col-md-6 purchase-container p-4">
+                    <div class="h3 pb-4 pt-3"> My Purchases</div>
+                    <?php
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        echo "<div class='order-listing bg-light mb-4'>
+                                <div class='p-4'>
+                                    <div class='d-flex justify-content-between align-items-center p-2'>
+                                        <div class='d-flex align-items-center'>
+                                            <img src='assets/stall.png' style='width: 1.5rem;' alt='Packages'/>
+                                            <h4 class='p-2'>{$row['shopName']}</h4>
+                                        </div>
+                                        <div>
+                                            <a href='#' class='ml-auto'>View Shop</a>
+                                        </div>
+                                    </div>
+                                    <hr class='my-4'>
+                                    <div class='d-flex align-items-center justify-content-between p-2'>
+                                        <div class='d-flex align-items-center'>
+                                            <img src='{$row['image_path']}' alt='Product Image' style='width: 8rem; height: 6rem; border: 1px solid grey'>
+                                            <p class='p-4 fs-5'>{$row['productName']}</p>
+                                        </div>
+                                        <p>Quantity: {$row['quantity']}</p>
+                                    </div>
+                                    <div class='d-flex m-2'>
+                                    </div>
+                                    <hr class='my-4'>
+                                    <div class='d-flex justify-content-between align-items-center p-2'>
+                                        <div class='d-flex align-items-center'>
+                                            <h5><img src='assets/payment-method.png' style='width: 2rem;' alt='Time' /> : </h5>
+                                            <h5 class='p-3'><u>{$row['orderDate']}</u></h5>
+                                        </div>
+                                        <div class='ml-auto'>
+                                            <h3>Order Total: RM{$row['totalAmount']}</h3>
+                                        </div>
+                                    </div>
+                                    <div class='d-flex justify-content-between align-items-center p-2'>
+                                        <div></div>
+                                        <div class='ml-auto'>";
+                                        if ($row['orderStatus'] == "REVIEWED") {
+                                            echo "<button type='button' class='btn me-2' style='background-color:#7c4dff; color:white;'>Buy Again</button>
+                                                    <button type='button' class='btn btn-light'>Request Refund</button>
+                                                    </div>";
+                                        } elseif  ($row['orderStatus'] == "COMPLETED"){
+                                            echo "<button type='button' class='btn me-2' style='background-color:#7c4dff; color:white;'>Review Item</button>
+                                                    <button type='button' class='btn btn-light'>Request Refund</button>
+                                                    </div>";
+                                        } else {
+                                            echo "<button type='button' class='btn me-2' style='background-color:#7c4dff; color:white;' disabled>Review Item</button>
+                                                    <button type='button' class='btn btn-light'>Request Refund</button>
+                                                    </div>";
+                                        };
+                            echo "  </div>
+                                </div>
+                            </div>";
+                    }
+                        ?>
+                </div>
             </div>
         </div>
-    </div>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script
         src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
@@ -79,8 +137,8 @@ require_once 'includes/config_session.inc.php';
     </body>
 
     <footer class="text-center text-lg-start text-white" style="background-color: #1c2331">
-        <!-- Section: Social media -->
-        <section
+    <!-- Section: Social media -->
+    <section
         class="d-flex justify-content-center p-4"
         style="background-color: #6351ce"
         >
@@ -185,12 +243,12 @@ require_once 'includes/config_session.inc.php';
             <!-- Grid column -->
             <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
             </div>
-            Grid column
+            <!-- Grid column -->
             </div>
             <!-- Grid row -->
         </div>
         
-        <!-- Section: Links  -->
+    <!-- Section: Links  -->
 
     </footer>
 
