@@ -50,11 +50,22 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 
     if ($paymentStatus === "success") {
-    
-        $sql = "INSERT INTO `orders` (`orderID`, `orderDate`, `orderStatus`, `billingAddress`, `totalAmount`, `quantity`, `customerID`, `merchantID`, `productID`) 
-        VALUES  (NULL, current_timestamp(), '$orderStatus', '$address', '$total', '$quantity', '$customerID', '$merchantID', '$productID');";
 
-        if ($mysqli->query($sql) === TRUE) {
+        $mysqli->begin_transaction();
+    
+        $insertsql = "INSERT INTO `orders` (`orderID`, `orderDate`, `orderStatus`, `billingAddress`, `totalAmount`, `quantity`, `customerID`, `merchantID`, `productID`) 
+        VALUES  (NULL, current_timestamp(), '$orderStatus', '$address', '$total', '$quantity', '$customerID', '$merchantID', '$productID');";
+       
+        $mysqli->query($insertsql);
+
+        $updatesql = "UPDATE product SET quantitySold = quantitySold + $quantity WHERE productID = $productID";
+
+        $updateStmt = $mysqli->prepare($updateSql);
+        $updateStmt->bind_param('ii', $newQuantityValue, $productID);
+        $updateStmt->execute();
+        $mysqli->commit();
+
+        if ($mysqli->query($insertsql) === TRUE) {
             echo $customerID;
             header("Location: Kpayment_success.php?<?php echo $customerID ?>");
             exit();
