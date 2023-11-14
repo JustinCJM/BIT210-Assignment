@@ -60,7 +60,7 @@ if ($stmt) {
                 <nav class="col-md-3 d-none d-md-block side-menu" style="text-align:center">
                     <h5 class="text-center"><?php echo $_SESSION["user_username"] ?>'s Dashboard</h5>
                     <hr class="my-4">
-                    <a href="#">Customer Purchases</a>
+                    <a href="#" style="font-weight: 600;">Customer Purchases</a>
                     <a href="#">Account Details</a>
                     <!-- Add more links as needed -->
                 </nav>
@@ -92,7 +92,10 @@ if ($stmt) {
                                     </div>
                                     <hr class='my-4'>
                                     <div class='d-flex justify-content-between align-items-center p-2'>
-                                        <div></div>
+                                        <div class='d-flex align-items-center'>
+                                            <h5><img src='assets/payment-method.png' style='width: 2rem;' alt='Time' /> : </h5>
+                                            <h5 class='p-3'><u>{$row['orderDate']}</u></h5>
+                                        </div>
                                         <div class='ml-auto'>
                                             <h3>Order Total: RM{$row['totalAmount']}</h3>
                                         </div>
@@ -122,7 +125,131 @@ if ($stmt) {
             </div>
         </div>
 
-        <!-- Bootstrap JS and dependencies -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-e5r54/AOX8wnrdpSBzMz9Nce6wJU5Ud9/yo8D01VMvGX3lZTI7h2P1RqJ0HeoQQpb" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+        crossorigin="anonymous"
+    >
+    </script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="script.js"></script>
     </body>
+
+    <footer class="text-center text-lg-start text-white" style="background-color: #1c2331">
+    <!-- Section: Social media -->
+    <section
+        class="d-flex justify-content-center p-4"
+        style="background-color: #6351ce"
+        >
+        <!-- Right -->
+        <div>
+            <a href="" class="text-white me-4">
+            <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="" class="text-white me-4">
+            <i class="fab fa-twitter"></i>
+            </a>
+            <a href="" class="text-white me-4">
+            <i class="fab fa-instagram"></i>
+            </a>
+            <a href="" class="text-white me-4">
+            <i class="fab fa-linkedin"></i>
+            </a>
+        </div>
+        <!-- Right -->
+        </section>
+        <!-- Section: Social media -->
+
+        <!-- Section: Links  -->
+        
+        <div>
+            <!-- Grid row -->
+            <div class="row mt-xl-4">
+            <!-- Grid column -->
+            <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+                <!-- Content -->
+                <h6 class="text-uppercase fw-bold"><img src="assets/logo.png" class="smalllogo" alt="...">Tuhr</h6>
+                <hr
+                    class="mb-4 mt-0 d-inline-block mx-auto"
+                    style="width: 60px; background-color: #7c4dff; height: 2px"
+                    />
+                <p class="fw-bold">
+                Unveiling the Extraordinary
+                </p>
+            </div>
+            <!-- Grid column -->
+
+            <!-- Grid column -->
+            <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+                <!-- Links -->
+                <h6 class="text-uppercase fw-bold">Products</h6>
+                <hr
+                    class="mb-4 mt-0 d-inline-block mx-auto"
+                    style="width: 60px; background-color: #7c4dff; height: 2px"
+                    />
+                <p>
+                <a href="#!" class="text-white">Transport</a>
+                </p>
+                <p>
+                <a href="#!" class="text-white">Accommodation</a>
+                </p>
+                <p>
+                <a href="#!" class="text-white">Experiences</a>
+                </p>
+                <p>
+                <a href="#!" class="text-white">Package Deals</a>
+                </p>
+            </div>
+            <!-- Grid column -->
+
+            <!-- Grid column -->
+            <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+                <!-- Links -->
+                <h6 class="text-uppercase fw-bold">Quick Links</h6>
+                <hr
+                    class="mb-4 mt-0 d-inline-block mx-auto"
+                    style="width: 60px; background-color: #7c4dff; height: 2px"
+                    />
+                <p>
+                <a href="faq.php" class="text-white">FAQ</a>
+                </p>
+                <p>
+                <a href="contact.php" class="text-white">Contact Us</a>
+                </p>
+                <p>
+                <a href="about.php" class="text-white">About Us</a>
+                </p>
+            </div>
+            <!-- Grid column -->
+
+            <!-- Grid column -->
+            <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+                <!-- Links -->
+                <h6 class="text-uppercase fw-bold">Contact</h6>
+                <hr
+                    class="mb-4 mt-0 d-inline-block mx-auto"
+                    style="width: 60px; background-color: #7c4dff; height: 2px"
+                    />
+                <p><i class="fas fa-home mr-3"></i> Tower 3, Brunsfield Oasis, Oasis Square, Jalan PJU 1A/7A, Oasis Ara Damansara, 47301 Petaling Jaya, Selangor</p>
+                <p><i class="fas fa-envelope mr-3"></i> travelmate@gmail.com</p>
+                <p><i class="fas fa-phone mr-3"></i> +60 3845 3984</p>
+            </div>
+            <!-- Grid column -->
+            <!-- Grid column -->
+            <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+            </div>
+            <!-- Grid column -->
+            <!-- Grid column -->
+            <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+            </div>
+            <!-- Grid column -->
+            </div>
+            <!-- Grid row -->
+        </div>
+        
+    <!-- Section: Links  -->
+
+    </footer>
+
 </html>

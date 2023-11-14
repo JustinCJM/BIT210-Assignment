@@ -6,8 +6,8 @@ body {
 
 .navbar {
   background-color: white;
-  padding-left: 7rem;
-  padding-right: 7rem;
+  padding-left: 12rem;
+  padding-right: 12rem;
 }
 
 .navbar-brand {
@@ -155,9 +155,6 @@ body {
   color: purple; /* Change text color on hover */
   box-shadow: white !important; /* Remove box shadow on hover */
   background-color: #e9ecef;
-}
-
-.purchase-container {
 }
 
 .order-listing {

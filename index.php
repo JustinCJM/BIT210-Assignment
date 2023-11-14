@@ -40,7 +40,6 @@ require_once 'includes/config_session.inc.php';
   } else {
     include 'includes/headers/defaultheader.inc.php';
   }
-  
   ?>
   <body style="min-height: 250vh;">
       <div id="carouselExampleAutoplaying" class=" home-carousel carousel slide pb-3" data-bs-ride="carousel">
@@ -215,7 +214,7 @@ require_once 'includes/config_session.inc.php';
     </script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="script.js"></script>
-  </body>
+
 
   <footer class="text-center text-lg-start text-white" style="background-color: #1c2331">
     <!-- Section: Social media -->
