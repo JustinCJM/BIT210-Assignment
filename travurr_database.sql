@@ -3,7 +3,10 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
+
 -- Generation Time: Nov 14, 2023 at 01:04 PM
+
+-- Generation Time: Nov 14, 2023 at 12:16 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -121,7 +124,7 @@ INSERT INTO `orders` (`orderID`, `orderDate`, `orderStatus`, `billingAddress`, `
 (1, '2023-11-14 17:21:12', 'UNFULFILLED', '230, Avenue Lane', 200.00, 2, 2, 26),
 (2, '2023-11-14 17:23:32', 'AWAITING REFUND', '230, Avenue Lane', 100.00, 1, 2, 27),
 (3, '2023-11-14 17:23:32', 'COMPLETED', '230, Avenue Lane', 49.99, 1, 2, 28),
-(4, '2023-11-14 17:23:32', 'COMPLETED', '230, Avenue Lane', 78.00, 2, 2, 29),
+(4, '2023-11-14 17:23:32', 'REVIEWED', '230, Avenue Lane', 78.00, 2, 2, 29),
 (5, '2023-11-14 17:27:46', 'UNFULFILLED', '230, Avenue Lane', 200.00, 2, 2, 26),
 (6, '2023-11-14 17:28:52', 'UNFULFILLED', '230, Avenue Lane', 200.00, 2, 2, 26),
 (7, '2023-11-14 17:28:52', 'COMPLETED', '230, Avenue Lane', 100.00, 1, 2, 26),
@@ -228,7 +231,8 @@ INSERT INTO `reviews` (`reviewID`, `reviewDate`, `comments`, `rating`, `orderID`
 (3, '2023-11-14 17:32:20', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis', 4, 6, 26),
 (4, '2023-11-14 17:33:49', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis', 4, 7, 26),
 (5, '2023-11-14 17:33:49', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis', 4, 8, 26),
-(6, '2023-11-14 17:33:49', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis', 4, 9, 26);
+(6, '2023-11-14 17:33:49', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis', 4, 9, 26),
+(8, '2023-11-14 19:12:06', 'Great Trip. I enjoyed every second of it.', 5, 4, 29);
 
 -- --------------------------------------------------------
 
@@ -380,7 +384,7 @@ ALTER TABLE `refunds`
 -- AUTO_INCREMENT for table `reviews`
 --
 ALTER TABLE `reviews`
-  MODIFY `reviewID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `reviewID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `tourism_ministry_officer`

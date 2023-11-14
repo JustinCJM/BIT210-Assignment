@@ -1,6 +1,6 @@
 <?php
 require_once 'includes/config_session.inc.php';
-require_once 'includes/editProduct.php/editProduct_view.inc.php';
+require_once 'includes/editProduct/editProduct_view.inc.php';
 
 include 'includes/dbh.inc.php';
 
@@ -92,7 +92,7 @@ if (isset($_GET['productid'])) {
             <div class="card" style="border-radius: 1rem">
                 <div class="d-flex align-items-center justify-content-center">
                     <div class="card-body p-4 p-lg-5 text-black">
-                    <form action="includes\editProduct.php\editProduct.inc.php" method="post" id="addProduct" class="pt-3 needs-validation was-validated"
+                    <form action="includes\editProduct\editProduct.inc.php" method="post" id="editProduct" class="pt-3 needs-validation was-validated"
                     novalidate="" enctype="multipart/form-data">
                         <h3 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px">
                         Edit Product Details

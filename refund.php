@@ -11,8 +11,7 @@ $query = "SELECT o.*, p.*,pi.image_path, m.shopName
             JOIN merchant m ON p.merchantID = m.merchantID
             WHERE o.customerID = (
                 SELECT customerID FROM customer WHERE username = ?
-            )
-            AND o.orderStatus != 'AWAITING REFUND'";
+            )";
 
 $stmt = $mysqli->prepare($query);
 
@@ -62,75 +61,11 @@ if ($stmt) {
                     <h5 class="text-center"><?php echo $_SESSION["user_username"] ?>'s Dashboard</h5>
                     <hr class="my-4">
                     <a href="#" style="font-weight: 600;">Customer Purchases</a>
-                    <a href="viewCustomerRefunds.php">Refunds</a>
                     <a href="#">Account Details</a>
                     <!-- Add more links as needed -->
                 </nav>
 
-                <div class="col-md-6 purchase-container p-4">
-                    <div class="h3 pb-4 pt-3"> My Purchases</div>
-                    <?php
-                    if(mysqli_num_rows($result) > 0) {
-                        while ($row = mysqli_fetch_assoc($result)) {
-                            echo "<div class='order-listing bg-light mb-4'>
-                                    <div class='p-4'>
-                                        <div class='d-flex justify-content-between align-items-center p-2'>
-                                            <div class='d-flex align-items-center'>
-                                                <img src='assets/stall.png' style='width: 1.5rem;' alt='Packages'/>
-                                                <h4 class='p-2'>{$row['shopName']}</h4>
-                                            </div>
-                                            <div>
-                                                <a href='#' class='ml-auto'>View Shop</a>
-                                            </div>
-                                        </div>
-                                        <hr class='my-4'>
-                                        <div class='d-flex align-items-center justify-content-between p-2'>
-                                            <div class='d-flex align-items-center'>
-                                                <img src='{$row['image_path']}' alt='Product Image' style='width: 8rem; height: 6rem; border: 1px solid grey'>
-                                                <p class='p-4 fs-5'>{$row['productName']}</p>
-                                            </div>
-                                            <p>Quantity: {$row['quantity']}</p>
-                                        </div>
-                                        <div class='d-flex m-2'>
-                                        </div>
-                                        <hr class='my-4'>
-                                        <div class='d-flex justify-content-between align-items-center p-2'>
-                                            <div class='d-flex align-items-center'>
-                                                <h5><img src='assets/payment-method.png' style='width: 2rem;' alt='Time' /> : </h5>
-                                                <h5 class='p-3'><u>{$row['orderDate']}</u></h5>
-                                            </div>
-                                            <div class='ml-auto'>
-                                                <h3>Order Total: RM{$row['totalAmount']}</h3>
-                                            </div>
-                                        </div>
-                                        <div class='d-flex justify-content-between align-items-center p-2'>
-                                            <div></div>
-                                            <div class='ml-auto'>";
-                                            if ($row['orderStatus'] == "REVIEWED") {
-                                                echo "<button type='button' class='btn me-2' style='background-color:#7c4dff; color:white;'>Buy Again</button>
-                                                        <button type='button' class='btn btn-light'>Request Refund</button>
-                                                        </div>";
-                                            } elseif  ($row['orderStatus'] == "COMPLETED"){
-                                                echo "<button type='button' class='btn me-2' style='background-color:#7c4dff; color:white;'>Review Item</button>
-                                                        <button type='button' class='btn btn-light'>Request Refund</button>
-                                                        </div>";
-                                            } elseif ($row['orderStatus'] == "REFUNDED") {
-                                                echo "<div class='fs-5'>This order has been refunded</div>";
-                                            } else {
-                                                echo "<button type='button' class='btn me-2' style='background-color:#7c4dff; color:white;' disabled>Review Item</button>
-                                                        <button type='button' class='btn btn-light'>Request Refund</button>
-                                                        </div>";
-                                            };
-                                echo "  </div>
-                                    </div>
-
-                                </div>";
-                        }
-                    } else {
-                        echo "You have not made any purchases yet!";
-                    }
-                        ?>
-                </div>
+                
             </div>
         </div>
 
