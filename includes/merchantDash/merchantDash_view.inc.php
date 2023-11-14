@@ -68,6 +68,9 @@ function displayProducts($mysqli) {
             echo 'No results found.';
         }
     }
+    echo '<div class="d-flex ml-auto">
+            <a href="addProducts.php" class="btn btn-primary">Add New Product</a>
+        </div>';
 }
 
 

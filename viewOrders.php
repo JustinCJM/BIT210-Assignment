@@ -131,7 +131,6 @@ if ($stmt) {
                                                     </div>";
                                         } elseif  ($row['orderStatus'] == "COMPLETED"){
                                             echo "<button type='button' class='btn me-2' style='background-color:#7c4dff; color:white;'disabled>View Review</button>
-                                                    <button type='button' class='btn btn-light'>Request Refund</button>
                                                     </div>";
                                         } else {
                                             echo "<button type='button' class='btn me-2' style='background-color:#7c4dff; color:white;'
