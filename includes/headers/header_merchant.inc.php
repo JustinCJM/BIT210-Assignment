@@ -48,20 +48,28 @@
           class="nav-link"
           href="merchantDashboard.php"
           >Dashboard</a>
-        <a
-          class="nav-link"
-          style="font-weight: bold"
-          >Welcome <?php echo $_SESSION["user_username"]; ?>! </a
-        >
-
-        <form action="includes/login/logout.inc.php" method="post">
-        <button
-          class="nav-link"
-          style="font-weight: bold"
-          >Logout</button
-        >
-        </form>
-
+          <div class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            style="font-weight: bold"
+            role="button" data-bs-toggle="dropdown" aria-expanded="false"
+            >Welcome <?php echo $_SESSION["user_username"]; ?>! </a
+          >
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="merchantDashboard.php">My Dashboard</a></li>
+            <li><a class="dropdown-item" href="#">Account Details</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li>
+              <form action="includes/login/logout.inc.php" method="post">
+                  <button
+                    class="dropdown-item"
+                    style="font-weight: bold"
+                    >Logout</button
+                  >
+              </form>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
