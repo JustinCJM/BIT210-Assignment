@@ -39,20 +39,22 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
     $uploadDirectory = '../../productUploads/';
     $targetDirectory = 'productUploads/';
 
-    if (!empty($_FILES['image']['name'])) {
-        $uniqueFilename = $productName . "_" . basename($_FILES["image"]["name"]);
+    $index = 0;
+    foreach ($_FILES["images"]["name"] as $x) {
+        $uniqueFilename = $productName . "_" . basename($_FILES["images"]["name"][$index]);
         $uploadPath = $uploadDirectory . $uniqueFilename;
         $targetPath = $targetDirectory . $uniqueFilename;
-
-        if (move_uploaded_file($_FILES["image"]["tmp_name"], $uploadPath)) {
-            updateImage($mysqli, $productID, $uniqueFilename, $targetPath);
+    
+        if (move_uploaded_file($_FILES["images"]["tmp_name"][$index], $uploadPath)) {
+            insertAdditionalImages($mysqli, $productID, $uniqueFilename, $targetPath);
         } else {
             $errors["upload_error"] = "Failed to move the uploaded file.";
             $_SESSION["file_upload_error"] = $errors["upload_error"];
-            echo "Error: " . $_FILES["image"]["error"];
-            echo "Temp Name: " . $_FILES["image"]["tmp_name"];
+            echo "Error: " . $_FILES["images"]["error"][$index];
+            echo "Temp Name: " . $_FILES["images"]["tmp_name"][$index];
             echo "Target Path: " . $targetPath;
         }
+        $index++;
     }
 
     header("Location: ../../editProductSuccess.php");

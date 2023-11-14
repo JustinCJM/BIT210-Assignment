@@ -155,12 +155,14 @@ if (isset($_GET['productid'])) {
                     <div class="form-floating mb-4">
                         <input
                             type="file"
-                            name="image"
+                            name="images[]"
                             class="form-control form-control-lg"
                             accept=".pdf,.png,.jpeg"
+                            multiple
                         />
-                        <label for="formPdfDoc">Upload Image</label>
+                        <label for="formPdfDoc">Upload Multiple Images</label>
                     </div>
+                    <p style="margin-top: -10px;">Ctrl + click to select multiple images.</p>
 
                     <button type="submit" value="UpdateProduct" class="btn btn-primary btn-lg">Update Product</button>
                     <a href="merchantDashboard.php" class="btn btn-danger btn-lg">Cancel</a>
