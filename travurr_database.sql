@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 14, 2023 at 10:49 AM
+-- Generation Time: Nov 14, 2023 at 01:04 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -70,7 +70,7 @@ CREATE TABLE `merchant` (
 --
 
 INSERT INTO `merchant` (`merchantID`, `username`, `pwd`, `default_pwd`, `email`, `contactNo`, `shopName`, `merchDescription`, `regStatus`, `tmoID`) VALUES
-(28, 'Kylow', 'gtWY94!*', '', 'sdasda@gmail.com', '394872489', 'Travuhr', 'Goats!', 'ACTIVE', 1),
+(28, 'Kylow', 'ww', '', 'sdasda@gmail.com', '394872489', 'Travuhr', 'Goats!', 'ACTIVE', 1),
 (30, 'SamW22', 'loRV41^%', '', 'chongjustin511@gmail.com', '0123826383', 'Shop Name', 'Description', 'PENDING', 1);
 
 -- --------------------------------------------------------
@@ -119,7 +119,7 @@ CREATE TABLE `orders` (
 
 INSERT INTO `orders` (`orderID`, `orderDate`, `orderStatus`, `billingAddress`, `totalAmount`, `quantity`, `customerID`, `productID`) VALUES
 (1, '2023-11-14 17:21:12', 'UNFULFILLED', '230, Avenue Lane', 200.00, 2, 2, 26),
-(2, '2023-11-14 17:23:32', 'UNFULFILLED', '230, Avenue Lane', 100.00, 1, 2, 27),
+(2, '2023-11-14 17:23:32', 'AWAITING REFUND', '230, Avenue Lane', 100.00, 1, 2, 27),
 (3, '2023-11-14 17:23:32', 'COMPLETED', '230, Avenue Lane', 49.99, 1, 2, 28),
 (4, '2023-11-14 17:23:32', 'COMPLETED', '230, Avenue Lane', 78.00, 2, 2, 29),
 (5, '2023-11-14 17:27:46', 'UNFULFILLED', '230, Avenue Lane', 200.00, 2, 2, 26),
@@ -181,6 +181,27 @@ INSERT INTO `product_images` (`imageID`, `productID`, `image_name`, `image_path`
 (20, 27, 'Skii Trip_edfrssdf.png', 'productUploads/Skii Trip_edfrssdf.png', 1, '2023-11-08 10:06:12'),
 (21, 28, 'Upside-Down Museum_adf.png', 'productUploads/Upside-Down Museum_adf.png', 1, '2023-11-08 10:07:37'),
 (22, 29, 'Hiking Trip_Screenshot 2023-01-08 174907.png', 'productUploads/Hiking Trip_Screenshot 2023-01-08 174907.png', 1, '2023-11-08 10:08:57');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `refunds`
+--
+
+CREATE TABLE `refunds` (
+  `refundID` int(3) NOT NULL,
+  `refundStatus` varchar(255) DEFAULT 'AWAITING REFUND',
+  `refundDescription` varchar(255) NOT NULL,
+  `refundDate` datetime DEFAULT NULL,
+  `orderID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `refunds`
+--
+
+INSERT INTO `refunds` (`refundID`, `refundStatus`, `refundDescription`, `refundDate`, `orderID`) VALUES
+(1, 'AWAITING REFUND', 'This product hurt my feelings', '2023-11-14 00:00:00', 2);
 
 -- --------------------------------------------------------
 
@@ -286,6 +307,13 @@ ALTER TABLE `product_images`
   ADD KEY `merchantID` (`productID`);
 
 --
+-- Indexes for table `refunds`
+--
+ALTER TABLE `refunds`
+  ADD PRIMARY KEY (`refundID`),
+  ADD KEY `orderID` (`orderID`);
+
+--
 -- Indexes for table `reviews`
 --
 ALTER TABLE `reviews`
@@ -343,6 +371,12 @@ ALTER TABLE `product_images`
   MODIFY `imageID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
+-- AUTO_INCREMENT for table `refunds`
+--
+ALTER TABLE `refunds`
+  MODIFY `refundID` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `reviews`
 --
 ALTER TABLE `reviews`
@@ -382,6 +416,12 @@ ALTER TABLE `orders`
 --
 ALTER TABLE `product`
   ADD CONSTRAINT `product_ibfk_1` FOREIGN KEY (`merchantID`) REFERENCES `merchant` (`merchantID`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `refunds`
+--
+ALTER TABLE `refunds`
+  ADD CONSTRAINT `refunds_ibfk_1` FOREIGN KEY (`orderID`) REFERENCES `orders` (`orderID`);
 
 --
 -- Constraints for table `reviews`
