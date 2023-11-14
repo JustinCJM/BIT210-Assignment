@@ -48,3 +48,20 @@ function get_user(object $mysqli, string $username) {
 
     return $user_info;
 }
+
+function getPasswordsByUsername(object $mysqli, string $username) {
+    $query = "SELECT pwd, default_pwd FROM merchant WHERE username = '$username'";
+    $result = $mysqli->query($query);
+
+    if ($result) {
+        $row = $result->fetch_assoc();
+        $passwords = array(
+            'pwd' => $row['pwd'],
+            'default_pwd' => $row['default_pwd']
+        );
+        $result->free();
+        return $passwords;
+    } else {
+        return null;
+    }
+}
