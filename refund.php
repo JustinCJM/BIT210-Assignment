@@ -3,23 +3,42 @@ require_once 'includes/config_session.inc.php';
 include 'includes/dbh.inc.php';
 
 $custName = $_SESSION['user_username'];
+$orderID = $_GET['orderID'];
 
 $query = "SELECT o.*, p.*,pi.image_path, m.shopName
             FROM orders o
             JOIN product p ON o.productID = p.productID
             JOIN product_images pi ON o.productID = pi.productID
             JOIN merchant m ON p.merchantID = m.merchantID
-            WHERE o.customerID = (
-                SELECT customerID FROM customer WHERE username = ?
-            )";
+            WHERE o.orderID = " . $orderID;
 
 $stmt = $mysqli->prepare($query);
 
 if ($stmt) {
-    $stmt->bind_param("s", $custName);
     $stmt->execute();
     $result = $stmt->get_result();
 }
+
+$row = mysqli_fetch_assoc($result);
+
+if(isset($_POST['comments'])) {
+    $query = "INSERT INTO refunds (refundStatus, refundDescription, refundDate, orderID) VALUES (?, ?, ?, ?)";
+    $status = "AWAITING REFUND";
+    $description = $_POST['comments'];
+    $refundDate = date('Y-m-d H:i:s');
+    $stmt = $mysqli->prepare($query);
+    $stmt->bind_param("sssi", $status, $description, $refundDate, $orderID);
+    $stmt->execute();    
+    $stmt->close();
+
+    echo "<script>
+        alert('Refund Request Created.');
+        window.location.href='viewCustomerRefunds.php';
+    </script>";
+    
+
+}
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -60,12 +79,57 @@ if ($stmt) {
                 <nav class="col-md-3 d-none d-md-block side-menu" style="text-align:center">
                     <h5 class="text-center"><?php echo $_SESSION["user_username"] ?>'s Dashboard</h5>
                     <hr class="my-4">
-                    <a href="#" style="font-weight: 600;">Customer Purchases</a>
+                    <a href="customer_dashboard.php">Customer Purchases</a>
+                    <a href="#" style="font-weight: 600;">Refunds</a>
                     <a href="#">Account Details</a>
                     <!-- Add more links as needed -->
                 </nav>
 
-                
+                <div class="col-md-6 purchase-container p-4">
+                <div class="h3 pb-4 pt-3">Refund Requests</div>
+                    <div class='order-listing bg-light mb-4'>
+                        <div class='p-4'>
+                            <div class='d-flex justify-content-between align-items-center p-2'>
+                                <div class='d-flex align-items-center'>
+                                    <img src='assets/stall.png' style='width: 1.5rem;' alt='Packages'/>
+                                    <h4 class='p-2'><?php echo $row['shopName']; ?></h4>
+                                </div>
+                            </div>
+                            <hr class='my-4'>
+                            <div class='d-flex align-items-center justify-content-between p-2'>
+                                <div class='d-flex align-items-center'>
+                                    <img src='<?php echo $row['image_path']; ?>' alt='Product Image' style='width: 8rem; height: 6rem; border: 1px solid grey'>
+                                    <p class='p-4 fs-5'><?php echo $row['productName']; ?></p>
+                                </div>
+                                <p>Quantity: <?php echo $row['quantity']; ?></p>
+                            </div>
+                            <div class='d-flex m-2'>
+                            </div>                                
+                            <hr class='my-4'>
+                            <form method="post" enctype="multipart/form-data">
+                                <div class='justify-content-between align-items-center p-2'>
+                                    <div class="form">
+                                        <label class="p-2 fs-5" for="comments">Reason for refund: </label>
+                                        <textarea rows="4" class="form-control" id="comments" name="comments" required></textarea>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class='d-flex justify-content-between align-items-center p-2'>
+                                    <div class='ml-auto'>
+                                        <h3>Order Total: RM<?php echo $row['totalAmount']; ?></h3>
+                                    </div>
+                                </div>
+                                <div class='d-flex justify-content-between align-items-center p-2'>
+                                    <div></div>
+                                    <div class='ml-auto'>
+                                        <button type='submit' class='btn me-2' style='background-color:#7c4dff; color:white;'>Submit Refund</button>
+                                        <a type='button' class='btn btn-light' href='customer_dashboard.php'>Cancel</a>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
