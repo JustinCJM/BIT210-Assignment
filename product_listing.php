@@ -16,7 +16,7 @@ require_once 'includes/dbh.inc.php';
             max-height:200px;
             width: auto;
             height: auto;
-            /* aspect-ratio: auto; */
+            aspect-ratio: auto;
         }    
     </style>
     <head>
@@ -60,35 +60,39 @@ require_once 'includes/dbh.inc.php';
 
     <body>
         <?php
+            // get data & set sql queries
             $id = $_GET['productid'];
             $query = "SELECT * FROM product WHERE productID = $id ";
             $displayImageQuery = "SELECT image_path FROM product_images WHERE productID = $id AND display = 1";
             $imageQuery = "SELECT image_path FROM product_images WHERE productID = $id AND display = 0;";
+            $reviewQuery = "SELECT * FROM reviews WHERE productID = $id";
 
+            // get product details
             $stmt = $mysqli->prepare($query);
             $stmt->execute();
             $result = mysqli_fetch_assoc($stmt->get_result());
-            // var_dump($result);
             
             $name = $result['productName'];
             $price = number_format($result['productPrice'], 2);
             $description = $result['prodDescription'];
 
+            // get display image
             $displayResult = mysqli_query($mysqli, $displayImageQuery);
             $displayPath = '';
-                    if ($displayResult && mysqli_num_rows($displayResult) > 0) {
-                        $displayData = mysqli_fetch_assoc($displayResult);
-                        $displayPath = $displayData['image_path'];
-                    }
-
-            $imageResult = mysqli_query($mysqli, $imageQuery);
-            $imagePath = [];
-            
-            while ($row = mysqli_fetch_assoc($imageResult)) {
-                foreach ($row as $r) {
-                    $imagePath[] = '' . $r;
-                }
+            if ($displayResult && mysqli_num_rows($displayResult) > 0) {
+                $displayData = mysqli_fetch_assoc($displayResult);
+                $displayPath = $displayData['image_path'];
             }
+
+            // get additional images
+            $imageResult = mysqli_query($mysqli, $imageQuery);
+            $imagePath = mysqli_fetch_all($imageResult, MYSQLI_ASSOC);
+
+            // get reviews
+            $reviewResult = mysqli_query($mysqli, $reviewQuery);
+            $reviews = mysqli_fetch_all($reviewResult, MYSQLI_ASSOC);
+
+            var_dump($reviews);
         ?>
 
 
@@ -110,8 +114,9 @@ require_once 'includes/dbh.inc.php';
                                     <div class="row col-md-3 col-lg-4 d-md-block" style="overflow-y: auto; max-height: 500px;">
                                         <?php
                                             foreach ($imagePath as $image) {
+                                                $image_path = $image["image_path"];
                                                 echo    "<div class='d-md-block p-2 align-items-center'>
-                                                            <img id='prodImg' src='$image' class='card-img-top' alt='Product Image'>
+                                                            <img id='prodImg' src='$image_path' class='card-img-top' alt='Product Image'>
                                                         </div>";
                                             }
                                         ?>
@@ -124,6 +129,9 @@ require_once 'includes/dbh.inc.php';
                             <div class="d-flex align-items-center">
                                 <div class="card-body p-2 p-lg-5 text-black">
                                     <div class="row g-0">
+                                        <h2 class="fw-normal mb-3" style="letter-spacing: 1px">
+                                            Description: 
+                                        </h2>
                                         <div class="col-md-6 col-lg-9 p-1 d-md-flex d-md-block" style="margin-right: 5px;">
                                             <h3 class="fw-normal pb-3" style="letter-spacing: 1px; margin-right: 100px;">
                                                 <?php echo $description; ?>
@@ -151,6 +159,22 @@ require_once 'includes/dbh.inc.php';
                                             </div>
                                         </div>
 
+                                    </div>
+
+                                    <div class="row g-0">
+                                        <div class="col-md-3 col-lg-4" style="overflow-y: auto; max-height: 250px; width: 750px;">
+                                            <?php
+                                                
+                                                foreach ($reviews as $review) {
+                                                    $comments = $review["comments"];
+                                                    $rating = $review["rating"];
+                                                    echo    "<div class='d-md-block p-2 align-items-center'>
+                                                                <p>$comments</p>
+                                                                
+                                                            </div>";
+                                                }
+                                            ?>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
