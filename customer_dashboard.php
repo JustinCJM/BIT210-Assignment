@@ -111,7 +111,7 @@ if ($stmt) {
                                                         <button type='button' class='btn btn-light'>Request Refund</button>
                                                         </div>";
                                             } elseif  ($row['orderStatus'] == "COMPLETED"){
-                                                echo "<button type='button' class='btn me-2' style='background-color:#7c4dff; color:white;'>Review Item</button>
+                                                echo "<a class='btn me-2' style='background-color:#7c4dff; color:white;' href='reviewForm.php?orderID={$row['orderID']}'>Review Item</a>
                                                         <button type='button' class='btn btn-light'>Request Refund</button>
                                                         </div>";
                                             } elseif ($row['orderStatus'] == "REFUNDED") {
