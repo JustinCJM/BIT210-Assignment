@@ -14,7 +14,7 @@ function displayTable($result) {
 
                 $productID = $datarows['productID'];
 
-                $imageQuery = "SELECT image_path FROM product_images WHERE productID = $productID";
+                $imageQuery = "SELECT image_path FROM product_images WHERE productID = $productID AND display = 1";
                 $imageResult = mysqli_query($mysqli, $imageQuery);
         
                 $imagePath = '';
