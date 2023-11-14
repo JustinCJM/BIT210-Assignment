@@ -6,8 +6,8 @@ body {
 
 .navbar {
   background-color: white;
-  padding-left: 7rem;
-  padding-right: 7rem;
+  padding-left: 12rem;
+  padding-right: 12rem;
 }
 
 .navbar-brand {
@@ -137,4 +137,26 @@ body {
 
 .card-link:focus {
   outline: none;
+}
+
+.side-menu {
+  padding: 3rem;
+}
+
+.side-menu a {
+  padding: 1rem 1rem;
+  display: block;
+  color: #495057;
+  text-decoration: none;
+  transition: color 0.3s ease; /* Add a smooth transition for color change */
+}
+
+.side-menu a:hover {
+  color: purple; /* Change text color on hover */
+  box-shadow: white !important; /* Remove box shadow on hover */
+  background-color: #e9ecef;
+}
+
+.order-listing {
+  border-radius: 1.2rem;
 }

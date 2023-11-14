@@ -1,5 +1,25 @@
 <?php
 require_once 'includes/config_session.inc.php';
+include 'includes/dbh.inc.php';
+
+$custName = $_SESSION['user_username'];
+
+$query = "SELECT o.*, p.*,pi.image_path, m.shopName
+            FROM orders o
+            JOIN product p ON o.productID = p.productID
+            JOIN product_images pi ON o.productID = pi.productID
+            JOIN merchant m ON p.merchantID = m.merchantID
+            WHERE o.customerID = (
+                SELECT customerID FROM customer WHERE username = ?
+            )";
+
+$stmt = $mysqli->prepare($query);
+
+if ($stmt) {
+    $stmt->bind_param("s", $custName);
+    $stmt->execute();
+    $result = $stmt->get_result();
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -27,46 +47,42 @@ require_once 'includes/config_session.inc.php';
         <link rel="stylesheet" href="style.css" />
         <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"/>
         
-    </head>
+</head>
 
     <?php
-    $userType = $_SESSION["user_type"] ?? null;  
-    if ($userType === 'merchant') {
-        include 'includes/headers/header_merchant.inc.php';
-    } elseif ($userType === 'customer') {
-        include 'includes/headers/header_customer.inc.php';
-    } elseif ($userType === 'tourism_ministry_officer') {
-        include 'includes/headers/header_officer.inc.php';
-    } else {
-        include 'includes/headers/defaultheader.inc.php';
-    }
-
+    include 'includes/headers/header_customer.inc.php';
     ?>
 
     <body>
-        <div class="container my-5" style="min-height: 46.8vh;">
-            <table class="table">
+        <div class="container-fluid">
+            <div class="row">
+                <!-- Side Menu -->
+                <nav class="col-md-3 d-none d-md-block side-menu" style="text-align:center">
+                    <h5 class="text-center"><?php echo $_SESSION["user_username"] ?>'s Dashboard</h5>
+                    <hr class="my-4">
+                    <a href="#" style="font-weight: 600;">Customer Purchases</a>
+                    <a href="#">Account Details</a>
+                    <!-- Add more links as needed -->
+                </nav>
 
-                <?php
-                    include 'includes/search/search.inc.php';
-                ?>
-
-            </table>
+                
+            </div>
         </div>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-        <script
-            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
-            crossorigin="anonymous"
-        >
-        </script>
-        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-        <script src="script.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+        crossorigin="anonymous"
+    >
+    </script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="script.js"></script>
     </body>
 
-        <footer class="text-center text-lg-start text-white" style="background-color: #1c2331">
-        <!-- Section: Social media -->
-        <section
+    <footer class="text-center text-lg-start text-white" style="background-color: #1c2331">
+    <!-- Section: Social media -->
+    <section
         class="d-flex justify-content-center p-4"
         style="background-color: #6351ce"
         >
@@ -176,7 +192,8 @@ require_once 'includes/config_session.inc.php';
             <!-- Grid row -->
         </div>
         
-        <!-- Section: Links  -->
+    <!-- Section: Links  -->
 
     </footer>
-    
+
+</html>

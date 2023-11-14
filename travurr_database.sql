@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 10, 2023 at 10:04 AM
+-- Generation Time: Nov 14, 2023 at 10:49 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -108,9 +108,25 @@ CREATE TABLE `orders` (
   `orderStatus` varchar(30) NOT NULL,
   `billingAddress` varchar(255) NOT NULL,
   `totalAmount` decimal(10,2) NOT NULL,
+  `quantity` int(11) NOT NULL DEFAULT 0,
   `customerID` int(11) NOT NULL,
   `productID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`orderID`, `orderDate`, `orderStatus`, `billingAddress`, `totalAmount`, `quantity`, `customerID`, `productID`) VALUES
+(1, '2023-11-14 17:21:12', 'UNFULFILLED', '230, Avenue Lane', 200.00, 2, 2, 26),
+(2, '2023-11-14 17:23:32', 'UNFULFILLED', '230, Avenue Lane', 100.00, 1, 2, 27),
+(3, '2023-11-14 17:23:32', 'COMPLETED', '230, Avenue Lane', 49.99, 1, 2, 28),
+(4, '2023-11-14 17:23:32', 'COMPLETED', '230, Avenue Lane', 78.00, 2, 2, 29),
+(5, '2023-11-14 17:27:46', 'UNFULFILLED', '230, Avenue Lane', 200.00, 2, 2, 26),
+(6, '2023-11-14 17:28:52', 'UNFULFILLED', '230, Avenue Lane', 200.00, 2, 2, 26),
+(7, '2023-11-14 17:28:52', 'COMPLETED', '230, Avenue Lane', 100.00, 1, 2, 26),
+(8, '2023-11-14 17:28:52', 'UNFULFILLED', '230, Avenue Lane', 300.00, 3, 2, 26),
+(9, '2023-11-14 17:28:52', 'COMPLETED', '230, Avenue Lane', 100.00, 1, 2, 26);
 
 -- --------------------------------------------------------
 
@@ -126,9 +142,9 @@ CREATE TABLE `product` (
   `prodLocation` varchar(50) NOT NULL,
   `prodDescription` varchar(255) NOT NULL,
   `merchantID` int(5) NOT NULL,
-  `quantitySold` int(11) DEFAULT NULL,
+  `quantitySold` int(11) DEFAULT 0,
   `totalRating` int(11) DEFAULT NULL,
-  `avgRating` int(11) DEFAULT NULL
+  `avgRating` decimal(6,1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -136,7 +152,7 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`productID`, `productName`, `productPrice`, `category`, `prodLocation`, `prodDescription`, `merchantID`, `quantitySold`, `totalRating`, `avgRating`) VALUES
-(26, 'Haunted House', 89.9, 'Experience', 'Kuala Lumpur', 'Get Spooked', 28, NULL, NULL, NULL),
+(26, 'Haunted House', 89.9, 'Experience', 'Kuala Lumpur', 'Get Spooked', 28, 34, NULL, 4.6),
 (27, 'Skii Trip', 39.9, 'Sports', 'Kota Kinabalu', 'Skii Down', 28, NULL, NULL, NULL),
 (28, 'Upside-Down Museum', 20, 'Experience', 'Penang', 'Upside-Down!', 28, NULL, NULL, NULL),
 (29, 'Hiking Trip', 70.5, 'Sports', 'Broga Hill', 'Hiking', 28, NULL, NULL, NULL);
@@ -152,6 +168,7 @@ CREATE TABLE `product_images` (
   `productID` int(11) DEFAULT NULL,
   `image_name` varchar(255) NOT NULL,
   `image_path` varchar(255) NOT NULL,
+  `display` int(50) NOT NULL DEFAULT 1,
   `image_upload_date` datetime DEFAULT curtime()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -159,11 +176,11 @@ CREATE TABLE `product_images` (
 -- Dumping data for table `product_images`
 --
 
-INSERT INTO `product_images` (`imageID`, `productID`, `image_name`, `image_path`, `image_upload_date`) VALUES
-(19, 26, 'Haunted House_bagus.png', 'productUploads/Haunted House_bagus.png', '2023-11-08 10:05:40'),
-(20, 27, 'Skii Trip_edfrssdf.png', 'productUploads/Skii Trip_edfrssdf.png', '2023-11-08 10:06:12'),
-(21, 28, 'Upside-Down Museum_adf.png', 'productUploads/Upside-Down Museum_adf.png', '2023-11-08 10:07:37'),
-(22, 29, 'Hiking Trip_Screenshot 2023-01-08 174907.png', 'productUploads/Hiking Trip_Screenshot 2023-01-08 174907.png', '2023-11-08 10:08:57');
+INSERT INTO `product_images` (`imageID`, `productID`, `image_name`, `image_path`, `display`, `image_upload_date`) VALUES
+(19, 26, 'Haunted House_bagus.png', 'productUploads/Haunted House_bagus.png', 1, '2023-11-08 10:05:40'),
+(20, 27, 'Skii Trip_edfrssdf.png', 'productUploads/Skii Trip_edfrssdf.png', 1, '2023-11-08 10:06:12'),
+(21, 28, 'Upside-Down Museum_adf.png', 'productUploads/Upside-Down Museum_adf.png', 1, '2023-11-08 10:07:37'),
+(22, 29, 'Hiking Trip_Screenshot 2023-01-08 174907.png', 'productUploads/Hiking Trip_Screenshot 2023-01-08 174907.png', 1, '2023-11-08 10:08:57');
 
 -- --------------------------------------------------------
 
@@ -173,12 +190,24 @@ INSERT INTO `product_images` (`imageID`, `productID`, `image_name`, `image_path`
 
 CREATE TABLE `reviews` (
   `reviewID` int(11) NOT NULL,
-  `reviewDate` datetime NOT NULL DEFAULT curtime(),
+  `reviewDate` datetime NOT NULL DEFAULT current_timestamp(),
   `comments` varchar(255) DEFAULT NULL,
   `rating` int(1) NOT NULL,
   `orderID` int(11) DEFAULT NULL,
   `productID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `reviews`
+--
+
+INSERT INTO `reviews` (`reviewID`, `reviewDate`, `comments`, `rating`, `orderID`, `productID`) VALUES
+(1, '0000-00-00 00:00:00', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor i', 5, 1, 26),
+(2, '0000-00-00 00:00:00', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', 5, 5, 26),
+(3, '2023-11-14 17:32:20', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis', 4, 6, 26),
+(4, '2023-11-14 17:33:49', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis', 4, 7, 26),
+(5, '2023-11-14 17:33:49', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis', 4, 8, 26),
+(6, '2023-11-14 17:33:49', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis', 4, 9, 26);
 
 -- --------------------------------------------------------
 
@@ -299,7 +328,7 @@ ALTER TABLE `merch_documents`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `orderID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `orderID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `product`
@@ -317,7 +346,7 @@ ALTER TABLE `product_images`
 -- AUTO_INCREMENT for table `reviews`
 --
 ALTER TABLE `reviews`
-  MODIFY `reviewID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `reviewID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `tourism_ministry_officer`

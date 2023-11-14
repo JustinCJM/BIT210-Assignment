@@ -30,3 +30,7 @@ function create_product(object $mysqli, int $merchantID, string $productName, st
 function insertImage(object $mysqli, int $productID, string $uniqueFilename, string $targetPath) {
     setImage($mysqli, $productID, $uniqueFilename, $targetPath);
 }
+
+function insertAdditionalImages(object $mysqli, int $productID, string $uniqueFilename, string $targetPath) {
+    setAdditionalImages($mysqli, $productID, $uniqueFilename, $targetPath);
+}

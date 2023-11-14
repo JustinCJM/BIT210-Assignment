@@ -33,9 +33,19 @@ string $productCategory, string $productLocation, string $productDescription) {
 }
 
 function setImage(object $mysqli, $productID, string $uniqueFilename, string $targetPath) {
-    $query = "INSERT INTO product_images (productID, image_name, image_path) VALUES (?, ?, ?)";
+    $query = "INSERT INTO product_images (productID, image_name, image_path, display) VALUES (?, ?, ?, ?)";
     $stmt = $mysqli->prepare($query);
-    $stmt->bind_param("iss", $productID, $uniqueFilename, $targetPath);
+    $display = 1;
+    $stmt->bind_param("issi", $productID, $uniqueFilename, $targetPath, $display);
+    $stmt->execute();    
+    $stmt->close();
+}
+
+function setAdditionalImages(object $mysqli, $productID, string $uniqueFilename, string $targetPath) {
+    $query = "INSERT INTO product_images (productID, image_name, image_path, display) VALUES (?, ?, ?, ?)";
+    $stmt = $mysqli->prepare($query);
+    $display = 0;
+    $stmt->bind_param("issi", $productID, $uniqueFilename, $targetPath, $display);
     $stmt->execute();    
     $stmt->close();
 }

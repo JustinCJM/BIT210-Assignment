@@ -155,12 +155,14 @@ if (isset($_GET['productid'])) {
                     <div class="form-floating mb-4">
                         <input
                             type="file"
-                            name="image"
+                            name="images[]"
                             class="form-control form-control-lg"
                             accept=".pdf,.png,.jpeg"
+                            multiple
                         />
-                        <label for="formPdfDoc">Upload Image</label>
+                        <label for="formPdfDoc">Upload Multiple Images</label>
                     </div>
+                    <p style="margin-top: -10px;">Ctrl + click to select multiple images.</p>
 
                     <button type="submit" value="UpdateProduct" class="btn btn-primary btn-lg">Update Product</button>
                     <a href="merchantDashboard.php" class="btn btn-danger btn-lg">Cancel</a>
@@ -172,6 +174,15 @@ if (isset($_GET['productid'])) {
         </div>
         </div>
     </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+        crossorigin="anonymous"
+    >
+    </script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
 
