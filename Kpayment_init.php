@@ -53,30 +53,26 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         $mysqli->begin_transaction();
     
-        $insertsql = "INSERT INTO `orders` (`orderID`, `orderDate`, `orderStatus`, `billingAddress`, `totalAmount`, `quantity`, `customerID`, `merchantID`, `productID`) 
+        $insertSql = "INSERT INTO `orders` (`orderID`, `orderDate`, `orderStatus`, `billingAddress`, `totalAmount`, `quantity`, `customerID`, `merchantID`, `productID`) 
         VALUES  (NULL, current_timestamp(), '$orderStatus', '$address', '$total', '$quantity', '$customerID', '$merchantID', '$productID');";
        
-        $mysqli->query($insertsql);
+       if ($mysqli->query($insertSql) === false) {
+        throw new Exception("Error inserting into 'orders' table: " . $mysqli->error);
+    }
 
-        $updatesql = "UPDATE product SET quantitySold = quantitySold + $quantity WHERE productID = $productID";
-
-        $updateStmt = $mysqli->prepare($updateSql);
-        $updateStmt->bind_param('ii', $newQuantityValue, $productID);
-        $updateStmt->execute();
-        $mysqli->commit();
-
-        if ($mysqli->query($insertsql) === TRUE) {
-            echo $customerID;
-            header("Location: Kpayment_success.php?<?php echo $customerID ?>");
-            exit();
-        } else {
-            
-            echo "Error: " . $sql . "<br>" . $conn->error;
+        $updateSql = "UPDATE product SET quantitySold = quantitySold + $quantity WHERE productID = $productID";
+        if ($mysqli->query($updateSql) === false) {
+            throw new Exception("Error updating 'product' table: " . $mysqli->error);
         }
 
-       
-        $mysqli->close();
-    } else {
+        $mysqli->commit();
+
+            echo $customerID;
+            header("Location: Kpayment_success.php?<?php echo $customerID ?>");
+                    exit();
+        // Close the database connection
+        $mysqli->close();}
+        else {
         
         echo "Payment failed. Please try again.";
     }
