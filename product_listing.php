@@ -7,7 +7,7 @@ require_once 'includes/dbh.inc.php';
     <style>
         #disImg {
             display: block;
-            max-height:500px;
+            max-height:420px;
             width: auto;
             height: auto;
         }    
@@ -16,7 +16,7 @@ require_once 'includes/dbh.inc.php';
             max-height:200px;
             width: auto;
             height: auto;
-            aspect-ratio: 16/9;
+            /* aspect-ratio: auto; */
         }    
     </style>
     <head>

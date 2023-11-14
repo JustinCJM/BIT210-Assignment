@@ -46,11 +46,11 @@ string $productCategory, string $productLocation, string $productDescription) {
     $stmt->close();
 }
 
-function setUpdatedImage(object $mysqli, int $productID, string $uniqueFilename, string $targetPath) {
-    $query = "UPDATE product_images SET image_name = ?, image_path = ? WHERE productID = ?";
+function setAdditionalImages(object $mysqli, $productID, string $uniqueFilename, string $targetPath) {
+    $query = "INSERT INTO product_images (productID, image_name, image_path, display) VALUES (?, ?, ?, ?)";
     $stmt = $mysqli->prepare($query);
-    $stmt->bind_param("ssi", $uniqueFilename, $targetPath, $productID);
-    $stmt->execute();
+    $display = 0;
+    $stmt->bind_param("issi", $productID, $uniqueFilename, $targetPath, $display);
+    $stmt->execute();    
     $stmt->close();
-    
 }

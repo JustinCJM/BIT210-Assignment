@@ -104,14 +104,25 @@ require_once 'includes/config_session.inc.php';
                     <div class="form-floating mb-4">
                         <input
                             type="file"
-                            name="image[]"
+                            name="image"
                             class="form-control form-control-lg"
                             accept=".pdf,.png,.jpeg"
                             required
+                        />
+                        <label for="formPdfDoc">Upload Display Image</label>
+                    </div>
+
+                    <div class="form-floating mb-4">
+                        <input
+                            type="file"
+                            name="images[]"
+                            class="form-control form-control-lg"
+                            accept=".pdf,.png,.jpeg"
                             multiple
                         />
-                        <label for="formPdfDoc">Upload Image</label>
+                        <label for="formPdfDoc">Upload Multiple Images</label>
                     </div>
+                    <p style="margin-top: -10px;">Ctrl + click to select multiple images.</p>
 
                     <button type="submit" class="btn btn-primary btn-lg">Submit</button>
                     <a href="merchantDashboard.php" class="btn btn-danger btn-lg">Cancel</a>
