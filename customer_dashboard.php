@@ -104,11 +104,11 @@ if ($stmt) {
                                         <div></div>
                                         <div class='ml-auto'>";
                                         if ($row['orderStatus'] == "REVIEWED") {
-                                            echo "<a type='button' class='btn me-2' style='background-color:#7c4dff; color:white;'>Buy Again</a>
+                                            echo "<a type='button' class='btn me-2' style='background-color:#7c4dff; color:white; >Buy Again</a>
                                                     <a type='button' class='btn btn-light' href='refund.php?orderID={$row['orderID']}'>Request Refund</a>
                                                     </div>";
                                         } elseif  ($row['orderStatus'] == "COMPLETED"){
-                                            echo "<a type='button' class='btn me-2' style='background-color:#7c4dff; color:white;'>Review Item</a>
+                                            echo "<a type='button' class='btn me-2' style='background-color:#7c4dff; color:white;' href='reviewForm.php?orderID={$row['orderID']}'>Review Item</a>
                                                     <a type='button' class='btn btn-light' href='refund.php?orderID={$row['orderID']}'>Request Refund</a>
                                                     </div>";
                                         } else {

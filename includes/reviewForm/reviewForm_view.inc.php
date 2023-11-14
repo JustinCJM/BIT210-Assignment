@@ -8,7 +8,6 @@ function displayOrderDetails($mysqli, $orderID) {
     $orderDetails = getOrderDetails($mysqli, $orderID);
 
     if ($orderDetails) {
-        // Fetch product details
         $productID = $orderDetails['productID'];
         $productDetails = getProductDetails($mysqli, $productID);
 

@@ -5,8 +5,8 @@ require_once 'includes/reviewForm/reviewForm_view.inc.php';
 
 include 'includes/dbh.inc.php';
 
-if (isset($_GET['orderid'])) {
-    $orderID = $_GET['orderid']; 
+if (isset($_GET['orderID'])) {
+    $orderID = $_GET['orderID']; 
     $orderID = (int)$orderID;
     $query = "SELECT * FROM orders WHERE orderID = ?";
     $stmt = $mysqli->prepare($query);
@@ -84,7 +84,7 @@ if (isset($_GET['orderid'])) {
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"/>
     <style>
         .star {
-            font-size: 50px; /* Adjust the font size to make the stars bigger */
+            font-size: 50px;
             cursor: pointer;
         }
     </style>
@@ -104,9 +104,9 @@ if (isset($_GET['orderid'])) {
   ?>
 <body>
 
-<div class="vh-100" style="background-color: #364156;">
+<div class="vh-120 page-body">
     <div class="container py-5">
-        <div class="card" style="opacity: 0.8; background-color: #8D99AE; border-radius: 1rem">
+        <div class="card" style="border-radius: 1rem">
 
             <?php displayOrderDetails($mysqli, $orderID);?>
 
@@ -139,7 +139,7 @@ if (isset($_GET['orderid'])) {
 
                     <div class="mb-3 px-5">
                         <button type="submit" value="submitReview" class="btn btn-primary btn-lg">Submit Review</button>
-                        <a href="orders.php" class="btn btn-danger btn-lg">Cancel</a>
+                        <a href="customer_dashboard.php" class="btn btn-danger btn-lg">Cancel</a>
                     </div>
                 </form>
             </div>
