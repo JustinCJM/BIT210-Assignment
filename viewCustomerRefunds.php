@@ -12,7 +12,8 @@ $query = "SELECT r.*, o.*, p.*, pi.image_path, m.shopName
             JOIN merchant m ON p.merchantID = m.merchantID
             WHERE o.customerID = (
             SELECT customerID FROM customer WHERE username = ?
-            )";
+            )
+            ORDER BY r.refundDate DESC";
 
 $stmt = $mysqli->prepare($query);
 
