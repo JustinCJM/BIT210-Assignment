@@ -31,7 +31,7 @@ function displayOrders($mysqli) {
 
             echo '</div>';
         } else {
-            echo 'No results found.';
+            echo 'No products found.';
         }
     }
 }
@@ -68,7 +68,7 @@ function displayProducts($mysqli) {
             echo 'No results found.';
         }
     }
-    echo '<div class="d-flex ml-auto">
+    echo '<div class="d-flex">
             <a href="addProducts.php" class="btn btn-primary">Add New Product</a>
         </div>';
 }
