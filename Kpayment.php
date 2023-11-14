@@ -75,14 +75,14 @@ require_once 'includes/dbh.inc.php';
             <div class="row">
               <div class="col-md-6 mb-3">
                 <label for="firstName">First name</label>
-                <input type="text" class="form-control" id="firstName" placeholder="" value="" required="">
+                <input type="text" class="form-control" name='fname' id="firstName" placeholder="" value="" required="">
                 <div class="invalid-feedback">
                   Valid first name is required.
                 </div>
               </div>
               <div class="col-md-6 mb-3">
                 <label for="lastName">Last name</label>
-                <input type="text" class="form-control" id="lastName" placeholder="" value="" required="">
+                <input type="text" class="form-control" name='lname' id="lastName" placeholder="" value="" required="">
                 <div class="invalid-feedback">
                   Valid last name is required.
                 </div>

@@ -5,6 +5,7 @@ ini_set('display_errors', 1);
 require_once 'includes/config_session.inc.php';
 require_once 'Kconfig.php';
 require_once 'includes/dbh.inc.php';
+require_once 'Kreceipt.php';
 
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
@@ -17,11 +18,26 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $productID = $_POST["productID"];
     $paymentStatus = "success";
     $username = $_SESSION['user_username'];
+    $customerName = $_POST['fname'].$_POST['lname'];
+    $invoiceNum = rand(4235,9999999);
 
     $merchantIDQuery = "SELECT merchantID FROM product WHERE productID = ?";
     $customerIDQuery = "SELECT customerID FROM customer WHERE username = ?";
+    $productNameQuery = "SELECT productName FROM product WHERE productID = ?";
 
+    if ($stmt = $mysqli->prepare($productNameQuery)) {
+        $stmt->bind_param("i", $productID);
+        $stmt->execute();
+        $stmt->bind_result($productName);
     
+        $stmt->fetch();
+
+        
+        $stmt->close();
+        }else {
+            echo "Product name not found";
+        }
+
     if ($stmt = $mysqli->prepare($merchantIDQuery)) {
         $stmt->bind_param("i", $productID);
         $stmt->execute();
@@ -66,7 +82,26 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         }
 
         $mysqli->commit();
-
+        $info=[
+            "customer"=>$customerName,
+            "address"=>$address,
+            "invoice_no"=>"#".$invoiceNum,
+            "invoice_date"=>$orderDate,
+            "total_amt"=>$total,
+          ];
+          
+          
+          //invoice Products
+          $products_info=[
+            [
+              "name"=>$productName,
+              "price"=>$price,
+              "qty"=>$quantity,
+              "total"=>$total
+            ],
+          ];
+            
+            generateReceipt($info, $products_info);
             echo $customerID;
             header("Location: Kpayment_success.php?<?php echo $customerID ?>");
                     exit();
