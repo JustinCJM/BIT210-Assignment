@@ -62,86 +62,98 @@ if ($stmt) {
                     <hr class="my-3">
                     <a href="merchantDashboard.php">My Products</a>
                     <a href="#" style="font-weight: 600;">My Orders</a>
+                    <a href="viewMerchantRefunds.php">Refund Requests</a>
                         <!-- Add more links as needed -->
                 </nav>
 
                 <div class="col-md-6 offset-md-1 purchase-container pt-4">
                     <div class='d-flex align-items-center justify-content-between h3 p-4'>
-                    <button id="unfinished-orders-tab" class="orders-tab btn fs-4 active">Unfinished Orders</button>
-                    <button id="completed-orders-tab" class="orders-tab fs-4 btn">Completed Orders</button>
-                    <button id="reviewed-orders-tab" class="orders-tab fs-4 btn">Reviewed Orders</button>
+                    <button id="unfinished-orders-tab" class="orders-tab btn fs-5 active">Unfinished Orders</button>
+                    <button id="completed-orders-tab" class="orders-tab fs-5 btn">Completed Orders</button>
+                    <button id="reviewed-orders-tab" class="orders-tab fs-5 btn">Reviewed Orders</button>
+                    <button id="refunded-orders-tab" class="orders-tab fs-5 btn">Refunded Orders</button>
                     </div>
                     <?php
                     $allOrders = [];
-                    while ($row = mysqli_fetch_assoc($result)) {
-                        $allOrders[] = $row;
-                    }
-
-                    $unfinishedOrders = array_filter($allOrders, function ($order) {
-                        return $order['orderStatus'] == 'UNFULFILLED';
-                    });
-
-                    $completedOrders = array_filter($allOrders, function ($order) {
-                        return $order['orderStatus'] == 'COMPLETED';
-                    });
-
-                    $reviewedOrders = array_filter($allOrders, function ($order) {
-                        return $order['orderStatus'] == 'REVIEWED';
-                    });
-
-                    function displayOrders($orders) {
-                        foreach ($orders as $row) {
-                            echo "<div class='order-listing bg-light mb-4'>
-                                <div class='p-4'>
-                                    <div class='d-flex justify-content-between align-items-center p-2'>
-                                        <div class='d-flex align-items-center'>
-                                            <img src='assets/man-with-shopping.png' style='width: 1.5rem;' alt='Packages'/>
-                                            <h4 class='p-2'>Customer: {$row['username']}</h4>
-                                        </div>
-                                        <div>
-                                            <h5 class='ml-auto'>Order ID: {$row['orderID']}</h5>
-                                        </div>
-                                    </div>
-                                    <hr class='my-4'>
-                                    <div class='d-flex align-items-center justify-content-between p-2'>
-                                        <div class='d-flex align-items-center'>
-                                            <img src='{$row['image_path']}' alt='Product Image' style='width: 8rem; height: 6rem; border: 1px solid grey'>
-                                            <p class='p-4 fs-5'>{$row['productName']}</p>
-                                        </div>
-                                        <p>Quantity: {$row['quantity']}</p>
-                                    </div>
-                                    <div class='d-flex m-2'>
-                                    </div>
-                                    <hr class='my-4'>
-                                    <div class='d-flex justify-content-between align-items-center p-2'>
-                                        <div class='fs-5'>
-                                            Order Date & Time: {$row['orderDate']}
-                                        </div>
-                                        <div class='ml-auto'>
-                                            <h3>Order Total: RM{$row['totalAmount']}</h3>
-                                        </div>
-                                    </div>
-                                    <div class='d-flex justify-content-between align-items-center p-2'>
-                                        <div class='fs-5'>
-                                            Order Status: {$row['orderStatus']}
-                                        </div>
-                                        <div class='ml-auto'>";
-                                        if ($row['orderStatus'] == "REVIEWED") {
-                                            echo "<button type='button' class='btn me-2' style='background-color:#7c4dff; color:white;'>View Review</button>
-                                                    </div>";
-                                        } elseif  ($row['orderStatus'] == "COMPLETED"){
-                                            echo "<button type='button' class='btn me-2' style='background-color:#7c4dff; color:white;'disabled>View Review</button>
-                                                    </div>";
-                                        } else {
-                                            echo "<button type='button' class='btn me-2' style='background-color:#7c4dff; color:white;'
-                                                    onclick='fulfillOrderConfirmation({$row['orderID']})'>Fulfill Order</button>
-                                                    <button type='button' class='btn btn-light'>Cancel Order</button>
-                                                    </div>";
-                                        };
-                            echo "  </div>
-                                </div>
-                            </div>";
+                    if(mysqli_num_rows($result) > 0) {
+                        while ($row = mysqli_fetch_assoc($result)) {
+                            $allOrders[] = $row;
                         }
+
+                        $unfinishedOrders = array_filter($allOrders, function ($order) {
+                            return $order['orderStatus'] == 'UNFULFILLED';
+                        });
+
+                        $completedOrders = array_filter($allOrders, function ($order) {
+                            return $order['orderStatus'] == 'COMPLETED';
+                        });
+
+                        $reviewedOrders = array_filter($allOrders, function ($order) {
+                            return $order['orderStatus'] == 'REVIEWED';
+                        });
+
+                        $refundedOrders = array_filter($allOrders, function ($order) {
+                            return $order['orderStatus'] == 'REFUNDED';
+                        });
+
+                        function displayOrders($orders) {
+                            foreach ($orders as $row) {
+                                echo "<div class='order-listing bg-light mb-4'>
+                                    <div class='p-4'>
+                                        <div class='d-flex justify-content-between align-items-center p-2'>
+                                            <div class='d-flex align-items-center'>
+                                                <img src='assets/man-with-shopping.png' style='width: 1.5rem;' alt='Packages'/>
+                                                <h4 class='p-2'>Customer: {$row['username']}</h4>
+                                            </div>
+                                            <div>
+                                                <h5 class='ml-auto'>Order ID: {$row['orderID']}</h5>
+                                            </div>
+                                        </div>
+                                        <hr class='my-4'>
+                                        <div class='d-flex align-items-center justify-content-between p-2'>
+                                            <div class='d-flex align-items-center'>
+                                                <img src='{$row['image_path']}' alt='Product Image' style='width: 8rem; height: 6rem; border: 1px solid grey'>
+                                                <p class='p-4 fs-5'>{$row['productName']}</p>
+                                            </div>
+                                            <p>Quantity: {$row['quantity']}</p>
+                                        </div>
+                                        <div class='d-flex m-2'>
+                                        </div>
+                                        <hr class='my-4'>
+                                        <div class='d-flex justify-content-between align-items-center p-2'>
+                                            <div class='fs-5'>
+                                                Order Date & Time: {$row['orderDate']}
+                                            </div>
+                                            <div class='ml-auto'>
+                                                <h3>Order Total: RM{$row['totalAmount']}</h3>
+                                            </div>
+                                        </div>
+                                        <div class='d-flex justify-content-between align-items-center p-2'>
+                                            <div class='fs-5'>
+                                                Order Status: {$row['orderStatus']}
+                                            </div>
+                                            <div class='ml-auto'>";
+                                            if ($row['orderStatus'] == "REVIEWED") {
+                                                echo "<button type='button' class='btn me-2' style='background-color:#7c4dff; color:white;'>View Review</button>
+                                                        </div>";
+                                            } elseif  ($row['orderStatus'] == "COMPLETED"){
+                                                echo "<button type='button' class='btn me-2' style='background-color:#7c4dff; color:white;'disabled>View Review</button>
+                                                        </div>";
+                                            } elseif ($row['orderStatus'] == "REFUNDED") {
+                                                echo "<div class='fs-5'>This order has been refunded</div>";
+                                            } else {
+                                                echo "<button type='button' class='btn me-2' style='background-color:#7c4dff; color:white;'
+                                                        onclick='fulfillOrderConfirmation({$row['orderID']})'>Fulfill Order</button>
+                                                        <button type='button' class='btn btn-light'>Cancel Order</button>
+                                                        </div>";
+                                            };
+                                echo "  </div>
+                                    </div>
+                                </div>";
+                            }
+                        }
+                    } else {
+                        echo "No orders found";
                     }
                         
                         ?>
@@ -153,6 +165,9 @@ if ($stmt) {
                         </div>
                         <div id="reviewed-orders" class="orders-tab-content" style="display: none;">
                             <?php displayOrders($reviewedOrders); ?>
+                        </div>
+                        <div id="refunded-orders" class="orders-tab-content" style="display: none;">
+                            <?php displayOrders($refundedOrders); ?>
                         </div>
                 </div>
             </div>
@@ -168,6 +183,10 @@ if ($stmt) {
 
         document.getElementById('reviewed-orders-tab').addEventListener('click', function () {
             showOrdersTab('reviewed-orders');
+        });
+
+        document.getElementById('refunded-orders-tab').addEventListener('click', function () {
+            showOrdersTab('refunded-orders');
         });
 
         function showOrdersTab(tabId) {

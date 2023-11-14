@@ -41,6 +41,7 @@ require_once 'includes/config_session.inc.php';
                 <hr class="my-3">
                 <a href="#" style="font-weight: 600;">My Products</a>
                 <a href="viewOrders.php">My Orders</a>
+                <a href="viewMerchantRefunds.php">Refund Requests</a>
                     <!-- Add more links as needed -->
             </nav>
 
