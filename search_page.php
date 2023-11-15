@@ -53,7 +53,15 @@ require_once 'includes/config_session.inc.php';
 
             </table>
         </div>
-
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+            crossorigin="anonymous"
+        >
+        </script>
+        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+        <script src="script.js"></script>
     </body>
 
         <footer class="text-center text-lg-start text-white" style="background-color: #1c2331">
@@ -89,7 +97,7 @@ require_once 'includes/config_session.inc.php';
             <!-- Grid column -->
             <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
                 <!-- Content -->
-                <h6 class="text-uppercase fw-bold"><img src="assets/logo.png" class="smalllogo" alt="...">Tuhr</h6>
+                <h6 class="text-uppercase fw-bold"><img src="assets/logo.png" class="smalllogo" alt="...">Travurr</h6>
                 <hr
                     class="mb-4 mt-0 d-inline-block mx-auto"
                     style="width: 60px; background-color: #7c4dff; height: 2px"

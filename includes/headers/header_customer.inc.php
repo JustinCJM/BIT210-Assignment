@@ -2,7 +2,7 @@
 <header class="sticky-top">
 <nav class="navbar navbar-expand-lg">
   <div class="container-fluid">
-    <a href="index.php" class="navbar-brand fw-bold"> <img src="assets/logo.png" alt="...">Tuhr
+    <a href="index.php" class="navbar-brand fw-bold"> <img src="assets/logo.png" alt="...">Travurr
     </a>
     <div class="nav-search-container">
     <form class="nav-search" role="search" method="post" action="search_page.php">
@@ -75,8 +75,32 @@
           style="font-weight: bold"
           >Logout</button
         >
+        <form role="search" method="post" action="search_page.php">
+          <input type="hidden" name="search" value="">
+          <button class="nav-link" name="submit">Products</button>
         </form>
-
+        <div class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            style="font-weight: bold"
+            role="button" data-bs-toggle="dropdown" aria-expanded="false"
+            >Welcome <?php echo $_SESSION["user_username"]; ?>! </a
+          >
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="customer_dashboard.php">My Dashboard</a></li>
+            <li><a class="dropdown-item" href="#">Account Details</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li>
+              <form action="includes/login/logout.inc.php" method="post">
+                  <button
+                    class="dropdown-item"
+                    style="font-weight: bold"
+                    >Logout</button
+                  >
+              </form>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>

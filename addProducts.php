@@ -104,14 +104,25 @@ require_once 'includes/config_session.inc.php';
                     <div class="form-floating mb-4">
                         <input
                             type="file"
-                            name="image[]"
+                            name="image"
                             class="form-control form-control-lg"
                             accept=".pdf,.png,.jpeg"
                             required
+                        />
+                        <label for="formPdfDoc">Upload Display Image</label>
+                    </div>
+
+                    <div class="form-floating mb-4">
+                        <input
+                            type="file"
+                            name="images[]"
+                            class="form-control form-control-lg"
+                            accept=".pdf,.png,.jpeg"
                             multiple
                         />
-                        <label for="formPdfDoc">Upload Image</label>
+                        <label for="formPdfDoc">Upload Multiple Images</label>
                     </div>
+                    <p style="margin-top: -10px;">Ctrl + click to select multiple images.</p>
 
                     <button type="submit" class="btn btn-primary btn-lg">Submit</button>
                     <a href="merchantDashboard.php" class="btn btn-danger btn-lg">Cancel</a>
@@ -126,6 +137,14 @@ require_once 'includes/config_session.inc.php';
     <?php 
     check_addProduct_errors();
     ?>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+        crossorigin="anonymous"
+    >
+    </script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>

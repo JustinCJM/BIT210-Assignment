@@ -1,4 +1,3 @@
-
 <?php
 require_once 'includes/config_session.inc.php';
 ?>
@@ -41,7 +40,6 @@ require_once 'includes/config_session.inc.php';
   } else {
     include 'includes/headers/defaultheader.inc.php';
   }
-  
   ?>
   <body style="min-height: 250vh;">
       <div id="carouselExampleAutoplaying" class=" home-carousel carousel slide pb-3" data-bs-ride="carousel">
@@ -89,7 +87,7 @@ require_once 'includes/config_session.inc.php';
       </div>
       <div class="container-fluid p-0 mt-0">
         <div class="about-container">
-          <div class="text-center p-5 pt-5 fs-1 fw-bold">Why Tuhr?</div>
+          <div class="text-center p-5 pt-5 fs-1 fw-bold">Why Travurr?</div>
           <div class="container text-center p-4" data-aos="fade-right" data-aos-duration="3000">
             <div class="row justify-content-between">
               <div class="col-md-3">
@@ -216,7 +214,7 @@ require_once 'includes/config_session.inc.php';
     </script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="script.js"></script>
-  </body>
+
 
   <footer class="text-center text-lg-start text-white" style="background-color: #1c2331">
     <!-- Section: Social media -->
@@ -251,7 +249,7 @@ require_once 'includes/config_session.inc.php';
           <!-- Grid column -->
           <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
             <!-- Content -->
-            <h6 class="text-uppercase fw-bold"><img src="assets/logo.png" class="smalllogo" alt="...">Tuhr</h6>
+            <h6 class="text-uppercase fw-bold"><img src="assets/logo.png" class="smalllogo" alt="...">Travurr</h6>
             <hr
                 class="mb-4 mt-0 d-inline-block mx-auto"
                 style="width: 60px; background-color: #7c4dff; height: 2px"

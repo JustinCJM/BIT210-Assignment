@@ -34,6 +34,6 @@ function update_product(object $mysqli, int $merchantID, string $productName, st
     update_product_details($mysqli, $merchantID, $productName, $productPrice, $productCategory, $productLocation, $productDescription);
 }
 
-function updateImage(object $mysqli, int $productID, string $uniqueFilename, string $targetPath) {
-    setUpdatedImage($mysqli, $productID, $uniqueFilename, $targetPath);
+function insertAdditionalImages(object $mysqli, int $productID, string $uniqueFilename, string $targetPath) {
+    setAdditionalImages($mysqli, $productID, $uniqueFilename, $targetPath);
 }

@@ -1,13 +1,68 @@
 <?php
 require_once 'includes/config_session.inc.php';
-?>
+require_once 'includes/reviewForm/reviewForm_view.inc.php';
+//require_once 'includes/reviewForm/reviewForm_contr.inc.php';
 
+include 'includes/dbh.inc.php';
+
+if (isset($_GET['orderID'])) {
+    $orderID = $_GET['orderID']; 
+    $orderID = (int)$orderID;
+    $query = "SELECT * FROM orders WHERE orderID = ?";
+    $stmt = $mysqli->prepare($query);
+
+    if ($stmt) {
+        $stmt->bind_param("i", $orderID);
+        if ($stmt->execute()) {
+            $result = $stmt->get_result();
+            
+            if ($result->num_rows > 0) {
+                $orderDetails = $result->fetch_assoc();
+            } else {
+                echo "Order not found.";
+                exit();
+            }
+        } else {
+            echo "Query execution failed: " . $stmt->error;
+            exit();
+        }
+    }    
+    $_SESSION['review_order_id'] = $orderID;
+
+} elseif(isset($_SESSION['review_order_id']) ) {
+    $orderID = $_SESSION['review_order_id']; 
+    $orderID = (int)$orderID;
+    $query = "SELECT * FROM orders WHERE orderID = ?";
+    $stmt = $mysqli->prepare($query);
+    
+    if ($stmt) {
+        $stmt->bind_param("i", $orderID);
+        if ($stmt->execute()) {
+            $result = $stmt->get_result();
+            
+            if ($result->num_rows > 0) {
+                $orderDetails = $result->fetch_assoc();
+            } else {
+                echo "Order not found.";
+                exit();
+            }
+        } else {
+            echo "Query execution failed: " . $stmt->error;
+            exit();
+        }
+    }    
+}else{
+    echo "Order ID not provided.";
+    exit();
+}
+?>
 <!DOCTYPE html>
-<html>
-  <head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Travel Website</title>
+    <title>Review</title>
     <link rel="icon" type="image/png" href="assets/logo.png" />
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -27,9 +82,14 @@ require_once 'includes/config_session.inc.php';
     />
     <link rel="stylesheet" href="style.css" />
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"/>
-    
-  </head>
-  <?php
+    <style>
+        .star {
+            font-size: 50px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<?php
   $userType = $_SESSION["user_type"] ?? null;  
   if ($userType === 'merchant') {
     include 'includes/headers/header_merchant.inc.php';
@@ -42,56 +102,73 @@ require_once 'includes/config_session.inc.php';
   }
   
   ?>
-  <body>
-    <div class="vh-100">
-    <div class="container py-5" style="height: 80%">
-      <div class="row d-flex justify-content-center align-items-center h-100">
-        <div class="col">
-          <div class="card justify-content-center align-items-center" style="border-radius: 1rem; border-color: transparent">
-            <div class="row-3 fs-3 mt-5 fw-bold text-center p-2">Overview</div>
-            <div class="row g-0">
-              <div class="col-sm-1"></div>
-              <div class="row-3 fs-5 mb-5 text-center p-2 col-sm-10"> 
-                Experiencing the world we live in is fundamental to our collective happiness. 
-                Our mission is and always will be to unlock this by connecting high-quality
-                real-life experiences with people all over the world, giving them the opportunity
-                to be entertained, educated and inspired.
-              </div>
+<body>
+
+<div class="vh-120 page-body">
+    <div class="container py-5">
+        <div class="card" style="border-radius: 1rem">
+
+            <?php displayOrderDetails($mysqli, $orderID);?>
+
+            <hr class="">
+
+            <div class="row">
+                <div class="card-header px-5">
+                  <h3>Submit a Review</h3>
+                </div>
             </div>
 
-            <div class="row-3 fs-3 fw-bold text-center p-2">About Us</div>
-            <div class="row g-0">
-              <div class="row-3 fs-5 text-center p-2"> 
-                Founded in 2016, TravelMate was created to help travelers explore Malaysia with spontaneity and ease. 
-              </div>
-            </div>
+            <div class="row">
+                <form id="reviewForm" action="includes/reviewForm/reviewForm.inc.php" method="post" id="reviewOrder">
+                    <div class="mb-3 px-5 py-3">
+                        <label for="rating">Rating:</label>
+                        <div>
+                            <span class="star" onclick="setRating(1)">&#9733;</span>
+                            <span class="star" onclick="setRating(2)">&#9733;</span>
+                            <span class="star" onclick="setRating(3)">&#9733;</span>
+                            <span class="star" onclick="setRating(4)">&#9733;</span>
+                            <span class="star" onclick="setRating(5)">&#9733;</span>
+                            <input type="hidden" name="rating" id="rating" value="0">
+                        </div>
+                    </div>
 
-            <div class="row-3 fs-3 fw-bold text-center p-2">Our Values</div>
-            <div class="row g-0">
-              <div class="row-3 fs-5 text-center p-2"> 
-                <ul class="list-unstyled">
-                  <li>Hold the traveler experience above all else.</li>
-                  <li>Communicate openly, thoughtfully, and deliberately.</li>
-                  <li>Inspire positive change + conscious consumption.</li>
-                  <li>Explore more + enjoy the ride.</li>
-                </ul>
-              </div>
+                    <div class="mb-3 px-5">
+                        <label for="reviewComment">Comments:</label>
+                        <textarea class="form-control" id="reviewComment" name="reviewComment" rows="4"></textarea>
+                    </div>
+
+                    <div class="mb-3 px-5">
+                        <button type="submit" value="submitReview" class="btn btn-primary btn-lg">Submit Review</button>
+                        <a href="customer_dashboard.php" class="btn btn-danger btn-lg">Cancel</a>
+                    </div>
+                </form>
             </div>
-          </div>
         </div>
-      </div>
     </div>
-  </div>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-  </body>
+</div>
+<script>
+    function setRating(rating) {
+        document.getElementById('rating').value = rating;
 
-  <footer class="text-center text-lg-start text-white" style="background-color: #1c2331">
-    <!-- Section: Social media -->
+        // Reset the color of all stars
+        const stars = document.getElementsByClassName('star');
+        for (let i = 0; i < stars.length; i++) {
+            stars[i].style.color = 'black';
+        }
+
+        // Set the color of selected stars
+        for (let i = 0; i < rating; i++) {
+            stars[i].style.color = 'gold';
+        }
+    }
+</script>
+
+</body>
+<footer class="text-center text-lg-start text-white" style="background-color: #1c2331">
     <section
       class="d-flex justify-content-center p-4"
       style="background-color: #6351ce"
       >
-      <!-- Right -->
       <div>
         <a href="" class="text-white me-4">
           <i class="fab fa-facebook-f"></i>
@@ -106,18 +183,11 @@ require_once 'includes/config_session.inc.php';
           <i class="fab fa-linkedin"></i>
         </a>
       </div>
-      <!-- Right -->
     </section>
-    <!-- Section: Social media -->
-
-    <!-- Section: Links  -->
     
       <div>
-        <!-- Grid row -->
         <div class="row mt-xl-4">
-          <!-- Grid column -->
           <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
-            <!-- Content -->
             <h6 class="text-uppercase fw-bold"><img src="assets/logo.png" class="smalllogo" alt="...">Travurr</h6>
             <hr
                 class="mb-4 mt-0 d-inline-block mx-auto"
@@ -127,11 +197,7 @@ require_once 'includes/config_session.inc.php';
               Unveiling the Extraordinary
             </p>
           </div>
-          <!-- Grid column -->
-
-          <!-- Grid column -->
           <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
-            <!-- Links -->
             <h6 class="text-uppercase fw-bold">Products</h6>
             <hr
                 class="mb-4 mt-0 d-inline-block mx-auto"
@@ -150,11 +216,7 @@ require_once 'includes/config_session.inc.php';
               <a href="#!" class="text-white">Package Deals</a>
             </p>
           </div>
-          <!-- Grid column -->
-
-          <!-- Grid column -->
           <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
-            <!-- Links -->
             <h6 class="text-uppercase fw-bold">Quick Links</h6>
             <hr
                 class="mb-4 mt-0 d-inline-block mx-auto"
@@ -170,46 +232,26 @@ require_once 'includes/config_session.inc.php';
               <a href="about.php" class="text-white">About Us</a>
             </p>
           </div>
-          <!-- Grid column -->
-
-          <!-- Grid column -->
           <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
-            <!-- Links -->
             <h6 class="text-uppercase fw-bold">Contact</h6>
             <hr
                 class="mb-4 mt-0 d-inline-block mx-auto"
                 style="width: 60px; background-color: #7c4dff; height: 2px"
                 />
             <p><i class="fas fa-home mr-3"></i> Tower 3, Brunsfield Oasis, Oasis Square, Jalan PJU 1A/7A, Oasis Ara Damansara, 47301 Petaling Jaya, Selangor</p>
-            <p><i class="fas fa-envelope mr-3"></i> Travurrtravels@gmail.com</p>
+            <p><i class="fas fa-envelope mr-3"></i> travelmate@gmail.com</p>
             <p><i class="fas fa-phone mr-3"></i> +60 3845 3984</p>
           </div>
-          <!-- Grid column -->
-          <!-- Grid column -->
           <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
           </div>
-          <!-- Grid column -->
-          <!-- Grid column -->
           <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
           </div>
-          <!-- Grid column -->
         </div>
-        <!-- Grid row -->
       </div>
-    
-    <!-- Section: Links  -->
 
-    <!-- Copyright -->
-    <div
-          class="text-center p-3"
-          style="background-color: rgba(0, 0, 0, 0.2)"
-          >
-      © 2020 Copyright:
-      <a class="text-white" href="https://mdbootstrap.com/"
-          >MDBootstrap.com</a
-        >
-    </div>
-    <!-- Copyright -->
-  </footer>
-  
+</footer>
 </html>
+<?php
+check_reviewOrder_errors();
+$mysqli->close();
+?>
