@@ -1,4 +1,3 @@
-
 <header class="sticky-top">
 <nav class="navbar navbar-expand-lg">
   <div class="container-fluid">
@@ -48,28 +47,8 @@
           class="nav-link"
           aria-current="page"
           href="Kproductcatalog.php"
-          >Products</a
+          >Product</a
         >
-        <!--change to product catalog when done;-->
-        <a
-          class="nav-link"
-          href="about.php"
-          >About Us</a>
-          <a
-          class="nav-link"
-          href="contact.php"
-          >Contact Us</a>
-          <a
-          class="nav-link"
-          href="faq.php"
-          >FAQ</a>
-
-        <form action="includes/login/logout.inc.php" method="post">
-        <button
-          class="nav-link"
-          style="font-weight: bold"
-          >Logout</button
-        ><br>
         <div class="nav-item dropdown">
           <a
             class="nav-link dropdown-toggle"
@@ -80,7 +59,6 @@
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="customer_dashboard.php">My Dashboard</a></li>
             <li><a class="dropdown-item" href="#">Account Details</a></li>
-            <li><a class="nav-link" aria-current="page" href="Kproductcatalog.php">Products</a>
             <li><hr class="dropdown-divider"></li>
             <li>
               <form action="includes/login/logout.inc.php" method="post">
