@@ -155,6 +155,10 @@ require_once 'includes/dbh.inc.php';
                                                 >
                                                     Buy
                                                 </button>
+                                                <form role="search" method="post" action="search_page.php">
+                                                    <input type="hidden" name="search" value="">
+                                                    <button class="btn btn-light btn-lg" name="submit">Cancel</button>
+                                                </form>
                                             </div>
                                         </div>
 
