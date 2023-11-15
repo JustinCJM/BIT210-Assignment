@@ -42,22 +42,22 @@
                 require_once 'includes/config_session.inc.php';
                 require_once 'includes/dbh.inc.php';
 
-                // Fetch products from the database
+                
                 $sql = "SELECT product.productID, product.productName, product.productPrice, product_images.image_path 
                         FROM product 
                         LEFT JOIN product_images ON product.productID = product_images.productID";
                 $result = $mysqli->query($sql);
 
-                // Display products
                 if ($result->num_rows > 0) {
                     while ($row = $result->fetch_assoc()) {
                         ?>
                         <div class="col-md-6 col-lg-4 col-xl-3">
                             <div class="single-product">
                                 <div class="part-1">
-                                    <!-- Add your dynamic data here -->
                                     <ul>
-                                        <li><a href="Kproduct.php?productid=<?php echo $row['productID']; ?>"><i class="fab fa-apple-pay"></i></a></li>
+                                        <li><a href="Kproduct.php?productid=<?php echo $row['productID']; ?>" target="_blank">
+                                            <i class="fab fa-apple-pay"></i>
+                                            </a></li>
                                     </ul>
                                 </div>
                                 <div class="part-2">
