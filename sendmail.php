@@ -44,7 +44,7 @@ if(isset($_POST["send"])){
 
     $mail->isHTML(true);
 
-    $mail->Subject ="Your Tuhr merchant account has been successfully registered!";
+    $mail->Subject ="Your Travurr merchant account has been successfully registered!";
     $mail->Body = "Message: " . $_POST["message"] . "<br><br>Generated password: " . $random_password . "<br><br>Email: " . $_POST["email"];
     $email = $_POST["email"];
     $mail-> send();
@@ -86,7 +86,7 @@ if(isset($_POST["send"])){
     
         $mail->isHTML(true);
     
-        $mail->Subject ="Your Tuhr merchant account registration has been denied";
+        $mail->Subject ="Your Travurr merchant account registration has been denied";
         $mail->Body = "Message: " . $_POST["message"] . "<br><br> Email: " . $_POST["email"];
         $email = $_POST["email"];
 
