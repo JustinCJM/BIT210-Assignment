@@ -63,22 +63,13 @@
           class="nav-link"
           href="faq.php"
           >FAQ</a>
-        <a
-          class="nav-link"
-          style="font-weight: bold"
-          >Welcome <?php echo $_SESSION["user_username"]; ?>! </a
-        >
 
         <form action="includes/login/logout.inc.php" method="post">
         <button
           class="nav-link"
           style="font-weight: bold"
           >Logout</button
-        >
-        <form role="search" method="post" action="search_page.php">
-          <input type="hidden" name="search" value="">
-          <button class="nav-link" name="submit">Products</button>
-        </form>
+        ><br>
         <div class="nav-item dropdown">
           <a
             class="nav-link dropdown-toggle"
@@ -89,6 +80,7 @@
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="customer_dashboard.php">My Dashboard</a></li>
             <li><a class="dropdown-item" href="#">Account Details</a></li>
+            <li><a class="nav-link" aria-current="page" href="Kproductcatalog.php">Products</a>
             <li><hr class="dropdown-divider"></li>
             <li>
               <form action="includes/login/logout.inc.php" method="post">
