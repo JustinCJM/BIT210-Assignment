@@ -14,6 +14,8 @@
 </head>
 <body class="vh-190 page-body">
     <?php
+    require_once 'includes/config_session.inc.php';
+    require_once 'includes/dbh.inc.php';
     $userType = $_SESSION["user_type"] ?? null;  
     if ($userType === 'merchant') {
         include 'includes/headers/header_merchant.inc.php';
