@@ -148,17 +148,24 @@ require_once 'includes/dbh.inc.php';
                                             </p>
 
                                             <div class="p-1 mb-4">
-                                                <button
-                                                    class="btn btn-primary btn-lg btn-block"
-                                                    style="background-color: #7c4dff;"
-                                                    type="submit"
-                                                >
-                                                    Buy
-                                                </button>
-                                                <form role="search" method="post" action="search_page.php">
-                                                    <input type="hidden" name="search" value="">
-                                                    <button class="btn btn-light btn-lg" name="submit">Cancel</button>
-                                                </form>
+                                                <div class="row">
+                                                <div class="col">
+                                                    <button
+                                                        class="btn btn-primary btn-lg btn-block"
+                                                        style="background-color: #7c4dff; width: 7rem;"
+                                                        type="submit"
+                                                    >
+                                                        Buy
+                                                    </button>
+                                                </div>
+                                                <div class="col">
+                                                    <form role="search" method="post" action="search_page.php">
+                                                        <input type="hidden" name="search" value="">
+                                                        <button class="btn btn-light btn-lg" name="submit">Cancel</button>
+                                                    </form>
+                                                </div>
+                                                </div>
+                                                
                                             </div>
                                         </div>
 
