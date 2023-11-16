@@ -86,6 +86,7 @@ if (isset($_GET['orderID'])) {
         .star {
             font-size: 50px;
             cursor: pointer;
+            color:gray;
         }
     </style>
 </head>
@@ -138,8 +139,8 @@ if (isset($_GET['orderID'])) {
                     </div>
 
                     <div class="mb-3 px-5">
-                        <button type="submit" value="submitReview" class="btn btn-primary btn-lg">Submit Review</button>
-                        <a href="customer_dashboard.php" class="btn btn-danger btn-lg">Cancel</a>
+                        <button type="submit" value="submitReview" class="btn btn-primary btn-lg btn-block" style="background-color: #7c4dff;">Submit Review</button>
+                        <a href="customer_dashboard.php" class="btn btn-light btn-lg">Cancel</a>
                     </div>
                 </form>
             </div>
@@ -153,7 +154,7 @@ if (isset($_GET['orderID'])) {
         // Reset the color of all stars
         const stars = document.getElementsByClassName('star');
         for (let i = 0; i < stars.length; i++) {
-            stars[i].style.color = 'black';
+            stars[i].style.color = 'grey';
         }
 
         // Set the color of selected stars
@@ -188,7 +189,7 @@ if (isset($_GET['orderID'])) {
       <div>
         <div class="row mt-xl-4">
           <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
-            <h6 class="text-uppercase fw-bold"><img src="assets/logo.png" class="smalllogo" alt="...">Tuhr</h6>
+            <h6 class="text-uppercase fw-bold"><img src="assets/logo.png" class="smalllogo" alt="...">Travurr</h6>
             <hr
                 class="mb-4 mt-0 d-inline-block mx-auto"
                 style="width: 60px; background-color: #7c4dff; height: 2px"

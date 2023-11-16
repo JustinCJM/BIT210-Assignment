@@ -52,11 +52,11 @@ require_once 'includes/config_session.inc.php';
             
             <div class="row g-0">
               <div class="row-3 fs-5 p-2">
-                <strong>What is Tuhr?</strong>
+                <strong>What is Travurr?</strong>
               
                 <div class="row-3 fs-5 mb-5 p-3"> 
                   We're a travel brand specializing in curated vacations at your convenience. 
-                  With Tuhr, your journey will be a non-stop trip filled to the brim with activities. <br>
+                  With Travurr, your journey will be a non-stop trip filled to the brim with activities. <br>
   
                   You choose the mode of transportation (plane or car), dates, and budget, 
                   we curate recommendations catered to your interests, and book your travel + accommodations!
@@ -137,7 +137,7 @@ require_once 'includes/config_session.inc.php';
           <!-- Grid column -->
           <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
             <!-- Content -->
-            <h6 class="text-uppercase fw-bold"><img src="assets/logo.png" class="smalllogo" alt="...">Tuhr</h6>
+            <h6 class="text-uppercase fw-bold"><img src="assets/logo.png" class="smalllogo" alt="...">Travurr</h6>
             <hr
                 class="mb-4 mt-0 d-inline-block mx-auto"
                 style="width: 60px; background-color: #7c4dff; height: 2px"
@@ -200,7 +200,7 @@ require_once 'includes/config_session.inc.php';
                 style="width: 60px; background-color: #7c4dff; height: 2px"
                 />
             <p><i class="fas fa-home mr-3"></i> Tower 3, Brunsfield Oasis, Oasis Square, Jalan PJU 1A/7A, Oasis Ara Damansara, 47301 Petaling Jaya, Selangor</p>
-            <p><i class="fas fa-envelope mr-3"></i> tuhrtravels@gmail.com</p>
+            <p><i class="fas fa-envelope mr-3"></i> Travurrtravels@gmail.com</p>
             <p><i class="fas fa-phone mr-3"></i> +60 3845 3984</p>
           </div>
           <!-- Grid column -->

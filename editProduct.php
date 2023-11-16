@@ -164,8 +164,8 @@ if (isset($_GET['productid'])) {
                     </div>
                     <p style="margin-top: -10px;">Ctrl + click to select multiple images.</p>
 
-                    <button type="submit" value="UpdateProduct" class="btn btn-primary btn-lg">Update Product</button>
-                    <a href="merchantDashboard.php" class="btn btn-danger btn-lg">Cancel</a>
+                    <button type="submit" value="UpdateProduct" class='btn me-2 btn-lg' style='background-color:#7c4dff; color:white;'>Update Product</button>
+                    <a href="merchantDashboard.php" class='btn btn-light btn-lg'>Cancel</a>
                     </form>
                     </div>
                 </div>
