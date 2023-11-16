@@ -75,6 +75,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     
         $insertSql = "INSERT INTO `orders` (`orderID`, `orderDate`, `orderStatus`, `billingAddress`, `totalAmount`, `quantity`, `customerID`, `productID`) 
         VALUES  (NULL, current_timestamp(), '$orderStatus', '$address', '$total', '$quantity', '$customerID', '$productID');";
+        $insertSql = "INSERT INTO `orders` (`orderID`, `orderDate`, `orderStatus`, `billingAddress`, `totalAmount`, `quantity`, `customerID`, `productID`) 
+        VALUES  (NULL, current_timestamp(), '$orderStatus', '$address', '$total', '$quantity', '$customerID', '$productID');";
        
        if ($mysqli->query($insertSql) === false) {
         throw new Exception("Error inserting into 'orders' table: " . $mysqli->error);

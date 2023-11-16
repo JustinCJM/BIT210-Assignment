@@ -104,20 +104,23 @@ if ($stmt) {
                                             </div>
                                         </div>
                                         <div class='d-flex justify-content-between align-items-center p-2'>
-                                            <div></div>
+                                            <div class ='fs-5'>
+                                                Order Status: {$row['orderStatus']}
+                                            </div>
                                             <div class='ml-auto'>";
                                             if ($row['orderStatus'] == "REVIEWED") {
-                                                echo "<a type='button' class='btn me-2' style='background-color:#7c4dff; color:white;'>Buy Again</a>
-                                                        <a type='button' class='btn btn-light' href='refund.php?orderID={$row['orderID']}'>Request Refund</a>
+                                                echo "<a type='button' class='btn me-2' href='product_listing.php?productid={$row['productID']}'
+                                                        style='background-color:#7c4dff; color:white;'>Buy Again</a>
+                                                        <button type='button' class='btn btn-light' disabled>Request Refund</button>
                                                         </div>";
                                             } elseif  ($row['orderStatus'] == "COMPLETED"){
                                                 echo "<a class='btn me-2' style='background-color:#7c4dff; color:white;' href='reviewForm.php?orderID={$row['orderID']}'>Review Item</a>
-                                                        <a type='button' class='btn btn-light' href='refund.php?orderID={$row['orderID']}'>Request Refund</a>
+                                                        <button type='button' class='btn btn-light' disabled>Request Refund</button>
                                                         </div>";
                                             } elseif ($row['orderStatus'] == "REFUNDED") {
                                                 echo "<div class='fs-5'>This order has been refunded</div>";
                                             } else {
-                                                echo "<a type='button' class='btn me-2' style='background-color:#7c4dff; color:white;' disabled>Review Item</a>
+                                                echo "<button type='button' class='btn me-2' style='background-color:#7c4dff; color:white;' disabled>Review Item</button>
                                                         <a type='button' class='btn btn-light' href='refund.php?orderID={$row['orderID']}'>Request Refund</a>
                                                         </div>";
                                             };

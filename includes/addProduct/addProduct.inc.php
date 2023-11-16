@@ -70,7 +70,7 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
     $targetPath = $targetDirectory . $uniqueFilename;
 
     if (move_uploaded_file($_FILES["image"]["tmp_name"], $uploadPath)) {
-        insertAdditionalImages($mysqli, $productID, $uniqueFilename, $targetPath);
+        insertImage($mysqli, $productID, $uniqueFilename, $targetPath);
     } else {
         $errors["upload_error"] = "Failed to move the uploaded file.";
         $_SESSION["file_upload_error"] = $errors["upload_error"];

@@ -65,6 +65,7 @@ require_once 'includes/config_session.inc.php';
                             ?>
                         </tbody>
                     </table>
+                    <a href="addProducts.php" class="btn btn-primary">Add New Product</a>
             </div>
         </div>
     </div>

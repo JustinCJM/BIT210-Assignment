@@ -22,12 +22,11 @@ if ($stmt) {
 $row = mysqli_fetch_assoc($result);
 
 if(isset($_POST['comments'])) {
-    $query = "INSERT INTO refunds (refundStatus, refundDescription, refundDate, orderID) VALUES (?, ?, ?, ?)";
+    $query = "INSERT INTO refunds (refundStatus, refundDescription, orderID) VALUES (?, ?, ?, ?)";
     $status = "AWAITING REFUND";
     $description = $_POST['comments'];
-    $refundDate = date('Y-m-d H:i:s');
     $stmt = $mysqli->prepare($query);
-    $stmt->bind_param("sssi", $status, $description, $refundDate, $orderID);
+    $stmt->bind_param("ssi", $status, $description, $orderID);
     $stmt->execute();    
     $stmt->close();
 
