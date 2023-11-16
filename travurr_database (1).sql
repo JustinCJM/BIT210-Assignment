@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 16, 2023 at 06:39 PM
+-- Generation Time: Nov 16, 2023 at 07:44 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -72,7 +72,8 @@ CREATE TABLE `merchant` (
 INSERT INTO `merchant` (`merchantID`, `username`, `pwd`, `default_pwd`, `email`, `contactNo`, `shopName`, `merchDescription`, `regStatus`, `tmoID`) VALUES
 (1, 'TravelersTroves', 'JM8u65qcAe', '', 'TravelersTroves@gmail.com', '0125678432', 'Travelers Troves Co', 'Welcome to Travelers Troves Co, where the spirit of adventure meets curated elegance. Explore our carefully selected collection of travel plans, perfect for your next holiday.', 'ACTIVE', 1),
 (2, 'HorizonHavenHub', 'jjfF4BolDI', '', 'HorizonHaven@gmail.com', '0167894562', 'Horizon Haven Hub', 'Discover the world through Horizon Haven Hub, your go-to destination for travel trips essentials. Immerse yourself in a carefully curated selection of wanderlust-worthy items that combine adventure and mystery.', 'ACTIVE', 1),
-(3, 'GlobeGoodsGallery', '6uhOHATcxz', '', 'GlobeGoods@gmail.com', '0198765981', 'Globe Goods Gallery', 'At Globe Goods Gallery, we believe that the journey is just as important as the destination. Step into a world of travel, where each plan is handpicked to ignite your sense of wanderlust.', 'ACTIVE', 1);
+(3, 'GlobeGoodsGallery', '6uhOHATcxz', '', 'GlobeGoods@gmail.com', '0198765981', 'Globe Goods Gallery', 'At Globe Goods Gallery, we believe that the journey is just as important as the destination. Step into a world of travel, where each plan is handpicked to ignite your sense of wanderlust.', 'ACTIVE', 1),
+(4, 'TravelersTrinkets', 'bd2230f9', '', 'aaronnabil02@gmail.com', '0124567321', 'Travelers Trinkets', 'Welcome to TravelersTrinkets, where every piece tells a story and every purchase becomes a cherished memory. Our shop is a curated haven for explorers, offering a handpicked collection of trinkets inspired by the spirit of wanderlust.', 'PENDING', 1);
 
 -- --------------------------------------------------------
 
@@ -96,7 +97,8 @@ CREATE TABLE `merch_documents` (
 INSERT INTO `merch_documents` (`documentID`, `merchantID`, `document_name`, `document_path`, `upload_date`, `doc_description`) VALUES
 (1, 1, 'TravelersTroves_TravelersTrove-BusinessLicense.png', 'pdfuploads/TravelersTroves_TravelersTrove-BusinessLicense.png', '2023-11-16 22:15:56', 'Travelers Troves business license'),
 (2, 2, 'HorizonHavenHub_HorizonHaven-BusinessLicense.pdf', 'pdfuploads/HorizonHavenHub_HorizonHaven-BusinessLicense.pdf', '2023-11-16 22:22:54', 'HorizonHavenHub business license'),
-(3, 3, 'GlobeGoodsGallery_GlobeGoodsGallery-BusinessLicense.pdf', 'pdfuploads/GlobeGoodsGallery_GlobeGoodsGallery-BusinessLicense.pdf', '2023-11-16 22:26:36', 'Globe Goods Gallery Business License');
+(3, 3, 'GlobeGoodsGallery_GlobeGoodsGallery-BusinessLicense.pdf', 'pdfuploads/GlobeGoodsGallery_GlobeGoodsGallery-BusinessLicense.pdf', '2023-11-16 22:26:36', 'Globe Goods Gallery Business License'),
+(4, 4, 'TravelersTrinkets_TravelersTrinkets-BusinessLicense.pdf', 'pdfuploads/TravelersTrinkets_TravelersTrinkets-BusinessLicense.pdf', '2023-11-17 02:17:15', 'TravelersTrinkets business license');
 
 -- --------------------------------------------------------
 
@@ -124,8 +126,8 @@ INSERT INTO `orders` (`orderID`, `orderDate`, `orderStatus`, `billingAddress`, `
 (2, '2023-10-30 12:55:18', 'REVIEWED', '24, Jalan House, Petaling Jaya 47810 Selangor', 100.00, 2, 1, 5),
 (3, '2023-11-11 12:42:18', 'REVIEWED', '24, Jalan House, Petaling Jaya 47810 Selangor', 159.98, 2, 1, 6),
 (4, '2023-10-01 13:45:18', 'REVIEWED', '24, Jalan House, Petaling Jaya 47810 Selangor', 600.00, 6, 1, 7),
-(5, '2023-11-17 18:55:43', 'REVIEWED', '24, Jalan House, Petaling Jaya 47810 Selangor', 359.97, 3, 1, 8),
-(6, '2023-11-21 12:32:45', 'REVIEWED', '24, Jalan House, Petaling Jaya 47810 Selangor', 400.00, 4, 1, 9),
+(5, '2023-11-16 18:55:43', 'REVIEWED', '24, Jalan House, Petaling Jaya 47810 Selangor', 359.97, 3, 1, 8),
+(6, '2023-11-11 12:32:45', 'REVIEWED', '24, Jalan House, Petaling Jaya 47810 Selangor', 400.00, 4, 1, 9),
 (7, '2023-11-07 14:20:12', 'REVIEWED', '3, Jalan Kenyalang, 60000 Kuala Lumpur', 650.00, 5, 2, 4),
 (8, '2023-10-10 13:18:08', 'REVIEWED', '3, Jalan Kenyalang, 60000 Kuala Lumpur', 200.00, 4, 2, 5),
 (9, '2023-10-27 21:18:44', 'REVIEWED', '3, Jalan Kenyalang, 60000 Kuala Lumpur', 159.98, 2, 2, 6),
@@ -139,7 +141,10 @@ INSERT INTO `orders` (`orderID`, `orderDate`, `orderStatus`, `billingAddress`, `
 (17, '2023-11-10 03:30:47', 'REVIEWED', '11 Jalan Firma 2/1 Kawasan Perindustrian Tebrau, Johor Bahru, 81100 Johor', 119.99, 1, 3, 8),
 (18, '2023-11-14 13:31:43', 'REVIEWED', '11 Jalan Firma 2/1 Kawasan Perindustrian Tebrau, Johor Bahru, 81100 Johor', 200.00, 4, 3, 9),
 (19, '2023-11-09 01:08:12', 'AWAITING REFUND', '24, Jalan House, Petaling Jaya 47810 Selangor', 50.00, 1, 1, 5),
-(20, '2023-11-09 12:08:12', 'AWAITING REFUND', '24, Jalan House, Petaling Jaya 47810 Selangor', 79.99, 1, 1, 6);
+(20, '2023-11-09 12:08:12', 'AWAITING REFUND', '24, Jalan House, Petaling Jaya 47810 Selangor', 79.99, 1, 1, 6),
+(21, '2023-11-17 01:47:36', 'UNFULFILLED', '24, Jalan House, Petaling Jaya , , 47810, Selangor, Malaysia', 130.00, 1, 1, 4),
+(26, '2023-11-17 02:25:13', 'UNFULFILLED', '24, Jalan House, , 47810, Selangor, Malaysia', 79.99, 1, 1, 6),
+(27, '2023-11-17 02:26:01', 'COMPLETED', '24, Jalan House, , 47810, Selangor, Malaysia', 50.00, 1, 1, 5);
 
 -- --------------------------------------------------------
 
@@ -165,9 +170,9 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`productID`, `productName`, `productPrice`, `category`, `prodLocation`, `prodDescription`, `merchantID`, `quantitySold`, `totalRating`, `avgRating`) VALUES
-(4, 'Legoland Malaysia', 130, 'Theme Park', 'Johor Bahru', 'Embark on a whimsical journey with our enchanting trip to LEGOLAND Malaysia, where imagination and creativity come to life in a vibrant world of colorful bricks.', 2, 77, 14, 4.7),
-(5, 'Melaka Tour', 50, 'Tour', 'Melaka', '\"Embark on a captivating journey through time with our Melaka tour, a UNESCO World Heritage city that unfolds like a living history book. Discover the rich tapestry of cultures that have shaped this charming Malaysian gem.', 2, 32, 14, 4.7),
-(6, 'Lost World of Tambun', 79.99, 'Water Park', 'Ipoh', 'Embark on an extraordinary adventure to the Lost World of Tambun, a premier theme park and resort nestled amidst the lush landscapes of Ipoh, Malaysia. Enveloped by natural beauty, this unique destination seamlessly blends thrilling attractions with a tou', 2, 49, 15, 5.0),
+(4, 'Legoland Malaysia', 130, 'Theme Park', 'Johor Bahru', 'Embark on a whimsical journey with our enchanting trip to LEGOLAND Malaysia, where imagination and creativity come to life in a vibrant world of colorful bricks.', 2, 82, 14, 4.7),
+(5, 'Melaka Tour', 50, 'Tour', 'Melaka', '\"Embark on a captivating journey through time with our Melaka tour, a UNESCO World Heritage city that unfolds like a living history book. Discover the rich tapestry of cultures that have shaped this charming Malaysian gem.', 2, 33, 14, 4.7),
+(6, 'Lost World of Tambun', 79.99, 'Water Park', 'Ipoh', 'Embark on an extraordinary adventure to the Lost World of Tambun, a premier theme park and resort nestled amidst the lush landscapes of Ipoh, Malaysia. Enveloped by natural beauty, this unique destination seamlessly blends thrilling attractions with a tou', 2, 50, 15, 5.0),
 (7, 'Skytropolis Indoor Theme Park', 100, 'Theme Park', 'Genting Highland', 'Step into a world of exhilarating fun and enchantment at Skytropolis Indoor Theme Park, nestled high in the cool mountain air of Genting Highlands. Our specially crafted experience invites you to a thrilling adventure inside Asia\'s first Fox-themed indoor', 1, 38, 15, 5.0),
 (8, 'District 21', 119.99, 'Theme Park', 'Putrajaya', '\"Embark on an urban adventure like no other at District 21, a one-of-a-kind indoor adventure park located in the heart of Kuala Lumpur. This adrenaline-fueled destination offers an immersive experience where physical challenges and excitement meet futuris', 1, 67, 15, 5.0),
 (9, 'Langkawi Cable Car', 50, 'Tour', 'Langkawi', 'Ascend to the heights of natural beauty with the Langkawi Cable Car, a breathtaking journey that offers panoramic views of the lush rainforest, majestic mountains, and the stunning Andaman Sea', 1, 99, 13, 4.3);
@@ -398,31 +403,31 @@ ALTER TABLE `customer`
 -- AUTO_INCREMENT for table `merchant`
 --
 ALTER TABLE `merchant`
-  MODIFY `merchantID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `merchantID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `merch_documents`
 --
 ALTER TABLE `merch_documents`
-  MODIFY `documentID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `documentID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `orderID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `orderID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `productID` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `productID` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `product_images`
 --
 ALTER TABLE `product_images`
-  MODIFY `imageID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `imageID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 
 --
 -- AUTO_INCREMENT for table `refunds`
