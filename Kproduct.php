@@ -87,6 +87,70 @@
             var container = document.getElementById("main-image");
             container.src = image.src;
         }
+    });
+});
+    
+// Create a Checkout Session with the selected product
+const createCheckoutSession = function (stripe) {
+    return fetch("Kpayment_init.php", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            createCheckoutSession: 1,
+        }),
+    }).then(function (result) {
+        return result.json();
+    });
+};
+
+// Handle any errors returned from Checkout
+const handleResult = function (result) {
+    if (result.error) {
+        showMessage(result.error.message);
+    }
+    
+    setLoading(false);
+};
+
+// Show a spinner on payment processing
+function setLoading(isLoading) {
+    if (isLoading) {
+        // Disable the button and show a spinner
+        payBtn.disabled = true;
+        document.querySelector("#spinner").classList.remove("hidden");
+        document.querySelector("#buttonText").classList.add("hidden");
+    } else {
+        // Enable the button and hide spinner
+        payBtn.disabled = false;
+        document.querySelector("#spinner").classList.add("hidden");
+        document.querySelector("#buttonText").classList.remove("hidden");
+    }
+}
+
+// Display message
+function showMessage(messageText) {
+    const messageContainer = document.querySelector("#paymentResponse");
+	
+    messageContainer.classList.remove("hidden");
+    messageContainer.textContent = messageText;
+	
+    setTimeout(function () {
+        messageContainer.classList.add("hidden");
+        messageText.textContent = "";
+    }, 5000);
+}
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+        crossorigin="anonymous"
+    >
+    </script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="script.js"></script>
     </script>
 </body>
 </html>

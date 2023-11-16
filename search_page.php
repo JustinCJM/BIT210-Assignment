@@ -44,7 +44,9 @@ require_once 'includes/config_session.inc.php';
     ?>
 
     <body>
-        <div class="container my-5" style="min-height: 46.8vh;">
+        <div class="container my-3" style="min-height: 46.8vh;">
+        <th><h1>Products</h1></th>
+        <hr class="my-4">
             <table class="table">
 
                 <?php

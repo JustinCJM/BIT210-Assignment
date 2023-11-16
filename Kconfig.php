@@ -6,7 +6,6 @@ include 'includes/dbh.inc.php';
 
 if (isset($_GET['productid'])) {
     $productID = $_GET['productid'];
-    echo "PLEASE DELETE BEFORE PUBLISH ID NUMBER CHECK ".$productID;
     $sql = "SELECT image_path FROM product_images WHERE productID = ?";
     $stmt = $mysqli->prepare($sql);
     $stmt->bind_param("i", $productID); // "i" represents an integer, adjust it if necessary

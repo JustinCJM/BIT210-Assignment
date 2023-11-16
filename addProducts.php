@@ -8,7 +8,7 @@ require_once 'includes/config_session.inc.php';
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Travel Website</title>
+    <title>Add Product</title>
     <link rel="icon" type="image/png" href="assets/logo.png" />
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -124,8 +124,8 @@ require_once 'includes/config_session.inc.php';
                     </div>
                     <p style="margin-top: -10px;">Ctrl + click to select multiple images.</p>
 
-                    <button type="submit" class="btn btn-primary btn-lg">Submit</button>
-                    <a href="merchantDashboard.php" class="btn btn-danger btn-lg">Cancel</a>
+                    <button type="submit" class='btn me-2 btn-lg' style='background-color:#7c4dff; color:white;'>Submit</button>
+                    <a href="merchantDashboard.php" class='btn btn-light btn-lg'>Cancel</a>
                     </form>
                     </div>
                 </div>

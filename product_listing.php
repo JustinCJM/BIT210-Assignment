@@ -22,7 +22,7 @@ require_once 'includes/dbh.inc.php';
     <head>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>Travel Website</title>
+        <title>Product Details</title>
         <link rel="icon" type="image/png" href="assets/logo.png" />
         <meta name="description" content="" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -62,7 +62,7 @@ require_once 'includes/dbh.inc.php';
         <?php
             // get data & set sql queries
             $id = $_GET['productid'];
-            $query = "SELECT * FROM product WHERE productID = $id ";
+            $query = "SELECT * FROM product LEFT JOIN merchant ON product.merchantID = merchant.merchantID WHERE productID = $id";
             $displayImageQuery = "SELECT image_path FROM product_images WHERE productID = $id AND display = 1";
             $imageQuery = "SELECT image_path FROM product_images WHERE productID = $id AND display = 0;";
             $reviewQuery = "SELECT * FROM reviews
@@ -76,6 +76,7 @@ require_once 'includes/dbh.inc.php';
             $name = $result['productName'];
             $price = number_format($result['productPrice'], 2);
             $description = $result['prodDescription'];
+            $shopName = $result['shopName'];
 
             // get display image
             $displayResult = mysqli_query($mysqli, $displayImageQuery);
@@ -100,9 +101,19 @@ require_once 'includes/dbh.inc.php';
                 <div class="row d-flex justify-content-center align-items-center">
                     <div class="card" style="border-radius: 1rem">
                         <div class="row g-0">
-                            <h1 class="mb-2 p-5" style="letter-spacing: 1px;">
-                                <b><?php echo $name; ?></b>
-                            </h1>
+                            <div class="col-md-6 col-lg-8 p-1 d-md-flex d-md-block" style="margin-right: 5px;">
+                                <h1 class="mb-2 p-5" style="letter-spacing: 1px;">
+                                    <b><?php echo $name; ?></b>
+                                </h1>
+                            </div>
+                            <div class="row col-md-6 col-lg-4 d-flex align-items-center">
+                                <h2 class="mb-2 p-5" style="letter-spacing: 1px; text-align: right;">
+                                    <img src='assets/stall.png' style='width: 2rem;' alt='Stall' id='shopImg'/>
+                                    <label for='shopImg'><?php echo $shopName; ?></label>
+                                </h2>
+                            </div>
+                        </div>
+                        <div class="row g-0">
                             <div class="card-body p-2 px-5 pb-5" style="margin-top:-25px;">
                                 <div class="row g-0">
                                     <div class="col-md-9 col-lg-8 p-1 d-md-flex d-md-block" style="margin-right: 5px;">
@@ -142,21 +153,11 @@ require_once 'includes/dbh.inc.php';
                                                 RM <?php echo $price; ?>
                                             </h3>
 
-                                            <label for="quantity" style="padding: 5px; font-size: 120%;">Quantity: </label>
-                                            <p class="w-25 p-1">
-                                                <input type="number" id="quantity" class="form-control form-icon-trailing" value="1" min="1">
-                                            </p>
-
                                             <div class="p-1 mb-4">
                                                 <div class="row">
                                                 <div class="col">
-                                                    <button
-                                                        class="btn btn-primary btn-lg btn-block"
-                                                        style="background-color: #7c4dff; width: 7rem;"
-                                                        type="submit"
-                                                    >
-                                                        Buy
-                                                    </button>
+                                                <a href="Kpayment.php?productid=<?php echo urlencode($_GET['productid']); ?>" class="btn btn-primary btn-lg btn-block" style="background-color: #7c4dff; width: 7rem;">Buy</a>
+
                                                 </div>
                                                 <div class="col">
                                                     <form role="search" method="post" action="search_page.php">
@@ -221,6 +222,7 @@ require_once 'includes/dbh.inc.php';
     </script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="script.js"></script>
+
     </body>
 </html>
 

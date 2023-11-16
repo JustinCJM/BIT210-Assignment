@@ -155,9 +155,20 @@ if (isset($_GET['productid'])) {
                     <div class="form-floating mb-4">
                         <input
                             type="file"
-                            name="images[]"
+                            name="image"
                             class="form-control form-control-lg"
                             accept=".pdf,.png,.jpeg"
+                        />
+                        <label for="formPdfDoc">Upload Display Image</label>
+                        <p style="margin-top: 10px;">Please add an image if you want to change the display image.</p>
+                    </div>
+
+                    <div class="form-floating mb-4">
+                        <input
+                            type="file"
+                            name="images[]"
+                            class="form-control form-control-lg"
+                            accept=".pdf,.png,.jpeg,.jpg"
                             multiple
                         />
                         <label for="formPdfDoc">Upload Multiple Images</label>

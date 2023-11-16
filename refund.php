@@ -22,14 +22,19 @@ if ($stmt) {
 $row = mysqli_fetch_assoc($result);
 
 if(isset($_POST['comments'])) {
-    $query = "INSERT INTO refunds (refundStatus, refundDescription, refundDate, orderID) VALUES (?, ?, ?, ?)";
+    $query = "INSERT INTO refunds (refundStatus, refundDescription, orderID) VALUES (?, ?, ?)";
     $status = "AWAITING REFUND";
     $description = $_POST['comments'];
-    $refundDate = date('Y-m-d H:i:s');
     $stmt = $mysqli->prepare($query);
-    $stmt->bind_param("sssi", $status, $description, $refundDate, $orderID);
+    $stmt->bind_param("ssi", $status, $description, $orderID);
     $stmt->execute();    
     $stmt->close();
+
+    $query2 = "UPDATE orders SET orderStatus =? WHERE orderID= ?";
+    $stmt2 = $mysqli->prepare($query2);
+    $stmt2->bind_param("si", $status, $orderID);
+    $stmt2->execute();    
+    $stmt2->close();
 
     echo "<script>
         alert('Refund Request Created.');
@@ -45,7 +50,7 @@ if(isset($_POST['comments'])) {
     <head>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>Travel Website</title>
+        <title>Request Refund</title>
         <link rel="icon" type="image/png" href="assets/logo.png" />
         <meta name="description" content="" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
