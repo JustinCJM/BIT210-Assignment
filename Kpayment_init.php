@@ -21,7 +21,24 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $customerName = $_POST['fname']." ".$_POST['lname'];
     $invoiceNum = rand(4235,9999999);
 
-    $merchantIDQuery = "SELECT merchantID FROM product WHERE productID = ?";
+    $info=[
+        "customer"=>$customerName,
+        "address"=>$address,
+        "invoice_no"=>"#".$invoiceNum,
+        "invoice_date"=>$orderDate,
+        "total_amt"=>$total,
+      ];
+      
+      
+      //invoice Products
+      $products_info=[
+        [
+          "name"=>$productName,
+          "price"=>$price,
+          "qty"=>$quantity,
+          "total"=>$total
+        ],
+      ];
     $customerIDQuery = "SELECT customerID FROM customer WHERE username = ?";
     $productNameQuery = "SELECT productName FROM product WHERE productID = ?";
 
@@ -36,19 +53,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $stmt->close();
         }else {
             echo "Product name not found";
-        }
-
-    if ($stmt = $mysqli->prepare($merchantIDQuery)) {
-        $stmt->bind_param("i", $productID);
-        $stmt->execute();
-        $stmt->bind_result($merchantID);
-    
-        $stmt->fetch();
-
-        
-        $stmt->close();
-        }else {
-            echo "Merchant ID not found";
         }
 
     if ($stmt = $mysqli->prepare($customerIDQuery)) {
@@ -69,8 +73,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         $mysqli->begin_transaction();
     
-        $insertSql = "INSERT INTO `orders` (`orderID`, `orderDate`, `orderStatus`, `billingAddress`, `totalAmount`, `quantity`, `customerID`, `merchantID`, `productID`) 
-        VALUES  (NULL, current_timestamp(), '$orderStatus', '$address', '$total', '$quantity', '$customerID', '$merchantID', '$productID');";
+        $insertSql = "INSERT INTO `orders` (`orderID`, `orderDate`, `orderStatus`, `billingAddress`, `totalAmount`, `quantity`, `customerID`, `productID`) 
+        VALUES  (NULL, current_timestamp(), '$orderStatus', '$address', '$total', '$quantity', '$customerID', '$productID');";
        
        if ($mysqli->query($insertSql) === false) {
         throw new Exception("Error inserting into 'orders' table: " . $mysqli->error);
@@ -82,28 +86,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         }
 
         $mysqli->commit();
-        $info=[
-            "customer"=>$customerName,
-            "address"=>$address,
-            "invoice_no"=>"#".$invoiceNum,
-            "invoice_date"=>$orderDate,
-            "total_amt"=>$total,
-          ];
-          
-          
-          //invoice Products
-          $products_info=[
-            [
-              "name"=>$productName,
-              "price"=>$price,
-              "qty"=>$quantity,
-              "total"=>$total
-            ],
-          ];
-            
-            generateReceipt($info, $products_info);
-            echo $customerID;
-            header("Location: Kpayment_success.php?<?php echo $customerID ?>");
+        
+
+
+
+            // generateReceipt($info, $products_info);
+            // echo $customerID;
+            header("Location: Kpayment_success.php");
                     exit();
         // Close the database connection
         $mysqli->close();}

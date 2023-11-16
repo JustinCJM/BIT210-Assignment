@@ -102,4 +102,5 @@ function generateReceipt($info, $products_info) {
     $pdf->body($info, $products_info);
     $pdf->Output('I');
     ob_end_flush();
+
 }
