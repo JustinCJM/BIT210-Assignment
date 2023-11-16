@@ -1,4 +1,3 @@
-
 <header class="sticky-top">
 <nav class="navbar navbar-expand-lg">
   <div class="container-fluid">
@@ -44,10 +43,12 @@
           href="index.php"
           >Home</a
         >
-        <form role="search" method="post" action="search_page.php">
-          <input type="hidden" name="search" value="">
-          <button class="nav-link" name="submit">Products</button>
-        </form>
+        <a
+          class="nav-link"
+          aria-current="page"
+          href="Kproductcatalog.php"
+          >Product</a
+        >
         <div class="nav-item dropdown">
           <a
             class="nav-link dropdown-toggle"
