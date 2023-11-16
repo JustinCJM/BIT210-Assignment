@@ -22,13 +22,19 @@ if ($stmt) {
 $row = mysqli_fetch_assoc($result);
 
 if(isset($_POST['comments'])) {
-    $query = "INSERT INTO refunds (refundStatus, refundDescription, orderID) VALUES (?, ?, ?, ?)";
+    $query = "INSERT INTO refunds (refundStatus, refundDescription, orderID) VALUES (?, ?, ?)";
     $status = "AWAITING REFUND";
     $description = $_POST['comments'];
     $stmt = $mysqli->prepare($query);
     $stmt->bind_param("ssi", $status, $description, $orderID);
     $stmt->execute();    
     $stmt->close();
+
+    $query2 = "UPDATE orders SET orderStatus =? WHERE orderID= ?";
+    $stmt2 = $mysqli->prepare($query2);
+    $stmt2->bind_param("si", $status, $orderID);
+    $stmt2->execute();    
+    $stmt2->close();
 
     echo "<script>
         alert('Refund Request Created.');

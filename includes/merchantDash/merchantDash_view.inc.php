@@ -40,7 +40,7 @@ function displayProducts($mysqli) {
 function getImagePath($mysqli, $productID) {
     $imagePath = '';
 
-    $imageQuery = "SELECT image_path FROM product_images WHERE productID = $productID";
+    $imageQuery = "SELECT image_path FROM product_images WHERE productID = $productID AND display=1";
     $imageResult = mysqli_query($mysqli, $imageQuery);
 
     if ($imageResult && mysqli_num_rows($imageResult) > 0) {

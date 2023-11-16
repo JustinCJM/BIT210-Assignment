@@ -11,7 +11,8 @@ $query = "SELECT o.*, p.*,pi.image_path, c.username
             JOIN customer c ON o.customerID = c.customerID
             WHERE p.merchantID = (
                 SELECT merchantID FROM merchant WHERE username = ?
-            )";
+            ) AND pi.display = 1
+            ORDER BY o.orderDate DESC" ;
 
 $stmt = $mysqli->prepare($query);
 
@@ -137,7 +138,7 @@ if ($stmt) {
                                                 echo "<div class='fs-5' style='color:#7c4dff; font-weight: 600;'>Order has been reviewed. View the review on the product page.</div>
                                                         </div>";
                                             } elseif  ($row['orderStatus'] == "COMPLETED"){
-                                                echo "<button type='button' class='btn me-2' style='background-color:#7c4dff; color:white;'disabled>View Review</button>
+                                                echo "<div class='fs-5' style='color:#7c4dff; font-weight: 600;'>This order has not been reviewed yet.</div>
                                                         </div>";
                                             } elseif ($row['orderStatus'] == "REFUNDED") {
                                                 echo "<div class='fs-5'>This order has been refunded</div>";

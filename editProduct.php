@@ -168,7 +168,7 @@ if (isset($_GET['productid'])) {
                             type="file"
                             name="images[]"
                             class="form-control form-control-lg"
-                            accept=".pdf,.png,.jpeg"
+                            accept=".pdf,.png,.jpeg,.jpg"
                             multiple
                         />
                         <label for="formPdfDoc">Upload Multiple Images</label>

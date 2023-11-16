@@ -14,6 +14,7 @@ $query = "SELECT r.*, o.*, p.*, pi.image_path, c.username
             SELECT merchantID FROM merchant WHERE username = ?
             )
             AND r.refundStatus = 'AWAITING REFUND'
+            AND pi.display =1
             ORDER BY r.refundDate DESC";
 
 $stmt = $mysqli->prepare($query);

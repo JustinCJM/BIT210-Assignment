@@ -12,7 +12,8 @@ $query = "SELECT o.*, p.*,pi.image_path, m.shopName
             WHERE o.customerID = (
                 SELECT customerID FROM customer WHERE username = ?
             )
-            AND o.orderStatus != 'AWAITING REFUND'";
+            AND o.orderStatus != 'AWAITING REFUND'
+            AND pi.display = 1 ";
 
 $stmt = $mysqli->prepare($query);
 
