@@ -1,6 +1,5 @@
 <?php
 require_once 'includes/config_session.inc.php';
-
 include 'includes/dbh.inc.php';
 
 if (isset($_GET['productid'])) {
