@@ -11,4 +11,6 @@ function is_comment_empty(string $reviewComment) {
 }
 function addReview(object $mysqli, string $comments, int $rating, int $orderID, int $productID){
     setReview($mysqli, $comments, $rating, $orderID, $productID);
+    updateRating($mysqli, $productID);
+    updateAvgRating($mysqli, $productID);
 }
