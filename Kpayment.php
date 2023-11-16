@@ -35,7 +35,7 @@
 
   </head>
 
-    <body class="vh-130 page-body">
+    <body class="vh-130">
 
       <div class="container py-8">
         <div class="py-5 text-center">
@@ -234,7 +234,8 @@
               </div>
               <hr class="mb-4">
             
-              <button class="btn btn-primary btn-lg btn-block" type="submit">Pay</button>
+              <button type="submit" class='btn me-2 btn-lg btn-block' style='background-color:#7c4dff; color:white;'>Pay</button>
+              <a href="product_listing.php?productid=<?php echo $_GET['productid']?>" class='btn btn-light btn-lg btn-block'>Cancel</a>
             </form>
           </div>
         </div>
