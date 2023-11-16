@@ -102,7 +102,7 @@ if ($stmt) {
                                     <div class='p-4'>
                                         <div class='d-flex justify-content-between align-items-center p-2'>
                                             <div class='d-flex align-items-center'>
-                                                <img src='assets/man-with-shopping.png' style='width: 1.5rem;' alt='Packages'/>
+                                                <img src='assets/man-with-shopping.png' style='width: 1.5rem;' alt=''/>
                                                 <h4 class='p-2'>Customer: {$row['username']}</h4>
                                             </div>
                                             <div>
@@ -134,7 +134,7 @@ if ($stmt) {
                                             </div>
                                             <div class='ml-auto'>";
                                             if ($row['orderStatus'] == "REVIEWED") {
-                                                echo "<button type='button' class='btn me-2' style='background-color:#7c4dff; color:white;'>View Review</button>
+                                                echo "<div class='fs-5' style='color:#7c4dff; font-weight: 600;'>Order has been reviewed. View the review on the product page.</div>
                                                         </div>";
                                             } elseif  ($row['orderStatus'] == "COMPLETED"){
                                                 echo "<button type='button' class='btn me-2' style='background-color:#7c4dff; color:white;'disabled>View Review</button>
@@ -225,6 +225,18 @@ if ($stmt) {
             };
             xhr.send('orderID=' + orderID);
         }
+
+        function showReviewDetails(comment, rating) {
+            // Update the modal body with review details
+            document.getElementById('reviewModalBody').innerHTML = `
+                <p><strong>Review Comment:</strong> ${comment}</p>
+                <p><strong>Star Rating:</strong> ${rating} / 5</p>
+            `;
+
+            // Show the modal
+            var myModal = new bootstrap.Modal(document.getElementById('reviewModal'));
+            myModal.show();
+        }
         </script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
         <script
@@ -235,5 +247,19 @@ if ($stmt) {
         </script>
         <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
         <script src="script.js"></script>
+        <!-- Add this modal structure at the end of your HTML body -->
+        <div class="modal fade" id="reviewModal" tabindex="-1" aria-labelledby="reviewModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="reviewModalLabel">Review Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="reviewModalBody">
+                <!-- Review details will be displayed here -->
+            </div>
+            </div>
+        </div>
+        </div>
     </body>
 </html>

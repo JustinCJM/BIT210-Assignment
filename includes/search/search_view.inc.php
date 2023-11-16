@@ -25,9 +25,9 @@ function displayTable($result) {
                     }
 
                 echo '
-                <div class="col-md-4 mb-4">
+                <div class="col-md-4 mb-2 pb-4 pt-4">
                     <a href="product_listing.php?productid='.$datarows['productID'].'" class="card-link" style="outline: none; text-decoration: none;">
-                        <div class="card" style="transition: transform 0.3s ease;">
+                        <div class="card" style="transition: transform 0.3s ease; max-width: 24rem;">
                             <style>
                                 .card:hover {
                                     transform: scale(1.03);
