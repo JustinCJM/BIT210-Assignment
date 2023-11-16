@@ -22,7 +22,7 @@ require_once 'includes/dbh.inc.php';
     <head>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>Travel Website</title>
+        <title>Product Details</title>
         <link rel="icon" type="image/png" href="assets/logo.png" />
         <meta name="description" content="" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />

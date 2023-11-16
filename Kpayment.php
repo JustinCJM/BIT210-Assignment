@@ -285,7 +285,6 @@
               var quantity = this.value;
               var total = productPrice * quantity;
 
-              // Display total with a dollar sign
               document.getElementById('totalLabel').innerText = 'Total: RM' + total.toFixed(2);
           });
       </script>

@@ -1,15 +1,9 @@
 <!DOCTYPE html>
 <html>
-  <?php 
-  require_once "includes/config_session.inc.php";
-  require_once "Kpayment_init.php";
-  require_once 'Kreceipt.php';
-  require_once 'includes/dbh.inc.php';
-  ?>
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Login</title>
+    <title>Success</title>
     <link rel="icon" type="image/x-icon" href="assets/logo.png" />
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />

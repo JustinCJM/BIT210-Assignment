@@ -13,7 +13,8 @@ $query = "SELECT o.*, p.*,pi.image_path, m.shopName
                 SELECT customerID FROM customer WHERE username = ?
             )
             AND o.orderStatus != 'AWAITING REFUND'
-            AND pi.display = 1 ";
+            AND pi.display = 1 
+            ORDER BY o.orderDate DESC";
 
 $stmt = $mysqli->prepare($query);
 
@@ -28,7 +29,7 @@ if ($stmt) {
     <head>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>Travel Website</title>
+        <title>My Dashboard</title>
         <link rel="icon" type="image/png" href="assets/logo.png" />
         <meta name="description" content="" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
