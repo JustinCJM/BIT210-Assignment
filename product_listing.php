@@ -153,21 +153,11 @@ require_once 'includes/dbh.inc.php';
                                                 RM <?php echo $price; ?>
                                             </h3>
 
-                                            <label for="quantity" style="padding: 5px; font-size: 120%;">Quantity: </label>
-                                            <p class="w-25 p-1">
-                                                <input type="number" id="quantity" class="form-control form-icon-trailing" value="1" min="1">
-                                            </p>
-
                                             <div class="p-1 mb-4">
                                                 <div class="row">
                                                 <div class="col">
-                                                    <button
-                                                        class="btn btn-primary btn-lg btn-block"
-                                                        style="background-color: #7c4dff; width: 7rem;"
-                                                        type="submit"
-                                                    >
-                                                        Buy
-                                                    </button>
+                                                <a href="Kpayment.php?productid=<?php echo urlencode($_GET['productid']); ?>" class="btn btn-primary btn-lg btn-block" style="background-color: #7c4dff; width: 7rem;">Buy</a>
+
                                                 </div>
                                                 <div class="col">
                                                     <form role="search" method="post" action="search_page.php">
@@ -232,6 +222,7 @@ require_once 'includes/dbh.inc.php';
     </script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="script.js"></script>
+
     </body>
 </html>
 
