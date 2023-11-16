@@ -39,9 +39,13 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
     if(is_productName_taken($mysqli, $productName)) {
         $errors["taken_productName"] = "Product name is already taken!";
     }
-    // if(!price_is_double($mysqli, $productPrice)) {
-    //     $errors["price_notDouble"] = "Please eneter a valid price!";
-    // }
+    if(!price_is_double($mysqli, $productPrice)) {
+         $errors["price_notDouble"] = "Please enter a valid price!";
+    }
+
+    if(!$_FILES["image"]['tmp_name']){
+        $errors["no_displayImage"] = "Please upload a display image!";
+    }
 
     if (!empty($errors)) {
         $_SESSION["error_addProduct"] = $errors;
@@ -55,8 +59,6 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
     $productID = $mysqli->insert_id;
 
     $productID = (int)$productID;
-
-    echo "<script>console.log('" . $productID . "');</script>";
 
     $uploadDirectory = '../../productUploads/';
     $targetDirectory = 'productUploads/';
