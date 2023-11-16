@@ -46,7 +46,7 @@
         <a
           class="nav-link"
           aria-current="page"
-          href="Kproductcatalog.php"
+          href="search_page.php"
           >Product</a
         >
         <div class="nav-item dropdown">
