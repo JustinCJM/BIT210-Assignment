@@ -19,9 +19,9 @@ function is_productName_taken(object $mysqli, string $productName) {
     }
 }
 
-// function price_is_double(object $mysqli, string $productPrice){
-//     return is_numeric($productPrice) && strpos($productPrice, '.') !== false;
-// }
+ function price_is_double(object $mysqli, string $productPrice){
+     return is_numeric($productPrice) && strpos($productPrice, '.') !== false;
+ }
 
 function create_product(object $mysqli, int $merchantID, string $productName, string $productPrice, string $productCategory, string $productLocation, string $productDescription) {
     set_product($mysqli, $merchantID, $productName, $productPrice, $productCategory, $productLocation, $productDescription);
