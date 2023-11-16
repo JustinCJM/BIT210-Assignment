@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <?php 
+  require_once "includes/config_session.inc.php";
   require_once "Kpayment_init.php";
   require_once 'Kreceipt.php';
   require_once 'includes/dbh.inc.php';
@@ -37,6 +38,8 @@
             You have Successfully Purchased!
         </div>
         <?php
+        $info = $_SESSION["info"];
+        $product_info = $_SESSION["productInfo"];
         generateReceipt($info, $products_info);
         ?>
     </div>

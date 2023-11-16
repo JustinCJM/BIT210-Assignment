@@ -39,6 +39,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
           "total"=>$total
         ],
       ];
+
+    $_SESSION["info"] = $info;
+    $_SESSION["productInfo"] = $products_info;;
     $customerIDQuery = "SELECT customerID FROM customer WHERE username = ?";
     $productNameQuery = "SELECT productName FROM product WHERE productID = ?";
 
