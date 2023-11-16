@@ -37,18 +37,13 @@
         <div class="alert alert-success" role="alert">
             You have Successfully Purchased!
         </div>
-        <?php
-        $info = $_SESSION["info"];
-        $product_info = $_SESSION["productInfo"];
-        generateReceipt($info, $products_info);
-        ?>
     </div>
 
     <script>
         // JavaScript to redirect after 4 seconds
         setTimeout(function() {
             window.location.href = 'index.php';
-        }, 2000);  
+        }, 5000);  
     </script>
 </body>
 </html>

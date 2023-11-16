@@ -1,7 +1,4 @@
 <?php
-
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
 require_once 'includes/config_session.inc.php';
 require_once 'Kconfig.php';
 require_once 'includes/dbh.inc.php';
@@ -20,27 +17,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $customerName = $_POST['fname']." ".$_POST['lname'];
     $invoiceNum = rand(4235,9999999);
 
-    $info=[
-        "customer"=>$customerName,
-        "address"=>$address,
-        "invoice_no"=>"#".$invoiceNum,
-        "invoice_date"=>$orderDate,
-        "total_amt"=>$total,
-      ];
-      
-      
-      //invoice Products
-      $products_info=[
-        [       
-          "name"=>$productName,
-          "price"=>$price,
-          "qty"=>$quantity,
-          "total"=>$total
-        ],
-      ];
-
-    $_SESSION["info"] = $info;
-    $_SESSION["productInfo"] = $products_info;;
     $customerIDQuery = "SELECT customerID FROM customer WHERE username = ?";
     $productNameQuery = "SELECT productName FROM product WHERE productID = ?";
 
@@ -70,7 +46,27 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             echo "Customer ID not found";
         }
 
-
+    $info=[
+        "customer"=>$customerName,
+        "address"=>$address,
+        "invoice_no"=>"#".$invoiceNum,
+        "invoice_date"=>$orderDate,
+        "total_amt"=>$total,
+        ];
+        
+        
+        //invoice Products
+        $products_info=[
+        [       
+            "name"=>$productName,
+            "price"=>$price,
+            "qty"=>$quantity,
+            "total"=>$total
+        ],
+        ];   
+        
+        $_SESSION["info"] = $info;
+        $_SESSION["productInfo"] = $products_info;;
     if ($paymentStatus === "success") {
 
         $mysqli->begin_transaction();
@@ -90,16 +86,18 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         }
 
         $mysqli->commit();
-        
-
-
-
-            // generateReceipt($info, $products_info);
-            // echo $customerID;
-            header("Location: Kpayment_success.php");
-                    ;
-        // Close the database connection
-        $mysqli->close();}
+        $mysqli->close();
+    
+    
+        echo '<script>window.open("Kpayment_success.php", "_blank");</script>';
+    
+        // Redirect to the index page in the current tab after a delay
+        echo '<script>
+                setTimeout(function() {
+                    window.location.href = "Kreceiptgenerator.php";
+                }, 20);
+              </script>';
+        exit();}
         else {
         
         echo "Payment failed. Please try again.";
