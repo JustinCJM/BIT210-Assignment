@@ -58,7 +58,7 @@ function displayProducts($mysqli) {
                         echo "<td style='vertical-align: middle; text-align: center; padding: 2rem;'>{$productRows['prodDescription']}</td>";
                         echo "<td style='vertical-align: middle; text-align: center; padding: 2rem;'>
                         <a href='editProduct.php?productid={$productID}' class='btn me-2' style='background-color:#7c4dff; color:white; width:5rem;'>Edit</a>
-                        <a href='deleteProduct.php?productID={$productID}'class='btn btn-light' style='width:5rem;' onclick='return confirm(\"Are you sure you want to delete this product?\")'>Delete</a>
+                        <a href='deleteProduct.php?productID={$productID}'class='btn btn-light' style='width:5rem;''>Delete</a>
                         </td>";
                         echo "</tr>";
             }

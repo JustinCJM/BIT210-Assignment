@@ -54,3 +54,11 @@ function setAdditionalImages(object $mysqli, $productID, string $uniqueFilename,
     $stmt->execute();    
     $stmt->close();
 }
+
+function updateDisplayImage(object $mysqli, $productID, string $uniqueFilename, string $targetPath) {
+    $query = "UPDATE product_images SET image_name=?, image_path=? WHERE productID=? AND display = 1";
+    $stmt = $mysqli->prepare($query);
+    $stmt->bind_param("ssi", $uniqueFilename, $targetPath, $productID);
+    $stmt->execute();    
+    $stmt->close();
+}

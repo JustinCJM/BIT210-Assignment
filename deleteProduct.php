@@ -3,8 +3,8 @@ require_once 'includes/config_session.inc.php';
 
 include 'includes/dbh.inc.php';
 
-if (isset($_GET['productid'])) {
-    $productID = $_GET['productid'];
+if (isset($_GET['productID'])) {
+    $productID = $_GET['productID'];
 
     // Fetch product details from the database based on the product ID
     $query = "SELECT * FROM product WHERE productID = ?";
@@ -97,8 +97,8 @@ if (isset($_GET['productid'])) {
                 <p class="card-text">Product Location: <?php echo $productDetails['prodLocation']; ?></p>
             </div>
             <div class="card-footer text-muted">
-            <button class="btn btn-danger btn-lg" onclick="confirmDelete()">Confirm Delete</button>
-            <a href="#" class="btn btn-primary btn-lg" onclick="history.back()">Cancel</a>
+            <button class='btn me-2 btn-lg' style='background-color:#7c4dff; color:white;' onclick="confirmDelete()">Confirm Delete</button>
+            <a href="merchantDashboard.php" class='btn btn-light btn-lg' onclick="history.back()">Cancel</a>
             </div>
         </div>
     </div>

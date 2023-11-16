@@ -24,9 +24,6 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
             $errors["taken_productName"] = "Product name is already taken!";
         }
     }
-    // if(!price_is_double($mysqli, $productPrice)) {
-    //     $errors["price_notDouble"] = "Please eneter a valid price!";
-    // }
 
     if (!empty($errors)) {
         $_SESSION["error_editProduct"] = $errors;
@@ -38,6 +35,13 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
 
     $uploadDirectory = '../../productUploads/';
     $targetDirectory = 'productUploads/';
+
+    if($_FILES["image"]['tmp_name']){
+        $uniqueFilename = $productName . "_" . basename($_FILES["image"]["name"]);
+        $uploadPath = $uploadDirectory . $uniqueFilename;
+        $targetPath = $targetDirectory . $uniqueFilename;
+        updateDisplayImage($mysqli, $productID, $uniqueFilename, $targetPath);
+    }
 
     $index = 0;
     foreach ($_FILES["images"]["name"] as $x) {

@@ -26,9 +26,9 @@ function is_productName_same(object $mysqli, string $productName, int $productID
         return false;
     }
 }
-// function price_is_double(object $mysqli, string $productPrice){
-//     return is_numeric($productPrice) && strpos($productPrice, '.') !== false;
-// }
+ function price_is_double(object $mysqli, string $productPrice){
+     return is_numeric($productPrice) && strpos($productPrice, '.') !== false;
+ }
 
 function update_product(object $mysqli, int $merchantID, string $productName, string $productPrice, string $productCategory, string $productLocation, string $productDescription) {
     update_product_details($mysqli, $merchantID, $productName, $productPrice, $productCategory, $productLocation, $productDescription);
