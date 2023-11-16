@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <?php 
-  require_once "Kpayment_init.php";
+  require_once 'Kpayment_init.php';
   require_once 'Kreceipt.php';
   require_once 'includes/dbh.inc.php';
   ?>
@@ -37,7 +37,8 @@
             You have Successfully Purchased!
         </div>
         <?php
-        generateReceipt($info, $products_info);
+          echo $customerName;
+       // generateReceipt($info, $products_info);
         ?>
     </div>
 

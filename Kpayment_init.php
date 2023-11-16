@@ -7,7 +7,6 @@ require_once 'Kconfig.php';
 require_once 'includes/dbh.inc.php';
 require_once 'Kreceipt.php';
 
-
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $orderDate = date("d.m.Y");
     $orderStatus = "UNFULFILLED";
@@ -32,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
       
       //invoice Products
       $products_info=[
-        [
+        [       
           "name"=>$productName,
           "price"=>$price,
           "qty"=>$quantity,
@@ -95,7 +94,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             // generateReceipt($info, $products_info);
             // echo $customerID;
             header("Location: Kpayment_success.php");
-                    exit();
+                    ;
         // Close the database connection
         $mysqli->close();}
         else {
