@@ -4,7 +4,7 @@ declare(strict_types = 1);
 
 function updateMerchantPassword(string $username, string $pwd, object $mysqli) {
     // Using prepared statement to prevent SQL injection
-    $query = "UPDATE merchant SET pwd = ?, default_pwd = NULL WHERE username = ?";
+    $query = "UPDATE merchant SET pwd = ?, default_pwd = NULL, regStatus = 'ACTIVE' WHERE username = ?";
     
     // Prepare the statement
     $stmt = $mysqli->prepare($query);
