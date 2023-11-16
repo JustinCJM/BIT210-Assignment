@@ -118,10 +118,11 @@ require_once 'includes/config_session.inc.php';
           </div>
         </div>
       </div>
-      <div class="text-center p-5 fs-1 fw-bold">Take a look at our featured products!
-        <p>TBA</p>
-      </div>
-      <div id="carouselExampleControls" class="carousel slide text-center carousel-dark" data-bs-ride="carousel">
+      <div class="text-center p-5 fs-1 fw-bold">Take a look at our featured products!</div>
+      <?php
+        include 'includes/productCarousell/productCarousell.inc.php';
+      ?>
+      <div id="carouselExampleControl" class="carousel slide text-center carousel-dark" data-bs-ride="carousel">
         <div class="text-center p-5 fs-1 fw-bold">See what other people have to say!</div>
         <div class="carousel-inner" data-aos="fade-left" data-aos-duration="2000">
           <div class="carousel-item active">
@@ -192,12 +193,12 @@ require_once 'includes/config_session.inc.php';
             </ul>
           </div>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControl"
           data-bs-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
           <span class="visually-hidden">Previous</span>
         </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControl"
           data-bs-slide="next">
           <span class="carousel-control-next-icon" aria-hidden="true"></span>
           <span class="visually-hidden">Next</span>
