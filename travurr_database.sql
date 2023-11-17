@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 16, 2023 at 08:02 AM
+-- Generation Time: Nov 16, 2023 at 07:44 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -42,9 +42,9 @@ CREATE TABLE `customer` (
 --
 
 INSERT INTO `customer` (`customerID`, `fullName`, `username`, `pwd`, `gender`, `email`, `contactno`) VALUES
-(2, 'Saul Goodman', 'SaulMan', 'poi123', 'male', 'saulgoodman@gmail.com', 348973092),
-(3, 'Rob bin Man', 'RobMan', 'poi', 'male', 'robman@gmail.com', 489379084),
-(4, 'Mando Ling', 'Mando', 'wewe', 'male', 'justinchuosu@gmail.com', 3423424);
+(1, 'John Smith', 'PassportPioneer', '0rCe6sJyFr', 'male', 'PassportPioneer@gmail.com', 123453232),
+(2, 'Jane Doe', 'JourneyQuester', 'O1xd0rCkBR', 'female', 'JourneyQuester@gmail.com', 12789657),
+(3, 'Aliya Nuha', 'VagabondVentures', 'MyEtKCFSFW', 'female', 'VagabondVentures@gmail.com', 125678542);
 
 -- --------------------------------------------------------
 
@@ -70,8 +70,10 @@ CREATE TABLE `merchant` (
 --
 
 INSERT INTO `merchant` (`merchantID`, `username`, `pwd`, `default_pwd`, `email`, `contactNo`, `shopName`, `merchDescription`, `regStatus`, `tmoID`) VALUES
-(28, 'Kylow', 'ww', '', 'sdasda@gmail.com', '394872489', 'Travuhr', 'Goats!', 'ACTIVE', 1),
-(30, 'SamW22', 'loRV41^%', '', 'chongjustin511@gmail.com', '0123826383', 'Shop Name', 'Description', 'PENDING', 1);
+(1, 'TravelersTroves', 'JM8u65qcAe', '', 'TravelersTroves@gmail.com', '0125678432', 'Travelers Troves Co', 'Welcome to Travelers Troves Co, where the spirit of adventure meets curated elegance. Explore our carefully selected collection of travel plans, perfect for your next holiday.', 'ACTIVE', 1),
+(2, 'HorizonHavenHub', 'jjfF4BolDI', '', 'HorizonHaven@gmail.com', '0167894562', 'Horizon Haven Hub', 'Discover the world through Horizon Haven Hub, your go-to destination for travel trips essentials. Immerse yourself in a carefully curated selection of wanderlust-worthy items that combine adventure and mystery.', 'ACTIVE', 1),
+(3, 'GlobeGoodsGallery', '6uhOHATcxz', '', 'GlobeGoods@gmail.com', '0198765981', 'Globe Goods Gallery', 'At Globe Goods Gallery, we believe that the journey is just as important as the destination. Step into a world of travel, where each plan is handpicked to ignite your sense of wanderlust.', 'ACTIVE', 1),
+(4, 'TravelersTrinkets', 'bd2230f9', '', 'aaronnabil02@gmail.com', '0124567321', 'Travelers Trinkets', 'Welcome to TravelersTrinkets, where every piece tells a story and every purchase becomes a cherished memory. Our shop is a curated haven for explorers, offering a handpicked collection of trinkets inspired by the spirit of wanderlust.', 'PENDING', 1);
 
 -- --------------------------------------------------------
 
@@ -93,8 +95,10 @@ CREATE TABLE `merch_documents` (
 --
 
 INSERT INTO `merch_documents` (`documentID`, `merchantID`, `document_name`, `document_path`, `upload_date`, `doc_description`) VALUES
-(6, 28, 'Kylowsunrom-185000.pdf', 'pdfuploads/Kylowsunrom-185000.pdf', '2023-10-17 22:56:42', 'Document to be reviewed!'),
-(7, 30, 'SamW22Registration.pdf', 'pdfuploads/SamW22Registration.pdf', '2023-10-18 03:49:17', 'Documents to be reviewed');
+(1, 1, 'TravelersTroves_TravelersTrove-BusinessLicense.png', 'pdfuploads/TravelersTroves_TravelersTrove-BusinessLicense.png', '2023-11-16 22:15:56', 'Travelers Troves business license'),
+(2, 2, 'HorizonHavenHub_HorizonHaven-BusinessLicense.pdf', 'pdfuploads/HorizonHavenHub_HorizonHaven-BusinessLicense.pdf', '2023-11-16 22:22:54', 'HorizonHavenHub business license'),
+(3, 3, 'GlobeGoodsGallery_GlobeGoodsGallery-BusinessLicense.pdf', 'pdfuploads/GlobeGoodsGallery_GlobeGoodsGallery-BusinessLicense.pdf', '2023-11-16 22:26:36', 'Globe Goods Gallery Business License'),
+(4, 4, 'TravelersTrinkets_TravelersTrinkets-BusinessLicense.pdf', 'pdfuploads/TravelersTrinkets_TravelersTrinkets-BusinessLicense.pdf', '2023-11-17 02:17:15', 'TravelersTrinkets business license');
 
 -- --------------------------------------------------------
 
@@ -118,15 +122,29 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`orderID`, `orderDate`, `orderStatus`, `billingAddress`, `totalAmount`, `quantity`, `customerID`, `productID`) VALUES
-(1, '2023-11-14 17:21:12', 'UNFULFILLED', '230, Avenue Lane', 200.00, 2, 2, 26),
-(2, '2023-11-14 17:23:32', 'AWAITING REFUND', '230, Avenue Lane', 100.00, 1, 2, 27),
-(3, '2023-11-14 17:23:32', 'REVIEWED', '230, Avenue Lane', 49.99, 1, 2, 28),
-(4, '2023-11-14 17:23:32', 'COMPLETED', '230, Avenue Lane', 78.00, 2, 2, 29),
-(5, '2023-11-14 17:27:46', 'UNFULFILLED', '230, Avenue Lane', 200.00, 2, 2, 26),
-(6, '2023-11-14 17:28:52', 'UNFULFILLED', '230, Avenue Lane', 200.00, 2, 2, 26),
-(7, '2023-11-14 17:28:52', 'COMPLETED', '230, Avenue Lane', 100.00, 1, 2, 26),
-(8, '2023-11-14 17:28:52', 'UNFULFILLED', '230, Avenue Lane', 300.00, 3, 2, 26),
-(9, '2023-11-14 17:28:52', 'COMPLETED', '230, Avenue Lane', 100.00, 1, 2, 26);
+(1, '2023-10-16 10:55:18', 'REVIEWED', '24, Jalan House, Petaling Jaya 47810 Selangor', 260.00, 2, 1, 4),
+(2, '2023-10-30 12:55:18', 'REVIEWED', '24, Jalan House, Petaling Jaya 47810 Selangor', 100.00, 2, 1, 5),
+(3, '2023-11-11 12:42:18', 'REVIEWED', '24, Jalan House, Petaling Jaya 47810 Selangor', 159.98, 2, 1, 6),
+(4, '2023-10-01 13:45:18', 'REVIEWED', '24, Jalan House, Petaling Jaya 47810 Selangor', 600.00, 6, 1, 7),
+(5, '2023-11-16 18:55:43', 'REVIEWED', '24, Jalan House, Petaling Jaya 47810 Selangor', 359.97, 3, 1, 8),
+(6, '2023-11-11 12:32:45', 'REVIEWED', '24, Jalan House, Petaling Jaya 47810 Selangor', 400.00, 4, 1, 9),
+(7, '2023-11-07 14:20:12', 'REVIEWED', '3, Jalan Kenyalang, 60000 Kuala Lumpur', 650.00, 5, 2, 4),
+(8, '2023-10-10 13:18:08', 'REVIEWED', '3, Jalan Kenyalang, 60000 Kuala Lumpur', 200.00, 4, 2, 5),
+(9, '2023-10-27 21:18:44', 'REVIEWED', '3, Jalan Kenyalang, 60000 Kuala Lumpur', 159.98, 2, 2, 6),
+(10, '2023-11-01 23:19:33', 'REVIEWED', '3, Jalan Kenyalang, 60000 Kuala Lumpur', 300.00, 3, 2, 7),
+(11, '2023-11-10 00:20:34', 'REVIEWED', '3, Jalan Kenyalang, 60000 Kuala Lumpur', 599.95, 5, 2, 8),
+(12, '2023-11-14 10:22:24', 'REVIEWED', '3, Jalan Kenyalang, 60000 Kuala Lumpur', 200.00, 4, 2, 9),
+(13, '2023-10-03 10:25:33', 'REVIEWED', '11 Jalan Firma 2/1 Kawasan Perindustrian Tebrau, Johor Bahru, 81100 Johor', 130.00, 1, 3, 4),
+(14, '2023-10-14 00:27:14', 'REVIEWED', '11 Jalan Firma 2/1 Kawasan Perindustrian Tebrau, Johor Bahru, 81100 Johor', 150.00, 3, 3, 5),
+(15, '2023-10-31 13:28:47', 'REVIEWED', '11 Jalan Firma 2/1 Kawasan Perindustrian Tebrau, Johor Bahru, 81100 Johor', 319.96, 4, 3, 6),
+(16, '2023-11-01 14:29:38', 'REVIEWED', '11 Jalan Firma 2/1 Kawasan Perindustrian Tebrau, Johor Bahru, 81100 Johor', 500.00, 5, 3, 7),
+(17, '2023-11-10 03:30:47', 'REVIEWED', '11 Jalan Firma 2/1 Kawasan Perindustrian Tebrau, Johor Bahru, 81100 Johor', 119.99, 1, 3, 8),
+(18, '2023-11-14 13:31:43', 'REVIEWED', '11 Jalan Firma 2/1 Kawasan Perindustrian Tebrau, Johor Bahru, 81100 Johor', 200.00, 4, 3, 9),
+(19, '2023-11-09 01:08:12', 'AWAITING REFUND', '24, Jalan House, Petaling Jaya 47810 Selangor', 50.00, 1, 1, 5),
+(20, '2023-11-09 12:08:12', 'AWAITING REFUND', '24, Jalan House, Petaling Jaya 47810 Selangor', 79.99, 1, 1, 6),
+(21, '2023-11-17 01:47:36', 'UNFULFILLED', '24, Jalan House, Petaling Jaya , , 47810, Selangor, Malaysia', 130.00, 1, 1, 4),
+(26, '2023-11-17 02:25:13', 'UNFULFILLED', '24, Jalan House, , 47810, Selangor, Malaysia', 79.99, 1, 1, 6),
+(27, '2023-11-17 02:26:01', 'COMPLETED', '24, Jalan House, , 47810, Selangor, Malaysia', 50.00, 1, 1, 5);
 
 -- --------------------------------------------------------
 
@@ -152,11 +170,12 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`productID`, `productName`, `productPrice`, `category`, `prodLocation`, `prodDescription`, `merchantID`, `quantitySold`, `totalRating`, `avgRating`) VALUES
-(26, 'Haunted House', 89.9, 'Experience', 'Kuala Lumpur', 'Get Spooked', 28, 34, NULL, 4.6),
-(27, 'Skii Trip', 39.9, 'Sports', 'Kota Kinabalu', 'Skii Down', 28, NULL, NULL, NULL),
-(28, 'Upside-Down Museum', 20, 'Experience', 'Penang', 'Upside-Down!', 28, NULL, 5, 5.0),
-(29, 'Hiking Trip', 70.5, 'Sports', 'Broga Hill', 'Hiking', 28, NULL, NULL, NULL),
-(30, 'beep', 56, 'boop', 'here', 'there', 28, 0, NULL, NULL);
+(4, 'Legoland Malaysia', 130, 'Theme Park', 'Johor Bahru', 'Embark on a whimsical journey with our enchanting trip to LEGOLAND Malaysia, where imagination and creativity come to life in a vibrant world of colorful bricks.', 2, 82, 14, 4.7),
+(5, 'Melaka Tour', 50, 'Tour', 'Melaka', '\"Embark on a captivating journey through time with our Melaka tour, a UNESCO World Heritage city that unfolds like a living history book. Discover the rich tapestry of cultures that have shaped this charming Malaysian gem.', 2, 33, 14, 4.7),
+(6, 'Lost World of Tambun', 79.99, 'Water Park', 'Ipoh', 'Embark on an extraordinary adventure to the Lost World of Tambun, a premier theme park and resort nestled amidst the lush landscapes of Ipoh, Malaysia. Enveloped by natural beauty, this unique destination seamlessly blends thrilling attractions with a tou', 2, 50, 15, 5.0),
+(7, 'Skytropolis Indoor Theme Park', 100, 'Theme Park', 'Genting Highland', 'Step into a world of exhilarating fun and enchantment at Skytropolis Indoor Theme Park, nestled high in the cool mountain air of Genting Highlands. Our specially crafted experience invites you to a thrilling adventure inside Asia\'s first Fox-themed indoor', 1, 38, 15, 5.0),
+(8, 'District 21', 119.99, 'Theme Park', 'Putrajaya', '\"Embark on an urban adventure like no other at District 21, a one-of-a-kind indoor adventure park located in the heart of Kuala Lumpur. This adrenaline-fueled destination offers an immersive experience where physical challenges and excitement meet futuris', 1, 67, 15, 5.0),
+(9, 'Langkawi Cable Car', 50, 'Tour', 'Langkawi', 'Ascend to the heights of natural beauty with the Langkawi Cable Car, a breathtaking journey that offers panoramic views of the lush rainforest, majestic mountains, and the stunning Andaman Sea', 1, 99, 13, 4.3);
 
 -- --------------------------------------------------------
 
@@ -178,14 +197,36 @@ CREATE TABLE `product_images` (
 --
 
 INSERT INTO `product_images` (`imageID`, `productID`, `image_name`, `image_path`, `display`, `image_upload_date`) VALUES
-(19, 26, 'Haunted House_bagus.png', 'productUploads/Haunted House_bagus.png', 1, '2023-11-08 10:05:40'),
-(20, 27, 'Skii Trip_edfrssdf.png', 'productUploads/Skii Trip_edfrssdf.png', 1, '2023-11-08 10:06:12'),
-(21, 28, 'Upside-Down Museum_adf.png', 'productUploads/Upside-Down Museum_adf.png', 1, '2023-11-08 10:07:37'),
-(22, 29, 'Hiking Trip_Screenshot 2023-01-08 174907.png', 'productUploads/Hiking Trip_Screenshot 2023-01-08 174907.png', 1, '2023-11-08 10:08:57'),
-(23, 30, 'beep_Screenshot 2022-12-08 211505.png', 'productUploads/beep_Screenshot 2022-12-08 211505.png', 1, '2023-11-15 12:20:06'),
-(24, 30, 'beep_image.png', 'productUploads/beep_image.png', 0, '2023-11-15 12:20:06'),
-(25, 30, 'beep_question 13.png', 'productUploads/beep_question 13.png', 0, '2023-11-15 12:20:06'),
-(26, 30, 'beep_question 14.png', 'productUploads/beep_question 14.png', 0, '2023-11-15 12:20:06');
+(20, 4, 'Legoland Malaysia_legoland-image1.jpg', 'productUploads/Legoland Malaysia_legoland-image1.jpg', 1, '2023-11-16 23:11:12'),
+(21, 4, 'Legoland Malaysia_legoland-image2.jpg', 'productUploads/Legoland Malaysia_legoland-image2.jpg', 0, '2023-11-16 23:11:12'),
+(22, 4, 'Legoland Malaysia_legoland-image3.jpg', 'productUploads/Legoland Malaysia_legoland-image3.jpg', 0, '2023-11-16 23:11:12'),
+(23, 4, 'Legoland Malaysia_legoland-image4.jpg', 'productUploads/Legoland Malaysia_legoland-image4.jpg', 0, '2023-11-16 23:11:12'),
+(24, 4, 'Legoland Malaysia_legoland-image5.jpg', 'productUploads/Legoland Malaysia_legoland-image5.jpg', 0, '2023-11-16 23:11:12'),
+(25, 5, 'Melaka Tour_melaka-image1.jpg', 'productUploads/Melaka Tour_melaka-image1.jpg', 1, '2023-11-16 23:16:26'),
+(26, 5, 'Melaka Tour_melaka-image2.jpg', 'productUploads/Melaka Tour_melaka-image2.jpg', 0, '2023-11-16 23:16:26'),
+(27, 5, 'Melaka Tour_melaka-image3.jpg', 'productUploads/Melaka Tour_melaka-image3.jpg', 0, '2023-11-16 23:16:26'),
+(28, 5, 'Melaka Tour_melaka-image4.jpg', 'productUploads/Melaka Tour_melaka-image4.jpg', 0, '2023-11-16 23:16:26'),
+(29, 5, 'Melaka Tour_melaka-image5.jpg', 'productUploads/Melaka Tour_melaka-image5.jpg', 0, '2023-11-16 23:16:26'),
+(30, 6, 'Lost World of Tambun_tambun-image2.jpg', 'productUploads/Lost World of Tambun_tambun-image2.jpg', 1, '2023-11-16 23:21:49'),
+(31, 6, 'Lost World of Tambun_tambun-image1.jpg', 'productUploads/Lost World of Tambun_tambun-image1.jpg', 0, '2023-11-16 23:21:49'),
+(32, 6, 'Lost World of Tambun_tambun-image3.jpg', 'productUploads/Lost World of Tambun_tambun-image3.jpg', 0, '2023-11-16 23:21:49'),
+(33, 6, 'Lost World of Tambun_tambun-image4.jpg', 'productUploads/Lost World of Tambun_tambun-image4.jpg', 0, '2023-11-16 23:21:49'),
+(34, 6, 'Lost World of Tambun_tambun-image5.jpeg', 'productUploads/Lost World of Tambun_tambun-image5.jpeg', 0, '2023-11-16 23:21:49'),
+(35, 7, 'Skytropolis Indoor Theme Park_sky-image1.jpg', 'productUploads/Skytropolis Indoor Theme Park_sky-image1.jpg', 1, '2023-11-16 23:34:29'),
+(36, 7, 'Skytropolis Indoor Theme Park_sky-image2.jpg', 'productUploads/Skytropolis Indoor Theme Park_sky-image2.jpg', 0, '2023-11-16 23:34:29'),
+(37, 7, 'Skytropolis Indoor Theme Park_sky-image3.jpg', 'productUploads/Skytropolis Indoor Theme Park_sky-image3.jpg', 0, '2023-11-16 23:34:29'),
+(38, 7, 'Skytropolis Indoor Theme Park_sky-image4.jpg', 'productUploads/Skytropolis Indoor Theme Park_sky-image4.jpg', 0, '2023-11-16 23:34:29'),
+(39, 7, 'Skytropolis Indoor Theme Park_sky-image5.jpg', 'productUploads/Skytropolis Indoor Theme Park_sky-image5.jpg', 0, '2023-11-16 23:34:29'),
+(40, 8, 'District 21_district21-image1.jpg', 'productUploads/District 21_district21-image1.jpg', 1, '2023-11-16 23:39:07'),
+(41, 8, 'District 21_district21-image2.jpg', 'productUploads/District 21_district21-image2.jpg', 0, '2023-11-16 23:39:07'),
+(42, 8, 'District 21_district21-image3.jpg', 'productUploads/District 21_district21-image3.jpg', 0, '2023-11-16 23:39:07'),
+(43, 8, 'District 21_district21-image4.jpg', 'productUploads/District 21_district21-image4.jpg', 0, '2023-11-16 23:39:07'),
+(44, 8, 'District 21_district21-image5.jpg', 'productUploads/District 21_district21-image5.jpg', 0, '2023-11-16 23:39:07'),
+(45, 9, 'Langkawi Cable Car_langkawicc-image1.jpg', 'productUploads/Langkawi Cable Car_langkawicc-image1.jpg', 1, '2023-11-16 23:42:48'),
+(46, 9, 'Langkawi Cable Car_langkawicc-image2.jpg', 'productUploads/Langkawi Cable Car_langkawicc-image2.jpg', 0, '2023-11-16 23:42:48'),
+(47, 9, 'Langkawi Cable Car_langkawicc-image3.jpg', 'productUploads/Langkawi Cable Car_langkawicc-image3.jpg', 0, '2023-11-16 23:42:48'),
+(48, 9, 'Langkawi Cable Car_langkawicc-image4.cms', 'productUploads/Langkawi Cable Car_langkawicc-image4.cms', 0, '2023-11-16 23:42:48'),
+(49, 9, 'Langkawi Cable Car_langkawicc-image5.jpeg', 'productUploads/Langkawi Cable Car_langkawicc-image5.jpeg', 0, '2023-11-16 23:42:48');
 
 -- --------------------------------------------------------
 
@@ -206,7 +247,8 @@ CREATE TABLE `refunds` (
 --
 
 INSERT INTO `refunds` (`refundID`, `refundStatus`, `refundDescription`, `refundDate`, `orderID`) VALUES
-(1, 'AWAITING REFUND', 'This product hurt my feelings', '2023-11-14 00:00:00', 2);
+(1, 'REJECTED', 'I was drunk.', '2023-11-17 01:13:33', 19),
+(4, 'AWAITING REFUND', 'My ticket to Ipoh is damaged and I can not make it. TY.', '2023-11-17 01:38:16', 20);
 
 -- --------------------------------------------------------
 
@@ -228,13 +270,24 @@ CREATE TABLE `reviews` (
 --
 
 INSERT INTO `reviews` (`reviewID`, `reviewDate`, `comments`, `rating`, `orderID`, `productID`) VALUES
-(1, '0000-00-00 00:00:00', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor i', 5, 1, 26),
-(2, '0000-00-00 00:00:00', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', 5, 5, 26),
-(3, '2023-11-14 17:32:20', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis', 4, 6, 26),
-(4, '2023-11-14 17:33:49', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis', 4, 7, 26),
-(5, '2023-11-14 17:33:49', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis', 4, 8, 26),
-(6, '2023-11-14 17:33:49', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis', 4, 9, 26),
-(8, '2023-11-16 14:39:53', 'weeeeeeeeeee', 5, 3, 28);
+(1, '2023-11-17 00:49:25', 'Absolutely magical experience at Legoland! Our trip was nothing short of a five-star adventure from start to finish. The attention to detail in the Lego creations throughout the park is truly awe-inspiring.', 5, 1, 4),
+(2, '2023-11-17 00:51:12', 'We had a great time exploring Melaka! The rich historical charm of the city, with its vibrant colors and diverse cultural influences, made for a memorable trip.', 4, 2, 5),
+(3, '2023-11-17 00:52:03', 'Our visit to the Lost World of Tambun was a delightful adventure! The park\'s combination of thrilling rides, engaging attractions, and the natural beauty of its surroundings offered a unique and enjoyable experience.', 5, 3, 6),
+(4, '2023-11-17 00:57:56', 'Our visit to Skytropolis Indoor Theme Park was a thrilling experience! The park\'s wide array of indoor rides and attractions provided hours of excitement for visitors of all ages.', 5, 4, 7),
+(5, '2023-11-17 00:58:30', 'District 21 is an absolute gem for thrill-seekers and adventure enthusiasts! Our visit to this indoor theme park was nothing short of a five-star experience. The adrenaline-pumping activities, from challenging obstacle courses to heart-racing rides, kept ', 5, 5, 8),
+(6, '2023-11-17 00:58:52', 'Langkawi Cable Car offers a breathtaking and unparalleled experience, earning a well-deserved five-star rating. The journey begins with a scenic ride up the lush mountains, providing panoramic views of the stunning Langkawi archipelago.', 5, 6, 9),
+(7, '2023-11-17 01:00:32', 'Legoland Malaysia is a fantastic destination for families and Lego enthusiasts, earning a solid four-star rating from our visit. The park\'s themed areas, intricate Lego creations, and engaging rides offer a unique and enjoyable experience.', 4, 7, 4),
+(8, '2023-11-17 01:01:22', 'Our Melaka tour was an exceptional five-star experience that exceeded all expectations. The city\'s rich historical and cultural tapestry unfolded before us, creating a journey filled with awe and appreciation.', 5, 8, 5),
+(9, '2023-11-17 01:02:05', 'Our visit to the Lost World of Tambun was nothing short of a five-star adventure! This unique theme park seamlessly blends natural wonders with thrilling attractions, creating an unforgettable experience.', 5, 9, 6),
+(10, '2023-11-17 01:02:25', 'Skytropolis Indoor Theme Park is a five-star delight for thrill-seekers and family fun enthusiasts alike. The variety of indoor rides and attractions offer an exhilarating experience, ensuring there\'s something for everyone. ', 5, 10, 7),
+(11, '2023-11-17 01:02:56', 'District 21 deserves every bit of its five-star rating for delivering an unparalleled adventure experience. This indoor theme park is an absolute thrill-seeker\'s paradise, offering a unique and exciting array of activities.', 5, 11, 8),
+(12, '2023-11-17 01:03:19', 'Langkawi Cable Car is a spectacular five-star attraction that offers an unforgettable journey to breathtaking heights. The scenic ride up the lush mountains provides panoramic views of the stunning Langkawi archipelago, creating a mesmerizing experience f', 5, 12, 9),
+(13, '2023-11-17 01:04:26', 'Legoland Malaysia is a five-star wonderland for families and Lego enthusiasts alike. From the moment you step into the park, the attention to detail in the Lego creations and themed areas creates a magical and immersive experience.', 5, 13, 4),
+(14, '2023-11-17 01:04:55', 'Our Melaka tour was a delightful four-star experience, offering a fascinating glimpse into the city\'s rich history and cultural heritage. The UNESCO World Heritage sites, including Jonker Street and A Famosa, provided captivating insights into Melaka\'s di', 5, 14, 5),
+(15, '2023-11-17 01:05:15', 'The Lost World of Tambun is a phenomenal five-star destination that seamlessly blends natural wonders with exhilarating attractions. From the moment we stepped into the park, the lush surroundings and captivating atmosphere set the stage for an unforgetta', 5, 15, 6),
+(16, '2023-11-17 01:05:33', 'Skytropolis Indoor Theme Park earns a well-deserved five-star rating for providing an exhilarating and immersive experience. From the moment we stepped into the park, the vibrant atmosphere and exciting array of indoor rides captivated our senses.', 5, 16, 7),
+(17, '2023-11-17 01:05:52', 'District 21 is an absolute five-star gem that offers a thrilling and unique adventure experience. From the moment you step into this urban adventure park, the adrenaline starts pumping, and the excitement is palpable.', 5, 17, 8),
+(18, '2023-11-17 01:06:12', 'Our experience at the Langkawi Cable Car was a three-star adventure. The breathtaking views of the Langkawi archipelago from the cable car were undeniably impressive, and the SkyBridge at the top offered stunning photo opportunities.', 3, 18, 9);
 
 -- --------------------------------------------------------
 
@@ -254,7 +307,7 @@ CREATE TABLE `tourism_ministry_officer` (
 --
 
 INSERT INTO `tourism_ministry_officer` (`tmoID`, `username`, `pwd`, `email`) VALUES
-(1, 'BobJohnson123', 'password321', 'bobjohnson@example.com');
+(1, 'TourOfficer', 'abc123', 'tourOfficer@gmail.com');
 
 --
 -- Indexes for dumped tables
@@ -344,49 +397,49 @@ ALTER TABLE `tourism_ministry_officer`
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `customerID` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `customerID` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `merchant`
 --
 ALTER TABLE `merchant`
-  MODIFY `merchantID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `merchantID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `merch_documents`
 --
 ALTER TABLE `merch_documents`
-  MODIFY `documentID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `documentID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `orderID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `orderID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `productID` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `productID` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `product_images`
 --
 ALTER TABLE `product_images`
-  MODIFY `imageID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `imageID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 
 --
 -- AUTO_INCREMENT for table `refunds`
 --
 ALTER TABLE `refunds`
-  MODIFY `refundID` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `refundID` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `reviews`
 --
 ALTER TABLE `reviews`
-  MODIFY `reviewID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `reviewID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `tourism_ministry_officer`
